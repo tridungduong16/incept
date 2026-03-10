@@ -1,0 +1,41 @@
+// Brand backgrounds
+$bg-primary: #020617;
+$bg-secondary: #081229;
+$surface: #0b162c;
+
+// Brand colors
+$electric-blue: #38bdf8;
+$indigo: #6366f1;
+$purple: #a855f7;
+$gradient-brand: linear-gradient(135deg, $electric-blue 0%, $indigo 52%, $purple 100%);
+
+// Neutrals
+$heading: #e5e7eb;
+$body-text: #9ca3af;
+$muted-text: #6b7280;
+$border: #1f2937;
+
+// Trading colors
+$bullish: #22c55e;
+$bearish: #ef4444;
+$warning: #f59e0b;
+$white: #ffffff;
+$black: #000000;
+
+// Typography
+$font-family-base: 'Manrope', 'Segoe UI', sans-serif;
+$font-family-display: 'Sora', 'Manrope', sans-serif;
+$font-size-base: 16px;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
