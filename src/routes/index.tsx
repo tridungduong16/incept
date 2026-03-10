@@ -1,14 +1,14 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { ROUTES } from '@/constants/routes'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { ROUTES, buildEventRoute } from '@/constants/routes'
+import { allMarkets } from '@/data/tradingFlow'
 import EventDetails from '@/pages/EventDetails'
 import MainLayout from '@/layouts/MainLayout'
 import Home from '@/pages/Home'
-import Login from '@/pages/Login'
 import MarketsLobby from '@/pages/MarketsLobby'
 import NotFound from '@/pages/NotFound'
 import OrderConfirmation from '@/pages/OrderConfirmation'
 import Portfolio from '@/pages/Portfolio'
-import Settlement from '@/pages/Settlement'
+import Settings from '@/pages/Settings'
 import PlatformGate from '@/routes/PlatformGate'
 
 export const router = createBrowserRouter([
@@ -20,15 +20,15 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ROUTES.LOGIN,
-        element: <Login />,
-      },
-      {
         element: <PlatformGate />,
         children: [
           {
             path: ROUTES.MARKETS,
             element: <MarketsLobby />,
+          },
+          {
+            path: ROUTES.TRADE,
+            element: <Navigate to={buildEventRoute(allMarkets[0].routeId)} replace />,
           },
           {
             path: ROUTES.EVENT,
@@ -43,8 +43,8 @@ export const router = createBrowserRouter([
             element: <Portfolio />,
           },
           {
-            path: ROUTES.SETTLEMENT,
-            element: <Settlement />,
+            path: ROUTES.SETTINGS,
+            element: <Settings />,
           },
         ],
       },

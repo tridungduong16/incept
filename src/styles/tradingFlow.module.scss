@@ -66,8 +66,9 @@
 }
 
 .brandLogo {
-  width: 68px;
-  height: 68px;
+  display: block;
+  width: auto;
+  height: clamp(84px, 9.6vw, 114px);
   object-fit: contain;
 }
 
@@ -746,5 +747,1648 @@
 
   p {
     color: #aab9dd;
+  }
+}
+
+// ─── Binance-style Market Table ───────────────────────────────────────────────
+
+.mktPanel {
+  margin-top: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(14, 20, 34, 0.96), rgba(8, 12, 24, 0.92)),
+    rgba(9, 13, 26, 0.96);
+  box-shadow: 0 22px 60px rgba(1, 4, 20, 0.28);
+  overflow: hidden;
+}
+
+.mktTabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mktTab,
+.mktTabActive {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 18px;
+  border: none;
+  background: transparent;
+  color: #8fa0c7;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: $heading;
+  }
+}
+
+.mktTabActive {
+  color: $electric-blue;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 2px;
+    background: $electric-blue;
+    border-radius: 2px 2px 0 0;
+  }
+}
+
+.mktTabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #8fa0c7;
+}
+
+.mktSearch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 24px;
+  padding: 0 16px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(6, 10, 20, 0.8);
+  transition: border-color 160ms ease;
+
+  &:focus-within {
+    border-color: rgba(56, 189, 248, 0.32);
+  }
+}
+
+.mktSearchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: $white;
+  font-size: 0.92rem;
+  outline: none;
+
+  &::placeholder {
+    color: #6b7c9e;
+  }
+}
+
+.mktTableWrap {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.mktTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 920px;
+}
+
+.mktTh,
+.mktThRight,
+.mktThCenter {
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #6b7c9e;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: #aab9dd;
+  }
+}
+
+.mktTh {
+  text-align: left;
+}
+
+.mktThRight {
+  text-align: right;
+}
+
+.mktThCenter {
+  text-align: center;
+}
+
+.mktRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background 120ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.04);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mktTd,
+.mktTdRight,
+.mktTdCenter {
+  padding: 14px 16px;
+  font-size: 0.92rem;
+  color: #c8d6fb;
+  vertical-align: middle;
+}
+
+.mktTd {
+  text-align: left;
+}
+
+.mktTdRight {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.mktTdCenter {
+  text-align: center;
+}
+
+.mktPairCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mktPairName {
+  color: $heading;
+  font-weight: 700;
+  font-size: 0.94rem;
+  letter-spacing: 0.02em;
+}
+
+.mktPairTitle {
+  color: #6b7c9e;
+  font-size: 0.8rem;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mktPrice {
+  color: $heading;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sparklineSvg {
+  display: block;
+  margin: 0 auto;
+}
+
+.mktTradeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: $electric-blue;
+  background: rgba(56, 189, 248, 0.1);
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: $white;
+  }
+}
+
+.mktEmpty {
+  padding: 48px 24px;
+  text-align: center;
+  color: #6b7c9e;
+  font-size: 0.95rem;
+}
+
+// ─── Compact Event Hero ───────────────────────────────────────────────────────
+
+.eventCompactHero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.1), transparent 40%),
+    linear-gradient(180deg, rgba(14, 20, 34, 0.96), rgba(8, 12, 24, 0.92));
+  box-shadow: 0 8px 24px rgba(1, 4, 20, 0.18);
+
+  @include respond-below(md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.eventCompactLeft {
+  min-width: 0;
+}
+
+.eventCompactTitle {
+  color: $heading;
+  font-family: $font-family-display;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.eventCompactSub {
+  margin-top: 4px;
+  color: #6b7c9e;
+  font-size: 0.82rem;
+}
+
+.eventCompactStats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.eventCompactStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+
+  &:first-child {
+    border-left: none;
+  }
+
+  strong {
+    color: $heading;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    color: #8fa0c7;
+    font-size: 0.76rem;
+  }
+}
+
+.eventCompactLabel {
+  color: $electric-blue;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+// ─── Binance-style Trading View ───────────────────────────────────────────────
+
+.tvShell {
+  width: min(1440px, calc(100% - 16px));
+  margin: 0 auto;
+  padding: 8px 0 40px;
+
+  @include respond-to(md) {
+    width: min(1440px, calc(100% - 32px));
+    padding-top: 12px;
+  }
+}
+
+.tvTickerBar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  margin-bottom: 8px;
+  overflow-x: auto;
+
+  @include respond-below(md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.tvPairInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  padding-right: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  @include respond-below(md) {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+.tvPairName {
+  color: $heading;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.tvPairTitle {
+  color: #6b7c9e;
+  font-size: 0.76rem;
+}
+
+.tvTickerStats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.tvTickerStat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  span {
+    color: #6b7c9e;
+    font-size: 0.7rem;
+  }
+
+  strong {
+    color: $heading;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tvLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 8px;
+
+  @include respond-below(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tvMainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tvSideCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// Market row
+.tvMarketRow {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  background: rgba(10, 16, 30, 0.95);
+}
+
+.tvMarketBtn,
+.tvMarketBtnActive {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.tvMarketBtn {
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.tvMarketBtnActive {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.24);
+}
+
+.tvMarketBtnName {
+  color: $heading;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.tvMarketBtnPrice {
+  color: $electric-blue;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+// Chart panel
+.tvChartPanel {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  overflow: hidden;
+}
+
+.tvTimeframeRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tvTimeLabel {
+  color: #6b7c9e;
+  font-size: 0.78rem;
+  margin-right: 4px;
+}
+
+.tvTimeframeBtn,
+.tvTimeframeBtnActive {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #8fa0c7;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+
+  &:hover {
+    color: $heading;
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.tvTimeframeBtnActive {
+  color: $electric-blue;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.tvChartMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: #6b7c9e;
+
+  strong {
+    color: $heading;
+    font-weight: 600;
+  }
+}
+
+.tvChartWrap {
+  padding: 8px;
+  min-height: 420px;
+
+  @include respond-below(md) {
+    min-height: 300px;
+  }
+}
+
+.tvChartSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+
+  @include respond-below(md) {
+    min-height: 280px;
+  }
+}
+
+// Bottom panel (timeline/trades)
+.tvBottomPanel {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+}
+
+.tvBottomTabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tvBottomTab,
+.tvBottomTabActive {
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  color: #6b7c9e;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: $heading;
+  }
+}
+
+.tvBottomTabActive {
+  color: $electric-blue;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 2px;
+    background: $electric-blue;
+    border-radius: 2px 2px 0 0;
+  }
+}
+
+.tvTimelineList {
+  padding: 12px 16px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tvTimelineRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.tvTimelineBadge {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(14, 165, 233, 0.1);
+  color: $electric-blue;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.tvTimelineContent {
+  min-width: 0;
+
+  strong {
+    display: block;
+    color: $heading;
+    font-size: 0.84rem;
+    margin-bottom: 2px;
+  }
+
+  p {
+    color: #6b7c9e;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
+
+// Order book panel
+.tvObPanel {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  padding: 12px;
+}
+
+.tvObHeader {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  margin-bottom: 8px;
+
+  strong {
+    color: $heading;
+    font-size: 0.9rem;
+  }
+}
+
+.tvObColHead {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  padding: 0 4px 6px;
+
+  span {
+    color: #6b7c9e;
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    &:not(:first-child) {
+      text-align: right;
+    }
+  }
+}
+
+.tvObRowAsk,
+.tvObRowBid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  padding: 3px 4px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+
+  span {
+    position: relative;
+    z-index: 1;
+
+    &:not(:first-child) {
+      text-align: right;
+    }
+  }
+}
+
+.tvObRowAsk {
+  span:first-child {
+    color: $bearish;
+  }
+
+  span:not(:first-child) {
+    color: #c8d6fb;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(239, 68, 68, 0.06);
+    border-radius: 4px;
+  }
+}
+
+.tvObRowBid {
+  span:first-child {
+    color: $bullish;
+  }
+
+  span:not(:first-child) {
+    color: #c8d6fb;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(34, 197, 94, 0.06);
+    border-radius: 4px;
+  }
+}
+
+.tvObMid {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  margin: 4px 0;
+
+  strong {
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  span {
+    color: #6b7c9e;
+    font-size: 0.78rem;
+  }
+}
+
+// Trade panel
+.tvTradePanel {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  overflow: hidden;
+}
+
+.tvTradeTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tvBuyTabActive,
+.tvSellTab {
+  padding: 10px;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tvBuyTabActive {
+  background: rgba(34, 197, 94, 0.12);
+  color: $bullish;
+  border-bottom: 2px solid $bullish;
+}
+
+.tvSellTab {
+  background: transparent;
+  color: #6b7c9e;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: $bearish;
+  }
+}
+
+.tvTradeForm {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tvTradeField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span {
+    color: #6b7c9e;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+}
+
+.tvTradeInput,
+.tvTradeSelect {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: $white;
+  background: rgba(6, 10, 20, 0.9);
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  transition: border-color 120ms ease;
+
+  &:focus {
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+}
+
+.tvTradeSelect {
+  appearance: none;
+  cursor: pointer;
+}
+
+.tvTradeSlider {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.tvSliderMark {
+  flex: 1;
+  padding: 4px 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  background: transparent;
+  color: #6b7c9e;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.08);
+    color: $heading;
+  }
+}
+
+.tvTradeSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tvTradeRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+
+  span {
+    color: #6b7c9e;
+  }
+
+  strong {
+    color: $heading;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tvBuyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  background: $bullish;
+  color: $white;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+}
+
+.tvSecondaryLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border-radius: 8px;
+  color: #8fa0c7;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: color 120ms ease;
+
+  &:hover {
+    color: $heading;
+  }
+}
+
+// ─── Portfolio Binance-style ──────────────────────────────────────────────────
+
+.pfTableWrap {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
+}
+
+.pfTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.pfTh,
+.pfThRight,
+.pfThCenter {
+  padding: 10px 14px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #6b7c9e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+}
+
+.pfTh {
+  text-align: left;
+}
+
+.pfThRight {
+  text-align: right;
+}
+
+.pfThCenter {
+  text-align: center;
+}
+
+.pfRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background 100ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.03);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.pfTd,
+.pfTdRight,
+.pfTdCenter {
+  padding: 10px 14px;
+  font-size: 0.86rem;
+  color: #c8d6fb;
+  vertical-align: middle;
+}
+
+.pfTd {
+  text-align: left;
+}
+
+.pfTdRight {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pfTdCenter {
+  text-align: center;
+}
+
+.pfContract {
+  color: $heading;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.pfSideLong {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(34, 197, 94, 0.1);
+  color: $bullish;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.pfSideShort {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.1);
+  color: $bearish;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.pfPnlCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+
+  small {
+    font-size: 0.72rem;
+  }
+}
+
+.pfCloseBtn,
+.pfCancelBtn {
+  padding: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease;
+}
+
+.pfCloseBtn {
+  color: $bearish;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+}
+
+.pfCancelBtn {
+  color: #8fa0c7;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: $heading;
+  }
+}
+
+// Sidebar panels
+.pfSummaryPanel,
+.pfAllocPanel,
+.pfTopPerformers {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  padding: 12px;
+}
+
+.pfSummaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.pfSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 0.84rem;
+
+  span {
+    color: #6b7c9e;
+  }
+
+  strong {
+    color: $heading;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.pfSummaryDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.04);
+  margin: 4px 0;
+}
+
+// Allocation
+.pfAllocBar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 12px 0;
+  gap: 2px;
+}
+
+.pfAllocSegment {
+  border-radius: 4px;
+  transition: opacity 120ms ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.pfAllocLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pfAllocItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.pfAllocDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pfAllocLabel {
+  color: #8fa0c7;
+  flex: 1;
+}
+
+.pfAllocValue {
+  color: $heading;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+// Top performers
+.pfPerformerList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.pfPerformerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 120ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.04);
+  }
+
+  strong {
+    display: block;
+    color: $heading;
+    font-size: 0.84rem;
+  }
+
+  small {
+    color: #6b7c9e;
+    font-size: 0.74rem;
+  }
+}
+
+.pfPerformerPnl {
+  text-align: right;
+
+  span {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+  }
+
+  small {
+    font-size: 0.74rem;
+  }
+}
+
+// ─── Settings Page ────────────────────────────────────────────────────────────
+
+.stLayout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 12px;
+  min-height: calc(100vh - 120px);
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stSidebar {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  padding: 8px;
+  align-self: start;
+  position: sticky;
+  top: 100px;
+
+  @include respond-below(md) {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+
+.stSidebarHeader {
+  padding: 12px 14px 8px;
+
+  strong {
+    color: $heading;
+    font-size: 1.05rem;
+    font-family: $font-family-display;
+    letter-spacing: -0.02em;
+  }
+
+  @include respond-below(md) {
+    display: none;
+  }
+}
+
+.stNav,
+.stNavActive {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #8fa0c7;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: $heading;
+  }
+
+  @include respond-below(md) {
+    width: auto;
+    padding: 8px 12px;
+  }
+}
+
+.stNavActive {
+  background: rgba(56, 189, 248, 0.08);
+  color: $electric-blue;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.12);
+    color: $electric-blue;
+  }
+}
+
+.stNavIcon {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.stContent {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(10, 16, 30, 0.95);
+  padding: 28px;
+
+  @include respond-below(md) {
+    padding: 20px 16px;
+  }
+}
+
+.stSection {
+  max-width: 720px;
+}
+
+.stSectionHeader {
+  margin-bottom: 20px;
+
+  h3 {
+    color: $heading;
+    font-family: $font-family-display;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin-top: 4px;
+    color: #6b7c9e;
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+}
+
+.stFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  span {
+    color: #8fa0c7;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+.stFieldFull {
+  @extend .stField;
+  grid-column: 1 / -1;
+}
+
+.stInput,
+.stSelect,
+.stTextarea {
+  padding: 0 14px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: $white;
+  background: rgba(6, 10, 20, 0.85);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 140ms ease;
+
+  &:focus {
+    border-color: rgba(56, 189, 248, 0.32);
+  }
+}
+
+.stSelect {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7c9e' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.stSelectSmall {
+  @extend .stSelect;
+  height: 34px;
+  font-size: 0.82rem;
+  width: 150px;
+}
+
+.stTextarea {
+  height: auto;
+  padding: 12px 14px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.stInputSmall {
+  @extend .stInput;
+  height: 34px;
+  width: 160px;
+  font-size: 0.82rem;
+}
+
+.stCardList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.stCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.015);
+  transition: background 120ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  @include respond-below(md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.stCardLeft {
+  min-width: 0;
+  flex: 1;
+
+  strong {
+    display: block;
+    color: $heading;
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+  }
+
+  p {
+    color: #6b7c9e;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+}
+
+// Toggle
+.stToggleOn,
+.stToggleOff {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 180ms ease;
+}
+
+.stToggleOn {
+  background: $electric-blue;
+}
+
+.stToggleOff {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stToggleKnob {
+  position: absolute;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: $white;
+  transition: left 180ms ease;
+
+  .stToggleOn & {
+    left: 23px;
+  }
+
+  .stToggleOff & {
+    left: 3px;
+  }
+}
+
+// Actions
+.stActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.stSaveBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 54%, #9333ea 100%);
+  color: $white;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+}
+
+.stOutlineBtn {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  color: $electric-blue;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: rgba(56, 189, 248, 0.35);
+  }
+}
+
+.stDeleteBtn {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+  background: transparent;
+  color: $bearish;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.4);
+  }
+}
+
+// API table
+.stApiTable {
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stApiHead,
+.stApiRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr 0.8fr auto;
+  gap: 8px;
+  padding: 10px 16px;
+  align-items: center;
+  font-size: 0.84rem;
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stApiHead {
+  background: rgba(6, 10, 20, 0.6);
+  color: #6b7c9e;
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stApiRow {
+  color: #c8d6fb;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.stApiKey {
+  font-family: monospace;
+  color: #8fa0c7;
+  font-size: 0.82rem;
+}
+
+.stNotice {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.15);
+
+  strong {
+    display: block;
+    color: $warning;
+    font-size: 0.86rem;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: #c8d6fb;
+    font-size: 0.82rem;
+    line-height: 1.5;
   }
 }
