@@ -1,7 +1,10 @@
-import { useState, type CSSProperties } from 'react'
+import { useState, type CSSProperties, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import heroBackground from '../../../background.png'
 import brandLogo from '../../../logo.png'
+import { ROUTES } from '@/constants/routes'
+import { grantPlatformAccess } from '@/utils/platformAccess'
 import styles from './Home.module.scss'
 
 const markets = [
@@ -74,6 +77,14 @@ const heroStyle = {
 
 const Home = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handlePlatformLogin = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    grantPlatformAccess()
+    setIsLoginOpen(false)
+    navigate(ROUTES.MARKETS)
+  }
 
   return (
     <div className={styles.home}>
@@ -84,10 +95,18 @@ const Home = () => {
           </a>
 
           <nav className={styles.navLinks} aria-label="Primary">
-            <a href="#markets">Markets</a>
-            <a href="#leaderboard">Leaderboard</a>
-            <a href="#what-is-incept">Product</a>
-            <a href="#how-it-works">How It Works</a>
+            <a href="#markets">
+              <span>Markets</span>
+            </a>
+            <a href="#leaderboard">
+              <span>Leaderboard</span>
+            </a>
+            <a href="#what-is-incept">
+              <span>Product</span>
+            </a>
+            <a href="#how-it-works">
+              <span>How It Works</span>
+            </a>
           </nav>
 
           <div className={styles.navActions}>
@@ -147,7 +166,8 @@ const Home = () => {
                   <span
                     className={`${styles.marketChange} ${m.trend === 'up' ? styles.marketUp : styles.marketDown}`}
                   >
-                    {m.trend === 'up' ? '▲' : '▼'} {m.change > 0 ? '+' : ''}{m.change}%
+                    {m.trend === 'up' ? '▲' : '▼'} {m.change > 0 ? '+' : ''}
+                    {m.change}%
                   </span>
                 </div>
 
@@ -410,22 +430,22 @@ const Home = () => {
             <article className={styles.infoCard}>
               <h3>Information Derivatives</h3>
               <p>
-                Each market expresses the probability of a real-world event. The
-                contract price becomes a live signal of collective belief.
+                Each market expresses the probability of a real-world event. The contract price becomes
+                a live signal of collective belief.
               </p>
             </article>
             <article className={styles.infoCard}>
               <h3>Edge-driven participation</h3>
               <p>
-                Research, domain expertise, and better interpretation of public
-                signals become tradable advantage.
+                Research, domain expertise, and better interpretation of public signals become tradable
+                advantage.
               </p>
             </article>
             <article className={styles.infoCard}>
               <h3>Clear resolution</h3>
               <p>
-                Every event settles against an objective source, so outcomes are
-                binary, auditable, and easy to understand.
+                Every event settles against an objective source, so outcomes are binary, auditable,
+                and easy to understand.
               </p>
             </article>
           </div>
@@ -441,24 +461,24 @@ const Home = () => {
               <span>01</span>
               <h3>Choose a market</h3>
               <p>
-                Select an event with a clear question and resolution date, from
-                macro policy to sports, elections, or culture.
+                Select an event with a clear question and resolution date, from macro policy to
+                sports, elections, or culture.
               </p>
             </article>
             <article className={styles.stepCard}>
               <span>02</span>
               <h3>Buy probability</h3>
               <p>
-                Buy `YES` if you think the event will happen or `NO` if you think
-                the market is mispriced in the other direction.
+                Buy `YES` if you think the event will happen or `NO` if you think the market is
+                mispriced in the other direction.
               </p>
             </article>
             <article className={styles.stepCard}>
               <span>03</span>
               <h3>Settle on truth</h3>
               <p>
-                When the event resolves, winning shares settle to full payout and
-                losing shares settle to zero.
+                When the event resolves, winning shares settle to full payout and losing shares settle
+                to zero.
               </p>
             </article>
           </div>
@@ -472,30 +492,29 @@ const Home = () => {
           <div className={styles.rationaleLayout}>
             <article className={styles.quoteCard}>
               <p>
-                Pricing information as probability creates a sharper instrument
-                than sentiment, headlines, or passive exposure.
+                Pricing information as probability creates a sharper instrument than sentiment,
+                headlines, or passive exposure.
               </p>
             </article>
             <div className={styles.reasons}>
               <article className={styles.reasonCard}>
                 <h3>Faster price discovery</h3>
                 <p>
-                  Markets react to new evidence in real time, surfacing signal
-                  before slower institutions update consensus.
+                  Markets react to new evidence in real time, surfacing signal before slower
+                  institutions update consensus.
                 </p>
               </article>
               <article className={styles.reasonCard}>
                 <h3>Aligned incentives</h3>
                 <p>
-                  Participants are rewarded for being correct, not for being loud,
-                  early, or popular.
+                  Participants are rewarded for being correct, not for being loud, early, or popular.
                 </p>
               </article>
               <article className={styles.reasonCard}>
                 <h3>Actionable intelligence</h3>
                 <p>
-                  Probability curves give operators, investors, and analysts a
-                  direct way to interpret uncertainty.
+                  Probability curves give operators, investors, and analysts a direct way to interpret
+                  uncertainty.
                 </p>
               </article>
             </div>
@@ -545,7 +564,7 @@ const Home = () => {
               Sign in to open positions, track markets, and manage your orders.
             </p>
 
-            <form className={styles.loginForm}>
+            <form className={styles.loginForm} onSubmit={handlePlatformLogin}>
               <label htmlFor="login-email">Email</label>
               <input id="login-email" type="email" placeholder="you@company.com" />
 
