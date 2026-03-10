@@ -1,3 +1,7 @@
+import { useState, type CSSProperties } from 'react'
+
+import heroBackground from '../../../background.png'
+import brandLogo from '../../../logo.png'
 import styles from './Home.module.scss'
 
 const leaderboard = [
@@ -16,35 +20,54 @@ const orderBook = [
   { price: '0.44', size: '4,200' },
 ]
 
+const chartCandles = [
+  { time: '09:00', wickTop: '26%', wickHeight: '48%', bodyTop: '42%', bodyHeight: '18%', bullish: false },
+  { time: '10:00', wickTop: '18%', wickHeight: '46%', bodyTop: '30%', bodyHeight: '20%', bullish: true },
+  { time: '11:00', wickTop: '12%', wickHeight: '44%', bodyTop: '18%', bodyHeight: '24%', bullish: true },
+  { time: '12:00', wickTop: '16%', wickHeight: '42%', bodyTop: '22%', bodyHeight: '18%', bullish: false },
+  { time: '13:00', wickTop: '8%', wickHeight: '50%', bodyTop: '14%', bodyHeight: '28%', bullish: true },
+  { time: '14:00', wickTop: '20%', wickHeight: '54%', bodyTop: '34%', bodyHeight: '20%', bullish: false },
+]
+
+const heroStyle = {
+  '--hero-background-image': `url(${heroBackground})`,
+} as CSSProperties
+
 const Home = () => {
+  const [isLoginOpen, setIsLoginOpen] = useState(false)
+
   return (
     <div className={styles.home}>
       <header className={styles.navbar}>
-        <a className={styles.brand} href="#top" aria-label="INCEPT home">
-          <span className={styles.brandMark} />
-          <span>INCEPT</span>
-        </a>
-
-        <nav className={styles.navLinks} aria-label="Primary">
-          <a href="#what-is-incept">Product</a>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#markets">Markets</a>
-          <a href="#leaderboard">Leaderboard</a>
-          <a href="/docs">Docs</a>
-        </nav>
-
-        <div className={styles.navActions}>
-          <a className={styles.secondaryAction} href="#markets">
-            View Markets
+        <div className={styles.navInner}>
+          <a className={styles.brand} href="#top" aria-label="INCEPT home">
+            <img className={styles.brandLogo} src={brandLogo} alt="" />
           </a>
-          <a className={styles.primaryAction} href="/trade">
-            Start Trading
-          </a>
+
+          <nav className={styles.navLinks} aria-label="Primary">
+            <a href="#markets">Markets</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#what-is-incept">Product</a>
+            <a href="#how-it-works">How It Works</a>
+          </nav>
+
+          <div className={styles.navActions}>
+            <a className={styles.secondaryAction} href="#markets">
+              View Markets
+            </a>
+            <button
+              type="button"
+              className={styles.primaryAction}
+              onClick={() => setIsLoginOpen(true)}
+            >
+              Start Trading
+            </button>
+          </div>
         </div>
       </header>
 
       <main id="top" className={styles.content}>
-        <section className={styles.hero}>
+        <section className={styles.hero} style={heroStyle}>
           <div className={styles.heroCopy}>
             <h1>
               Trade Real-World
@@ -57,48 +80,16 @@ const Home = () => {
             </p>
 
             <div className={styles.heroActions}>
-              <a className={styles.primaryAction} href="/trade">
+              <button
+                type="button"
+                className={styles.primaryAction}
+                onClick={() => setIsLoginOpen(true)}
+              >
                 Start Trading
-              </a>
+              </button>
               <a className={styles.secondaryAction} href="#markets">
                 View Markets
               </a>
-            </div>
-          </div>
-
-          <div className={styles.marketPanel} aria-label="Example event market">
-            <div className={styles.panelHeader}>
-              <div>
-                <p className={styles.panelLabel}>Featured Market</p>
-                <h2>Will the Fed cut rates by June?</h2>
-              </div>
-              <span className={styles.liveBadge}>Live pricing</span>
-            </div>
-
-            <div className={styles.probabilityDisplay}>
-              <div>
-                <span className={styles.marketSideYes}>YES</span>
-                <strong>62%</strong>
-              </div>
-              <div>
-                <span className={styles.marketSideNo}>NO</span>
-                <strong>38%</strong>
-              </div>
-            </div>
-
-            <div className={styles.orderBook}>
-              <div>
-                <span>Signal velocity</span>
-                <strong>+14.2%</strong>
-              </div>
-              <div>
-                <span>Open interest</span>
-                <strong>$8.4M</strong>
-              </div>
-              <div>
-                <span>Settlement source</span>
-                <strong>Official release</strong>
-              </div>
             </div>
           </div>
         </section>
@@ -189,16 +180,60 @@ const Home = () => {
               <div className={styles.tradeCardHeader}>
                 <h3>Probability Chart</h3>
               </div>
+              <div className={styles.tradeChartMeta}>
+                <article>
+                  <span>Current</span>
+                  <strong>0.47</strong>
+                </article>
+                <article>
+                  <span>High</span>
+                  <strong>0.50</strong>
+                </article>
+                <article>
+                  <span>Low</span>
+                  <strong>0.45</strong>
+                </article>
+              </div>
+              <div className={styles.tradeChartToolbar}>
+                <div className={styles.tradeChartIntervals}>
+                  <button type="button" className={styles.tradeChartIntervalActive}>
+                    1H
+                  </button>
+                  <button type="button">4H</button>
+                  <button type="button">1D</button>
+                </div>
+                <span className={styles.tradeChartLive}>Live</span>
+              </div>
               <div className={styles.tradeChart}>
-                <div className={styles.chartLabels}>
-                  <span>0.60 ┤</span>
-                  <span>0.55 ┤</span>
-                  <span>0.50 ┤</span>
-                  <span>0.47 ┤</span>
-                  <span>0.45 ┤</span>
+                <div className={styles.chartScale}>
+                  <span>0.52</span>
+                  <span>0.50</span>
+                  <span>0.48</span>
+                  <span>0.46</span>
+                  <span>0.44</span>
                 </div>
                 <div className={styles.chartCanvas}>
-                  <span className={styles.chartLine} />
+                  <div className={styles.chartGrid} />
+                  <div className={styles.chartPriceLine}>
+                    <span>0.47</span>
+                  </div>
+                  <div className={styles.chartCandles}>
+                    {chartCandles.map((candle) => (
+                      <div key={candle.time} className={styles.chartCandleColumn}>
+                        <div className={styles.chartCandleArea}>
+                          <span
+                            className={`${styles.chartCandleWick} ${candle.bullish ? styles.chartCandleBull : styles.chartCandleBear}`}
+                            style={{ top: candle.wickTop, height: candle.wickHeight }}
+                          />
+                          <span
+                            className={`${styles.chartCandleBody} ${candle.bullish ? styles.chartCandleBull : styles.chartCandleBear}`}
+                            style={{ top: candle.bodyTop, height: candle.bodyHeight }}
+                          />
+                        </div>
+                        <span className={styles.chartCandleTime}>{candle.time}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -213,14 +248,14 @@ const Home = () => {
                   <span>Size</span>
                 </div>
                 {orderBook.slice(0, 3).map((row) => (
-                  <div key={row.price} className={styles.orderBookRow}>
+                  <div key={row.price} className={`${styles.orderBookRow} ${styles.orderBookSell}`}>
                     <span>{row.price}</span>
                     <span>{row.size}</span>
                   </div>
                 ))}
                 <div className={styles.orderBookMid}>---- MID 0.47 ----</div>
                 {orderBook.slice(3).map((row) => (
-                  <div key={row.price} className={styles.orderBookRow}>
+                  <div key={row.price} className={`${styles.orderBookRow} ${styles.orderBookBuy}`}>
                     <span>{row.price}</span>
                     <span>{row.size}</span>
                   </div>
@@ -413,12 +448,59 @@ const Home = () => {
           <div className={styles.ctaContent}>
             <p className={styles.eyebrow}>Ready to trade probability?</p>
             <h2>Turn your information edge into profit.</h2>
-            <a className={styles.ctaButton} href="/trade">
+            <button
+              type="button"
+              className={styles.ctaButton}
+              onClick={() => setIsLoginOpen(true)}
+            >
               START TRADE
-            </a>
+            </button>
           </div>
         </section>
       </main>
+
+      {isLoginOpen ? (
+        <div
+          className={styles.loginModalOverlay}
+          onClick={() => setIsLoginOpen(false)}
+          role="presentation"
+        >
+          <div
+            className={styles.loginModal}
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="login-modal-title"
+          >
+            <button
+              type="button"
+              className={styles.loginModalClose}
+              onClick={() => setIsLoginOpen(false)}
+              aria-label="Close login popup"
+            >
+              ×
+            </button>
+
+            <p className={styles.loginModalEyebrow}>Login</p>
+            <h2 id="login-modal-title">Access INCEPT trading</h2>
+            <p className={styles.loginModalText}>
+              Sign in to open positions, track markets, and manage your orders.
+            </p>
+
+            <form className={styles.loginForm}>
+              <label htmlFor="login-email">Email</label>
+              <input id="login-email" type="email" placeholder="you@company.com" />
+
+              <label htmlFor="login-password">Password</label>
+              <input id="login-password" type="password" placeholder="Enter password" />
+
+              <button type="submit" className={styles.loginSubmitButton}>
+                Sign In
+              </button>
+            </form>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }
