@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import heroBackground from '../../../background.png'
 import brandLogo from '../../../logo.png'
 import { ROUTES } from '@/constants/routes'
-import { grantPlatformAccess } from '@/utils/platformAccess'
+import {
+  DEMO_PASSWORD,
+  DEMO_USERNAME,
+  grantPlatformAccess,
+  isValidPlatformCredentials,
+} from '@/utils/platformAccess'
 import styles from './Home.module.scss'
 
 const markets = [
@@ -77,10 +82,20 @@ const heroStyle = {
 
 const Home = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const [username, setUsername] = useState(DEMO_USERNAME)
+  const [password, setPassword] = useState(DEMO_PASSWORD)
+  const [error, setError] = useState('')
   const navigate = useNavigate()
 
   const handlePlatformLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if (!isValidPlatformCredentials(username, password)) {
+      setError('Use username admin and password admin.')
+      return
+    }
+
+    setError('')
     grantPlatformAccess()
     setIsLoginOpen(false)
     navigate(ROUTES.MARKETS)
@@ -565,11 +580,23 @@ const Home = () => {
             </p>
 
             <form className={styles.loginForm} onSubmit={handlePlatformLogin}>
-              <label htmlFor="login-email">Email</label>
-              <input id="login-email" type="email" placeholder="you@company.com" />
+              <label htmlFor="login-username">Username</label>
+              <input
+                id="login-username"
+                type="text"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
 
               <label htmlFor="login-password">Password</label>
-              <input id="login-password" type="password" placeholder="Enter password" />
+              <input
+                id="login-password"
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+
+              {error ? <p className={styles.loginError}>{error}</p> : null}
 
               <button type="submit" className={styles.loginSubmitButton}>
                 Sign In

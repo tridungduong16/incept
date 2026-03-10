@@ -1,4 +1,9 @@
 const ACCESS_KEY = 'incept-platform-access'
+export const DEMO_USERNAME = 'admin'
+export const DEMO_PASSWORD = 'admin'
+
+export const isValidPlatformCredentials = (username: string, password: string) =>
+  username === DEMO_USERNAME && password === DEMO_PASSWORD
 
 export const hasPlatformAccess = () => {
   if (typeof window === 'undefined') {

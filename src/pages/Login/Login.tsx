@@ -1,12 +1,20 @@
-import type { FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TradingHeader from '@/components/TradingHeader'
 import { ROUTES } from '@/constants/routes'
-import { grantPlatformAccess } from '@/utils/platformAccess'
+import {
+  DEMO_PASSWORD,
+  DEMO_USERNAME,
+  grantPlatformAccess,
+  isValidPlatformCredentials,
+} from '@/utils/platformAccess'
 import styles from '@/styles/tradingFlow.module.scss'
 
 const Login = () => {
   const navigate = useNavigate()
+  const [username, setUsername] = useState(DEMO_USERNAME)
+  const [password, setPassword] = useState(DEMO_PASSWORD)
+  const [error, setError] = useState('')
 
   const enterPlatform = () => {
     grantPlatformAccess()
@@ -15,6 +23,13 @@ const Login = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if (!isValidPlatformCredentials(username, password)) {
+      setError('Use username admin and password admin.')
+      return
+    }
+
+    setError('')
     enterPlatform()
   }
 
@@ -43,21 +58,41 @@ const Login = () => {
 
             <form className={styles.formGrid} onSubmit={handleSubmit}>
               <label className={styles.inputGroup}>
-                <span>Email</span>
-                <input className={styles.input} type="email" defaultValue="trader@incept.app" />
+                <span>Username</span>
+                <input
+                  className={styles.input}
+                  type="text"
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
+                />
               </label>
 
               <label className={styles.inputGroup}>
                 <span>Password</span>
-                <input className={styles.input} type="password" defaultValue="************" />
+                <input
+                  className={styles.input}
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
               </label>
+
+              {error ? <p className={styles.authError}>{error}</p> : null}
 
               <div className={styles.buttonRow}>
                 <button type="submit" className={styles.primaryButton}>
                   Continue To Lobby
                 </button>
-                <button type="button" className={styles.secondaryButton} onClick={enterPlatform}>
-                  Connect Wallet
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  onClick={() => {
+                    setUsername(DEMO_USERNAME)
+                    setPassword(DEMO_PASSWORD)
+                    setError('')
+                  }}
+                >
+                  Fill admin/admin
                 </button>
               </div>
 

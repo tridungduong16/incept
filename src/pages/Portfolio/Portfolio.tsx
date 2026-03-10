@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom'
 import TradingHeader from '@/components/TradingHeader'
-import { buildSettlementRoute } from '@/constants/routes'
-import { featuredEvent, openOrders, openPositions } from '@/data/tradingFlow'
+import { openOrders, openPositions } from '@/data/tradingFlow'
 import styles from '@/styles/tradingFlow.module.scss'
 
 const portfolioStats = [
@@ -13,7 +11,7 @@ const portfolioStats = [
 const Portfolio = () => {
   return (
     <div className={styles.page}>
-      <TradingHeader ctaLabel="View Settlement" ctaTo={buildSettlementRoute(featuredEvent.id)} />
+      <TradingHeader />
 
       <div className={styles.shell}>
         <section className={styles.heroPanel}>
@@ -82,20 +80,6 @@ const Portfolio = () => {
                   </article>
                 ))}
               </div>
-            </article>
-
-            <article className={styles.panelAlt}>
-              <div className={styles.sectionIntro}>
-                <p className={styles.eyebrow}>Resolution</p>
-                <h2>What the user does next</h2>
-              </div>
-              <p className={styles.bodyCopy}>
-                When the match ends, the portfolio pushes the user to the settlement summary page to
-                show realized PnL and credited balance.
-              </p>
-              <Link className={styles.primaryButton} to={buildSettlementRoute(featuredEvent.id)}>
-                Open Settlement Recap
-              </Link>
             </article>
           </aside>
         </section>

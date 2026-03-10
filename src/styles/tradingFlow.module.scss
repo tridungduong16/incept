@@ -625,6 +625,12 @@
   background: rgba(9, 14, 26, 0.96);
 }
 
+.authError {
+  color: #fca5a5;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
 .summaryList {
   display: grid;
   gap: 10px;
