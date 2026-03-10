@@ -49,7 +49,7 @@
 .brandLogo {
   display: block;
   width: auto;
-  height: clamp(28px, 3.2vw, 38px);
+  height: clamp(84px, 9.6vw, 114px);
 }
 
 .navLinks {
@@ -61,7 +61,7 @@
   gap: 26px;
   color: #c9d4ff;
   font-family: Inter, sans-serif;
-  font-size: 0.925rem;
+  font-size: 1.15rem;
   font-weight: 500;
 
   a {
@@ -956,22 +956,143 @@
 }
 
 .marketStripCard {
-  padding: 22px 24px;
+  position: relative;
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  overflow: hidden;
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+  cursor: pointer;
 
-  span {
-    display: block;
-    margin-bottom: 12px;
-    color: $heading;
-    font-size: 1rem;
-    font-weight: 600;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 30% -20%, rgba(56, 189, 248, 0.08), transparent 60%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
   }
 
-  strong {
-    color: #c9d4ff;
-    font-family: $font-family-display;
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    line-height: 1;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow:
+      0 24px 64px rgba(2, 6, 23, 0.4),
+      0 0 0 1px rgba(56, 189, 248, 0.1);
+
+    &::before {
+      opacity: 1;
+    }
   }
+}
+
+.marketCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.marketCategory {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: $electric-blue;
+  background: rgba(56, 189, 248, 0.1);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.marketChange {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.marketUp {
+  color: #34d399;
+}
+
+.marketDown {
+  color: #fb7185;
+}
+
+.marketName {
+  color: $heading;
+  font-family: $font-family-display;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.marketProbWrap {
+  display: grid;
+  gap: 10px;
+}
+
+.marketProb {
+  color: $heading;
+  font-family: $font-family-display;
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.marketBar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.marketBarFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketBarBull {
+  background: linear-gradient(90deg, #22c55e, #34d399);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+}
+
+.marketBarBear {
+  background: linear-gradient(90deg, #ef4444, #fb7185);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+}
+
+.marketMeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marketMetaLabel {
+  display: block;
+  margin-bottom: 4px;
+  color: $muted-text;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.marketMetaValue {
+  color: #dbe5ff;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .infoCard,

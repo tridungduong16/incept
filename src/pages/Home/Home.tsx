@@ -4,6 +4,45 @@ import heroBackground from '../../../background.png'
 import brandLogo from '../../../logo.png'
 import styles from './Home.module.scss'
 
+const markets = [
+  {
+    name: 'Fed Rate Cut',
+    category: 'Macro',
+    probability: 62,
+    change: +3.2,
+    volume: '$1.8M',
+    traders: 2_841,
+    trend: 'up' as const,
+  },
+  {
+    name: 'BTC > $100k',
+    category: 'Crypto',
+    probability: 47,
+    change: -1.4,
+    volume: '$4.2M',
+    traders: 5_102,
+    trend: 'down' as const,
+  },
+  {
+    name: 'US Election',
+    category: 'Politics',
+    probability: 54,
+    change: +0.8,
+    volume: '$12.6M',
+    traders: 18_340,
+    trend: 'up' as const,
+  },
+  {
+    name: 'AI Regulation',
+    category: 'Policy',
+    probability: 39,
+    change: -2.1,
+    volume: '$920K',
+    traders: 1_203,
+    trend: 'down' as const,
+  },
+]
+
 const leaderboard = [
   { rank: '01', trader: 'MacroSignal', markets: '128', pnl: '+$184,200', winRate: '71%' },
   { rank: '02', trader: 'DeltaDesk', markets: '104', pnl: '+$163,480', winRate: '68%' },
@@ -101,22 +140,41 @@ const Home = () => {
           </div>
 
           <div className={styles.marketStrip}>
-            <article className={styles.marketStripCard}>
-              <span>Fed Rate Cut</span>
-              <strong>62%</strong>
-            </article>
-            <article className={styles.marketStripCard}>
-              <span>BTC &gt; $100k</span>
-              <strong>47%</strong>
-            </article>
-            <article className={styles.marketStripCard}>
-              <span>US Election</span>
-              <strong>54%</strong>
-            </article>
-            <article className={styles.marketStripCard}>
-              <span>AI Regulation</span>
-              <strong>39%</strong>
-            </article>
+            {markets.map((m) => (
+              <article key={m.name} className={styles.marketStripCard}>
+                <div className={styles.marketCardTop}>
+                  <span className={styles.marketCategory}>{m.category}</span>
+                  <span
+                    className={`${styles.marketChange} ${m.trend === 'up' ? styles.marketUp : styles.marketDown}`}
+                  >
+                    {m.trend === 'up' ? '▲' : '▼'} {m.change > 0 ? '+' : ''}{m.change}%
+                  </span>
+                </div>
+
+                <h3 className={styles.marketName}>{m.name}</h3>
+
+                <div className={styles.marketProbWrap}>
+                  <strong className={styles.marketProb}>{m.probability}%</strong>
+                  <div className={styles.marketBar}>
+                    <div
+                      className={`${styles.marketBarFill} ${m.probability >= 50 ? styles.marketBarBull : styles.marketBarBear}`}
+                      style={{ width: `${m.probability}%` }}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.marketMeta}>
+                  <div>
+                    <span className={styles.marketMetaLabel}>Volume</span>
+                    <span className={styles.marketMetaValue}>{m.volume}</span>
+                  </div>
+                  <div>
+                    <span className={styles.marketMetaLabel}>Traders</span>
+                    <span className={styles.marketMetaValue}>{m.traders.toLocaleString()}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
