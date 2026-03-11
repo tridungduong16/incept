@@ -1,6 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { ROUTES, buildEventRoute } from '@/constants/routes'
 import { allMarkets } from '@/data/tradingFlow'
+import AIStudio from '@/pages/AIStudio'
+import AIStudioFeature from '@/pages/AIStudioFeature'
 import EventDetails from '@/pages/EventDetails'
 import MainLayout from '@/layouts/MainLayout'
 import Home from '@/pages/Home'
@@ -41,6 +43,14 @@ export const router = createBrowserRouter([
           {
             path: ROUTES.PORTFOLIO,
             element: <Portfolio />,
+          },
+          {
+            path: ROUTES.AI_STUDIO,
+            element: <AIStudio />,
+          },
+          {
+            path: ROUTES.AI_STUDIO_FEATURE,
+            element: <AIStudioFeature />,
           },
           {
             path: ROUTES.SETTINGS,

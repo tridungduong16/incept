@@ -5,6 +5,8 @@ export const ROUTES = {
   EVENT: '/markets/:eventId',
   CONFIRM: '/markets/:eventId/confirm',
   PORTFOLIO: '/portfolio',
+  AI_STUDIO: '/ai-studio',
+  AI_STUDIO_FEATURE: '/ai-studio/:featureId',
   SETTINGS: '/settings',
   NOT_FOUND: '*',
 } as const
@@ -12,3 +14,5 @@ export const ROUTES = {
 export const buildEventRoute = (eventId: string) => `/markets/${eventId}`
 
 export const buildConfirmRoute = (eventId: string) => `/markets/${eventId}/confirm`
+
+export const buildAIStudioFeatureRoute = (featureId: string) => `/ai-studio/${featureId}`

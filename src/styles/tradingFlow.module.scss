@@ -18,9 +18,10 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(2, 6, 23, 0.78);
-  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.06);
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: 0 4px 32px rgba(2, 6, 23, 0.4);
 }
 
 .topbarInner {
@@ -81,19 +82,103 @@
 
 .navLink,
 .navLinkActive {
-  padding: 10px 14px;
+  position: relative;
+  padding: 8px 16px;
   border-radius: 999px;
-  color: #cad6f8;
-  font-size: 0.95rem;
+  color: #c9d4ff;
+  font-size: 1rem;
+  font-weight: 500;
   transition:
-    background 160ms ease,
-    color 160ms ease;
+    background 220ms ease,
+    color 220ms ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: $gradient-brand;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 .navLink:hover,
 .navLinkActive {
   color: $white;
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(99, 102, 241, 0.08);
+
+  &::after {
+    width: 60%;
+  }
+}
+
+.navDropdown {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.navDropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  width: min(420px, 82vw);
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  border-radius: 14px;
+  background: rgba(8, 12, 28, 0.96);
+  box-shadow: 0 20px 52px rgba(1, 4, 20, 0.5);
+  backdrop-filter: blur(20px) saturate(1.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.navDropdown:hover .navDropdownMenu,
+.navDropdown:focus-within .navDropdownMenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.navDropdownItem,
+.navDropdownItemActive {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.navDropdownItem:hover,
+.navDropdownItemActive {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
+.navDropdownItemTitle {
+  color: $heading;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.navDropdownItemDesc {
+  color: #8fa0c7;
+  font-size: 0.76rem;
+  line-height: 1.4;
 }
 
 .topbarActions,
@@ -141,15 +226,21 @@
 
 .primaryButton {
   color: $white;
-  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 54%, #9333ea 100%);
-  box-shadow: 0 18px 36px rgba(14, 165, 233, 0.18);
+  background: $gradient-brand;
+  box-shadow: 0 12px 40px rgba(56, 189, 248, 0.18);
+
+  &:hover {
+    box-shadow:
+      0 16px 48px rgba(56, 189, 248, 0.28),
+      0 0 0 1px rgba(99, 102, 241, 0.3);
+  }
 }
 
 .secondaryButton,
 .ghostButton {
-  color: #dbe6ff;
-  background: rgba(11, 22, 44, 0.84);
-  border-color: rgba(56, 189, 248, 0.18);
+  color: $heading;
+  background: rgba(11, 22, 44, 0.88);
+  border-color: rgba(56, 189, 248, 0.22);
 }
 
 .heroPanel,
@@ -1135,6 +1226,225 @@
   font-size: 0.76rem;
 }
 
+// Token Pair Selector
+.tpSelector {
+  position: relative;
+}
+
+.tpTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 120ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.tpTriggerCompact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(56, 189, 248, 0.2);
+  }
+}
+
+.tpChevron,
+.tpChevronOpen {
+  color: #6b7c9e;
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+
+.tpChevronOpen {
+  transform: rotate(180deg);
+}
+
+.tpPairCompact {
+  color: $heading;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.tpDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 100;
+  width: 420px;
+  max-height: 480px;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 12px;
+  background: rgba(8, 12, 28, 0.98);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: tpSlideIn 160ms ease-out;
+
+  @include respond-below(md) {
+    width: calc(100vw - 32px);
+    left: -16px;
+  }
+}
+
+@keyframes tpSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tpSearchWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 12px;
+  padding: 0 12px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(6, 10, 20, 0.8);
+  transition: border-color 160ms ease;
+  flex-shrink: 0;
+
+  &:focus-within {
+    border-color: rgba(56, 189, 248, 0.32);
+  }
+}
+
+.tpSearchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: $white;
+  font-size: 0.86rem;
+  outline: none;
+
+  &::placeholder {
+    color: #6b7c9e;
+  }
+}
+
+.tpListHeader {
+  display: grid;
+  grid-template-columns: 1fr 80px 90px;
+  gap: 8px;
+  padding: 6px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+  span {
+    color: #6b7c9e;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      text-align: right;
+    }
+  }
+}
+
+.tpList {
+  overflow-y: auto;
+  max-height: 380px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
+  padding: 4px 0;
+}
+
+.tpRow,
+.tpRowActive {
+  display: grid;
+  grid-template-columns: 1fr 80px 90px;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 100ms ease;
+
+  &:hover {
+    background: rgba(56, 189, 248, 0.06);
+  }
+}
+
+.tpRowActive {
+  background: rgba(56, 189, 248, 0.08);
+
+  .tpRowPairName {
+    color: $electric-blue;
+  }
+}
+
+.tpRowPair {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.tpRowPairName {
+  color: $heading;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.tpRowPairTitle {
+  color: #6b7c9e;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tpRowPrice {
+  color: $heading;
+  font-size: 0.86rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.tpEmpty {
+  padding: 32px 16px;
+  text-align: center;
+  color: #6b7c9e;
+  font-size: 0.88rem;
+}
+
 .tvTickerStats {
   display: flex;
   align-items: center;
@@ -1227,6 +1537,46 @@
   border-color: rgba(56, 189, 248, 0.24);
 }
 
+.tvMarketMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.tvStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.tvCategoryBadge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #8fa0c7;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .tvMarketBtnName {
   color: $heading;
   font-size: 0.88rem;
@@ -1251,7 +1601,9 @@
 .tvTimeframeRow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
+  row-gap: 8px;
   padding: 8px 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
@@ -1298,6 +1650,12 @@
   strong {
     color: $heading;
     font-weight: 600;
+  }
+
+  @include respond-below(md) {
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;
   }
 }
 
@@ -1624,6 +1982,39 @@
   }
 }
 
+.tvSliderMarkActive {
+  @extend .tvSliderMark;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.28);
+  color: $electric-blue;
+}
+
+.tvTradeHint {
+  color: #6b7c9e;
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.tvLadderList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tvLadderRow {
+  display: grid;
+  grid-template-columns: 40px 1fr 88px;
+  gap: 6px;
+  align-items: center;
+}
+
+.tvLadderLabel {
+  color: #8fa0c7;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .tvTradeSummary {
   display: flex;
   flex-direction: column;
@@ -1683,6 +2074,78 @@
 
   &:hover {
     color: $heading;
+  }
+}
+
+.ocLadderPanel,
+.ocReplayPanel {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(7, 11, 20, 0.92);
+
+  strong {
+    color: $heading;
+  }
+}
+
+.ocLadderList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ocLadderRow {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #c8d6fb;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ocTriggerGrid,
+.ocOutcomeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ocReplayList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ocReplayRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ocReplayContent {
+  min-width: 0;
+
+  strong {
+    display: block;
+    margin-bottom: 2px;
+    color: $heading;
+    font-size: 0.84rem;
+  }
+
+  p {
+    color: #6b7c9e;
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
 }
 
@@ -2270,7 +2733,7 @@
   padding: 0 24px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 54%, #9333ea 100%);
+  background: $gradient-brand;
   color: $white;
   font-size: 0.88rem;
   font-weight: 700;
@@ -2391,4 +2854,87 @@
     font-size: 0.82rem;
     line-height: 1.5;
   }
+}
+
+// ─── AI Studio ────────────────────────────────────────────────────────────────
+
+.aiFeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+
+  @include respond-below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aiFeatureCard {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.14), transparent 38%),
+    linear-gradient(180deg, rgba(14, 20, 34, 0.96), rgba(8, 12, 24, 0.92));
+  box-shadow: 0 18px 50px rgba(1, 4, 20, 0.25);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.26);
+  }
+}
+
+.aiFeatureIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 52px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  color: #8fe9ff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aiFeatureTitle {
+  color: $heading;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.aiFeatureDesc {
+  margin-top: 8px;
+  color: #aab9dd;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.aiFeatureBadge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #dbe6ff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }

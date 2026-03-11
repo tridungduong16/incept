@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import AIAssistant from '@/components/AIAssistant'
 import { useApp } from '@/hooks/useApp'
 
 const MainLayout = () => {
@@ -9,6 +10,7 @@ const MainLayout = () => {
       <main>
         <Outlet />
       </main>
+      <AIAssistant />
     </div>
   )
 }
