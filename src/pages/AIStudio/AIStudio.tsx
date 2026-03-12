@@ -15,8 +15,8 @@ const AIStudio = () => {
             <p className={styles.eyebrow}>AI STUDIO</p>
             <h1 className={styles.title}>AI tools for market intelligence</h1>
             <p className={styles.lead}>
-              Bo cong cu AI giup ban theo sat dong luc gia, lien ket tin tuc va phat hien bat thuong
-              nhanh hon trong moi market.
+              A suite of AI tools that helps you track price momentum, connect news to contracts,
+              and spot unusual market behavior faster.
             </p>
           </div>
         </section>
