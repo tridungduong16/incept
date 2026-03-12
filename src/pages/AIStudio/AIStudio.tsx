@@ -10,17 +10,6 @@ const AIStudio = () => {
       <TradingHeader />
 
       <div className={styles.shell}>
-        <section className={styles.heroPanel}>
-          <div className={styles.copyBlock}>
-            <p className={styles.eyebrow}>AI STUDIO</p>
-            <h1 className={styles.title}>AI tools for market intelligence</h1>
-            <p className={styles.lead}>
-              A suite of AI tools that helps you track price momentum, connect news to contracts,
-              and spot unusual market behavior faster.
-            </p>
-          </div>
-        </section>
-
         <section className={styles.sectionBlock}>
           <div className={styles.aiFeatureGrid}>
             {aiStudioFeatures.map((feature) => (

@@ -111,16 +111,6 @@ const Portfolio = () => {
 
       <div className={styles.tvShell}>
         <section className={styles.heroPanel}>
-          <div className={styles.copyBlock}>
-            <p className={styles.eyebrow}>PORTFOLIO</p>
-            <h1 className={styles.title}>Track performance, risk, and capital deployment in one premium workspace.</h1>
-            <p className={styles.lead}>
-              The portfolio surface now follows the landing page direction more closely, with stronger
-              display typography, richer dark surfaces, and clearer hierarchy for equity, positions,
-              and account health.
-            </p>
-          </div>
-
           <div className={styles.heroStats}>
             <article className={styles.statCard}>
               <span>Total Balance</span>

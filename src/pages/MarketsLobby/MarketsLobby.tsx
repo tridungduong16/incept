@@ -131,16 +131,6 @@ const MarketsLobby = () => {
 
       <div className={styles.shell}>
         <section className={styles.heroPanel}>
-          <div className={styles.copyBlock}>
-            <p className={styles.eyebrow}>LIVE MARKETS</p>
-            <h1 className={styles.title}>Trade live probabilities with the same premium system as the landing page.</h1>
-            <p className={styles.lead}>
-              Scan contracts across macro, crypto, sports, and policy, then move from discovery to
-              execution inside a cleaner trading surface that now matches the landing page tone,
-              typography, and card treatment.
-            </p>
-          </div>
-
           <div className={styles.heroStats}>
             <article className={styles.statCard}>
               <span>Total Markets</span>
