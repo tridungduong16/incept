@@ -77,13 +77,68 @@
 @mixin text-style(
   $size,
   $weight: $weight-normal,
-  $line-height: 1.5,
+  $line-height: $line-height-body,
   $letter-spacing: normal
 ) {
   font-size: $size;
   font-weight: $weight;
   line-height: $line-height;
   letter-spacing: $letter-spacing;
+}
+
+@mixin numeric-display($weight: $weight-semibold) {
+  font-family: $font-family-mono;
+  font-weight: $weight;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+@mixin hover-card(
+  $translate-y: -2px,
+  $border-color: $border-brand,
+  $glow: 0 0 0 1px rgba(56, 189, 248, 0.18),
+  $shadow: 0 24px 56px rgba(1, 4, 20, 0.32)
+) {
+  @include interactive-transition((border-color, box-shadow, transform), $duration-normal, $ease-out);
+
+  &:hover {
+    transform: translateY($translate-y);
+    border-color: $border-color;
+    box-shadow: $glow, $shadow;
+  }
+}
+
+@mixin hover-row($background: rgba(56, 189, 248, 0.06), $duration: 100ms) {
+  transition: background $duration $ease-out;
+
+  &:hover {
+    background: $background;
+  }
+}
+
+@mixin hover-button(
+  $translate-y: -1px,
+  $scale: 1.015,
+  $shadow: 0 16px 48px rgba(1, 4, 20, 0.28)
+) {
+  @include interactive-transition((transform, box-shadow, border-color, background, color), $duration-normal, $ease-out);
+
+  &:hover {
+    transform: translateY($translate-y) scale($scale);
+    box-shadow: $shadow;
+  }
+}
+
+@mixin skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: $radius-md;
 }
 
 @mixin motion-safe {

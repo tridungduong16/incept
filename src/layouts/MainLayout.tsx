@@ -8,7 +8,7 @@ const MainLayout = () => {
 
   return (
     <div className="app-layout">
-      <main key={location.pathname} className="app-main page-transition">
+      <main key={location.pathname} className="app-main pageTransition">
         <Outlet />
       </main>
       <AIAssistant />

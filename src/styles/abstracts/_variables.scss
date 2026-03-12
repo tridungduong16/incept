@@ -18,7 +18,7 @@ $gradient-brand: linear-gradient(135deg, $electric-blue 0%, $indigo 52%, $purple
 
 // Neutrals
 $heading: #e6edf7;
-$body-text: #9fb0c7;
+$body-text: #a8bcda;
 $muted-text: #6f8099;
 $label-text: #8ea2c0;
 $border: #1f2937;
@@ -44,22 +44,66 @@ $warning: #f59e0b;
 // Typography
 $font-family-base: 'Inter', 'Segoe UI', sans-serif;
 $font-family-display: 'Inter', sans-serif;
+$font-family-mono: 'JetBrains Mono', 'SFMono-Regular', 'SF Mono', 'Roboto Mono', monospace;
 $font-size-base: 15px;
 
+$type-68: 0.68rem;
+$type-72: 0.72rem;
+$type-73: 0.73rem;
+$type-74: 0.74rem;
 $type-xs: 0.75rem;
+$type-76: 0.76rem;
+$type-78: 0.78rem;
+$type-80: 0.8rem;
 $type-sm: 0.8125rem;
+$type-82: 0.82rem;
+$type-84: 0.84rem;
+$type-85: 0.85rem;
+$type-86: 0.86rem;
 $type-base: 0.875rem;
+$type-88: 0.88rem;
+$type-90: 0.9rem;
+$type-92: 0.92rem;
+$type-95: 0.95rem;
+$type-100: 1rem;
+$type-105: 1.05rem;
+$type-108: 1.08rem;
+$type-110: 1.1rem;
+$type-113: 1.125rem;
+$type-115: 1.15rem;
+$type-120: 1.2rem;
+$type-125: 1.25rem;
+$type-130: 1.3rem;
+$type-135: 1.35rem;
+$type-140: 1.4rem;
 $type-md: 0.9375rem;
 $type-lg: 1.0625rem;
 $type-xl: 1.25rem;
 $type-2xl: 1.5rem;
 $type-3xl: 2rem;
 $type-display: clamp(2.6rem, 6vw, 4.2rem);
+$type-fluid-105-120: clamp(1.05rem, 1.5vw, 1.2rem);
+$type-fluid-150-220: clamp(1.5rem, 3vw, 2.2rem);
+$type-fluid-150-230: clamp(1.5rem, 3vw, 2.3rem);
+$type-fluid-150-240: clamp(1.5rem, 3.5vw, 2.4rem);
+$type-fluid-160-220: clamp(1.6rem, 3vw, 2.2rem);
+$type-fluid-180-320: clamp(1.8rem, 4.4vw, 3.2rem);
+$type-fluid-200-280: clamp(2rem, 5vw, 2.8rem);
+$type-fluid-200-300: clamp(2rem, 4vw, 3rem);
+$type-fluid-200-340: clamp(2rem, 5vw, 3.4rem);
+$type-fluid-240-320: clamp(2.4rem, 5vw, 3.2rem);
+$type-fluid-260-480: clamp(2.6rem, 7vw, 4.8rem);
+$type-fluid-300-450: clamp(3rem, 6vw, 4.5rem);
+$type-fluid-320-580: clamp(3.2rem, 9vw, 5.8rem);
 
 $weight-normal: 400;
 $weight-medium: 500;
 $weight-semibold: 600;
 $weight-bold: 700;
+
+$line-height-body: 1.6;
+$tracking-heading-large: -0.03em;
+$tracking-heading-small: normal;
 
 // Breakpoints
 $breakpoint-sm: 576px;
