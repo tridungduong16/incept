@@ -53,14 +53,14 @@
   strong {
     display: block;
     font-family: $font-family-display;
-    font-size: 1.05rem;
+    font-size: $type-105;
     letter-spacing: 0.14em;
   }
 
   span {
     display: block;
     color: #9fb0d8;
-    font-size: 0.82rem;
+    font-size: $type-82;
     text-transform: uppercase;
     letter-spacing: 0.12em;
   }
@@ -87,7 +87,7 @@
   padding: 10px 20px;
   border-radius: 999px;
   color: #C8D8F5;
-  font-size: 0.95rem;
+  font-size: $type-95;
   font-weight: 500;
   transition:
     background 220ms ease,
@@ -181,13 +181,13 @@
 
 .navDropdownItemTitle {
   color: $heading;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 700;
 }
 
 .navDropdownItemDesc {
   color: $label-text;
-  font-size: 0.76rem;
+  font-size: $type-76;
   line-height: 1.4;
 }
 
@@ -244,7 +244,7 @@
   padding: 0 18px;
   border-radius: 18px;
   border: 1px solid transparent;
-  font-size: 0.95rem;
+  font-size: $type-95;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -318,7 +318,7 @@
 .eyebrow {
   margin-bottom: 10px;
   color: $electric-blue;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -327,9 +327,9 @@
 .title {
   color: $heading;
   font-family: $font-family-display;
-  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  font-size: $type-fluid-260-480;
   line-height: 0.95;
-  letter-spacing: -0.05em;
+  letter-spacing: $tracking-heading-large;
 }
 
 .lead,
@@ -337,7 +337,7 @@
   max-width: 62ch;
   margin-top: 18px;
   color: #dbe6ff;
-  font-size: 1rem;
+  font-size: $type-100;
   line-height: 1.65;
 }
 
@@ -416,9 +416,9 @@
   h2 {
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    font-size: $type-fluid-150-230;
     line-height: 1.05;
-    letter-spacing: -0.04em;
+    letter-spacing: $tracking-heading-large;
   }
 }
 
@@ -428,7 +428,7 @@
   gap: 10px;
   flex-wrap: wrap;
   color: #b6c3ea;
-  font-size: 0.88rem;
+  font-size: $type-88;
 }
 
 .statCard,
@@ -445,20 +445,20 @@
 .highlightCard {
   span {
     color: #aab9dd;
-    font-size: 0.88rem;
+    font-size: $type-88;
   }
 
   strong {
     display: block;
     margin: 10px 0 8px;
     color: $heading;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-size: $type-fluid-150-220;
     line-height: 1;
   }
 
   p {
     color: $label-text;
-    font-size: 0.9rem;
+    font-size: $type-90;
   }
 }
 
@@ -514,7 +514,7 @@
 .marketCardBody {
   strong {
     color: $heading;
-    font-size: 1.2rem;
+    font-size: $type-120;
   }
 
   p {
@@ -527,7 +527,7 @@
 .watchlistRow,
 .positionCard {
   color: #c8d6fb;
-  font-size: 0.92rem;
+  font-size: $type-92;
 }
 
 .badge {
@@ -537,7 +537,7 @@
   border-radius: 999px;
   color: #8fe9ff;
   background: rgba(14, 165, 233, 0.12);
-  font-size: 0.8rem;
+  font-size: $type-80;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -593,12 +593,12 @@
 
   strong {
     color: $heading;
-    font-size: 1rem;
+    font-size: $type-100;
   }
 
   span {
     color: #ecf4ff;
-    font-size: 1.4rem;
+    font-size: $type-140;
   }
 
   small {
@@ -638,7 +638,7 @@
 
   span {
     color: $label-text;
-    font-size: 0.8rem;
+    font-size: $type-80;
   }
 }
 
@@ -670,7 +670,7 @@
     border-radius: 999px;
     color: #8fe9ff;
     background: rgba(14, 165, 233, 0.12);
-    font-size: 0.82rem;
+    font-size: $type-82;
     font-weight: 800;
     text-align: center;
   }
@@ -683,7 +683,7 @@
 
   p {
     color: #aab9dd;
-    line-height: 1.55;
+    line-height: $line-height-body;
   }
 }
 
@@ -703,14 +703,14 @@
 .orderBookHead {
   padding-bottom: 10px;
   color: $label-text;
-  font-size: 0.75rem;
+  font-size: $type-xs;
   font-weight: 400;
 }
 
 .orderBookRow {
   padding: 10px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.8125rem;
+  font-size: $type-sm;
 }
 
 .orderBookSell {
@@ -728,7 +728,7 @@
   padding: 10px 12px;
   border-radius: 16px;
   color: $heading;
-  font-size: 0.875rem;
+  font-size: $type-base;
   font-weight: 700;
   font-feature-settings: "tnum";
   text-align: center;
@@ -747,7 +747,7 @@
 
   span {
     color: #dbe6ff;
-    font-size: 0.92rem;
+    font-size: $type-92;
     font-weight: 600;
   }
 }
@@ -763,7 +763,7 @@
 
 .authError {
   color: #fca5a5;
-  font-size: 0.92rem;
+  font-size: $type-92;
   font-weight: 600;
 }
 
@@ -833,7 +833,7 @@
     padding: 6px 10px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.05);
-    font-size: 0.84rem;
+    font-size: $type-84;
   }
 }
 
@@ -866,7 +866,7 @@
 
   span {
     color: #8fe9ff;
-    font-size: 0.84rem;
+    font-size: $type-84;
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -876,7 +876,7 @@
     margin: 12px 0;
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: $type-fluid-200-300;
     line-height: 1;
   }
 
@@ -922,7 +922,7 @@
   border: none;
   background: transparent;
   color: $label-text;
-  font-size: 0.92rem;
+  font-size: $type-92;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
@@ -957,7 +957,7 @@
   padding: 0 6px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
-  font-size: 0.72rem;
+  font-size: $type-72;
   font-weight: 700;
   color: $label-text;
 }
@@ -984,7 +984,7 @@
   border: none;
   background: transparent;
   color: $white;
-  font-size: 0.92rem;
+  font-size: $type-92;
   outline: none;
 
   &::placeholder {
@@ -1008,7 +1008,7 @@
 .mktThRight,
 .mktThCenter {
   padding: 12px 16px;
-  font-size: 0.75rem;
+  font-size: $type-xs;
   font-weight: 400;
   color: $label-text;
   text-transform: uppercase;
@@ -1053,7 +1053,7 @@
 .mktTdRight,
 .mktTdCenter {
   padding: 14px 16px;
-  font-size: 0.875rem;
+  font-size: $type-base;
   font-weight: 400;
   color: $body-text;
   vertical-align: middle;
@@ -1081,14 +1081,14 @@
 .mktPairName {
   color: $heading;
   font-weight: 600;
-  font-size: 1.125rem;
+  font-size: $type-113;
   letter-spacing: 0.01em;
   text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
 }
 
 .mktPairTitle {
   color: $muted-text;
-  font-size: 0.8rem;
+  font-size: $type-80;
   max-width: 220px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1097,7 +1097,7 @@
 
 .mktPrice {
   color: $heading;
-  font-size: 1.25rem;
+  font-size: $type-125;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
@@ -1117,7 +1117,7 @@
   padding: 0 16px;
   border-radius: 8px;
   border: none;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 700;
   color: $electric-blue;
   background: rgba(56, 189, 248, 0.1);
@@ -1136,7 +1136,7 @@
   padding: 48px 24px;
   text-align: center;
   color: $muted-text;
-  font-size: 0.95rem;
+  font-size: $type-95;
 }
 
 // ─── Compact Event Hero ───────────────────────────────────────────────────────
@@ -1167,15 +1167,15 @@
 .eventCompactTitle {
   color: $heading;
   font-family: $font-family-display;
-  font-size: 1.35rem;
+  font-size: $type-135;
   line-height: 1.15;
-  letter-spacing: -0.03em;
+  letter-spacing: $tracking-heading-large;
 }
 
 .eventCompactSub {
   margin-top: 4px;
   color: $muted-text;
-  font-size: 0.82rem;
+  font-size: $type-82;
 }
 
 .eventCompactStats {
@@ -1199,7 +1199,7 @@
 
   strong {
     color: $heading;
-    font-size: 0.875rem;
+    font-size: $type-base;
     font-weight: 600;
     line-height: 1;
     font-variant-numeric: tabular-nums;
@@ -1209,14 +1209,14 @@
 
   small {
     color: $label-text;
-    font-size: 0.75rem;
+    font-size: $type-xs;
     font-weight: 400;
   }
 }
 
 .eventCompactLabel {
   color: $electric-blue;
-  font-size: 0.68rem;
+  font-size: $type-68;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1268,14 +1268,14 @@
 
 .tvPairName {
   color: $heading;
-  font-size: 1.1rem;
+  font-size: $type-110;
   font-weight: 800;
   letter-spacing: 0.02em;
 }
 
 .tvPairTitle {
   color: $muted-text;
-  font-size: 0.76rem;
+  font-size: $type-76;
 }
 
 // Token Pair Selector
@@ -1332,7 +1332,7 @@
 
 .tpPairCompact {
   color: $heading;
-  font-size: 0.8rem;
+  font-size: $type-80;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -1408,7 +1408,7 @@
   border: none;
   background: transparent;
   color: $white;
-  font-size: 0.86rem;
+  font-size: $type-86;
   outline: none;
 
   &::placeholder {
@@ -1425,7 +1425,7 @@
 
   span {
     color: $muted-text;
-    font-size: 0.72rem;
+    font-size: $type-72;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -1482,14 +1482,14 @@
 
 .tpRowPairName {
   color: $heading;
-  font-size: 0.86rem;
+  font-size: $type-86;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .tpRowPairTitle {
   color: $muted-text;
-  font-size: 0.72rem;
+  font-size: $type-72;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1497,7 +1497,7 @@
 
 .tpRowPrice {
   color: $heading;
-  font-size: 0.86rem;
+  font-size: $type-86;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   text-align: right;
@@ -1507,7 +1507,7 @@
   padding: 32px 16px;
   text-align: center;
   color: $muted-text;
-  font-size: 0.88rem;
+  font-size: $type-88;
 }
 
 .tvTickerStats {
@@ -1532,13 +1532,13 @@
 
   span {
     color: $label-text;
-    font-size: 0.75rem;
+    font-size: $type-xs;
     font-weight: 400;
   }
 
   strong {
     color: $heading;
-    font-size: 0.875rem;
+    font-size: $type-base;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
@@ -1618,7 +1618,7 @@
   gap: 5px;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 0.74rem;
+  font-size: $type-74;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1639,7 +1639,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: $label-text;
-  font-size: 0.74rem;
+  font-size: $type-74;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1647,13 +1647,13 @@
 
 .tvMarketBtnName {
   color: $heading;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 700;
 }
 
 .tvMarketBtnPrice {
   color: $electric-blue;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -1681,7 +1681,7 @@
 
 .tvTimeLabel {
   color: $muted-text;
-  font-size: 0.78rem;
+  font-size: $type-78;
   margin-right: 4px;
 }
 
@@ -1692,7 +1692,7 @@
   border-radius: 6px;
   background: transparent;
   color: $label-text;
-  font-size: 0.8rem;
+  font-size: $type-80;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -1715,7 +1715,7 @@
   align-items: center;
   gap: 12px;
   margin-left: auto;
-  font-size: 0.78rem;
+  font-size: $type-78;
   color: $muted-text;
 
   strong {
@@ -1773,7 +1773,7 @@
   border: none;
   background: transparent;
   color: $muted-text;
-  font-size: 0.85rem;
+  font-size: $type-85;
   font-weight: 600;
   cursor: pointer;
   position: relative;
@@ -1819,7 +1819,7 @@
   border-radius: 6px;
   background: rgba(14, 165, 233, 0.1);
   color: $electric-blue;
-  font-size: 0.76rem;
+  font-size: $type-76;
   font-weight: 800;
 }
 
@@ -1829,13 +1829,13 @@
   strong {
     display: block;
     color: $heading;
-    font-size: 0.84rem;
+    font-size: $type-84;
     margin-bottom: 2px;
   }
 
   p {
     color: $muted-text;
-    font-size: 0.8rem;
+    font-size: $type-80;
     line-height: 1.4;
   }
 }
@@ -1855,7 +1855,7 @@
 
   strong {
     color: $heading;
-    font-size: 0.9rem;
+    font-size: $type-90;
   }
 }
 
@@ -1867,7 +1867,7 @@
 
   span {
     color: $muted-text;
-    font-size: 0.72rem;
+    font-size: $type-72;
     font-weight: 600;
 
     &:not(:first-child) {
@@ -1883,7 +1883,7 @@
   gap: 4px;
   padding: 3px 4px;
   border-radius: 4px;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-variant-numeric: tabular-nums;
   position: relative;
 
@@ -1941,13 +1941,13 @@
   margin: 4px 0;
 
   strong {
-    font-size: 1rem;
+    font-size: $type-100;
     font-variant-numeric: tabular-nums;
   }
 
   span {
     color: $muted-text;
-    font-size: 0.78rem;
+    font-size: $type-78;
   }
 }
 
@@ -1968,7 +1968,7 @@
 .tvSellTab {
   padding: 10px;
   border: none;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 700;
   cursor: pointer;
 }
@@ -2003,7 +2003,7 @@
 
   span {
     color: $muted-text;
-    font-size: 0.78rem;
+    font-size: $type-78;
     font-weight: 600;
   }
 }
@@ -2016,7 +2016,7 @@
   border-radius: 8px;
   color: $white;
   background: rgba(6, 10, 20, 0.9);
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-variant-numeric: tabular-nums;
   outline: none;
   transition: border-color 120ms ease;
@@ -2044,7 +2044,7 @@
   border-radius: 4px;
   background: transparent;
   color: $muted-text;
-  font-size: 0.72rem;
+  font-size: $type-72;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2066,7 +2066,7 @@
 
 .tvTradeHint {
   color: $muted-text;
-  font-size: 0.74rem;
+  font-size: $type-74;
   line-height: 1.4;
 }
 
@@ -2085,7 +2085,7 @@
 
 .tvLadderLabel {
   color: $label-text;
-  font-size: 0.76rem;
+  font-size: $type-76;
   font-weight: 700;
   text-align: center;
 }
@@ -2101,7 +2101,7 @@
 .tvTradeRow {
   display: flex;
   justify-content: space-between;
-  font-size: 0.82rem;
+  font-size: $type-82;
 
   span {
     color: $muted-text;
@@ -2123,7 +2123,7 @@
   border: none;
   background: $bullish;
   color: $white;
-  font-size: 0.92rem;
+  font-size: $type-92;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -2143,7 +2143,7 @@
   height: 36px;
   border-radius: 8px;
   color: $label-text;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 600;
   transition: color 120ms ease;
 
@@ -2179,7 +2179,7 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.025);
   color: #c8d6fb;
-  font-size: 0.84rem;
+  font-size: $type-84;
   font-variant-numeric: tabular-nums;
 }
 
@@ -2214,13 +2214,13 @@
     display: block;
     margin-bottom: 2px;
     color: $heading;
-    font-size: 0.84rem;
+    font-size: $type-84;
   }
 
   p {
     color: $muted-text;
-    font-size: 0.8rem;
-    line-height: 1.45;
+    font-size: $type-80;
+    line-height: $line-height-body;
   }
 }
 
@@ -2242,7 +2242,7 @@
 .pfThRight,
 .pfThCenter {
   padding: 10px 14px;
-  font-size: 0.76rem;
+  font-size: $type-76;
   font-weight: 700;
   color: $muted-text;
   text-transform: uppercase;
@@ -2280,7 +2280,7 @@
 .pfTdRight,
 .pfTdCenter {
   padding: 10px 14px;
-  font-size: 0.86rem;
+  font-size: $type-86;
   color: #c8d6fb;
   vertical-align: middle;
 }
@@ -2301,7 +2301,7 @@
 .pfContract {
   color: $heading;
   font-weight: 700;
-  font-size: 0.86rem;
+  font-size: $type-86;
 }
 
 .pfSideLong {
@@ -2310,7 +2310,7 @@
   border-radius: 4px;
   background: rgba(34, 197, 94, 0.1);
   color: $bullish;
-  font-size: 0.78rem;
+  font-size: $type-78;
   font-weight: 700;
 }
 
@@ -2320,7 +2320,7 @@
   border-radius: 4px;
   background: rgba(239, 68, 68, 0.1);
   color: $bearish;
-  font-size: 0.78rem;
+  font-size: $type-78;
   font-weight: 700;
 }
 
@@ -2331,7 +2331,7 @@
   gap: 1px;
 
   small {
-    font-size: 0.72rem;
+    font-size: $type-72;
   }
 }
 
@@ -2341,7 +2341,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   background: transparent;
-  font-size: 0.78rem;
+  font-size: $type-78;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2390,7 +2390,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 4px 0;
-  font-size: 0.84rem;
+  font-size: $type-84;
 
   span {
     color: $muted-text;
@@ -2438,7 +2438,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.82rem;
+  font-size: $type-82;
 }
 
 .pfAllocDot {
@@ -2483,12 +2483,12 @@
   strong {
     display: block;
     color: $heading;
-    font-size: 0.84rem;
+    font-size: $type-84;
   }
 
   small {
     color: $muted-text;
-    font-size: 0.74rem;
+    font-size: $type-74;
   }
 }
 
@@ -2498,11 +2498,11 @@
   span {
     display: block;
     font-weight: 600;
-    font-size: 0.88rem;
+    font-size: $type-88;
   }
 
   small {
-    font-size: 0.74rem;
+    font-size: $type-74;
   }
 }
 
@@ -2541,9 +2541,9 @@
 
   strong {
     color: $heading;
-    font-size: 1.05rem;
+    font-size: $type-105;
     font-family: $font-family-display;
-    letter-spacing: -0.02em;
+    letter-spacing: $tracking-heading-small;
   }
 
   @include respond-below(md) {
@@ -2562,7 +2562,7 @@
   border-radius: 8px;
   background: transparent;
   color: $label-text;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 600;
   cursor: pointer;
   text-align: left;
@@ -2592,7 +2592,7 @@
 }
 
 .stNavIcon {
-  font-size: 1rem;
+  font-size: $type-100;
   width: 20px;
   text-align: center;
 }
@@ -2618,15 +2618,15 @@
   h3 {
     color: $heading;
     font-family: $font-family-display;
-    font-size: 1.2rem;
-    letter-spacing: -0.02em;
+    font-size: $type-120;
+    letter-spacing: $tracking-heading-small;
   }
 
   p {
     margin-top: 4px;
     color: $muted-text;
-    font-size: 0.86rem;
-    line-height: 1.5;
+    font-size: $type-86;
+    line-height: $line-height-body;
   }
 }
 
@@ -2647,7 +2647,7 @@
 
   span {
     color: $label-text;
-    font-size: 0.8rem;
+    font-size: $type-80;
     font-weight: 600;
   }
 }
@@ -2666,7 +2666,7 @@
   border-radius: 10px;
   color: $white;
   background: rgba(6, 10, 20, 0.85);
-  font-size: 0.88rem;
+  font-size: $type-88;
   outline: none;
   transition: border-color 140ms ease;
 
@@ -2687,7 +2687,7 @@
 .stSelectSmall {
   @extend .stSelect;
   height: 34px;
-  font-size: 0.82rem;
+  font-size: $type-82;
   width: 150px;
 }
 
@@ -2696,14 +2696,14 @@
   padding: 12px 14px;
   resize: vertical;
   font-family: inherit;
-  line-height: 1.5;
+  line-height: $line-height-body;
 }
 
 .stInputSmall {
   @extend .stInput;
   height: 34px;
   width: 160px;
-  font-size: 0.82rem;
+  font-size: $type-82;
 }
 
 .stCardList {
@@ -2741,14 +2741,14 @@
   strong {
     display: block;
     color: $heading;
-    font-size: 0.9rem;
+    font-size: $type-90;
     margin-bottom: 3px;
   }
 
   p {
     color: $muted-text;
-    font-size: 0.8rem;
-    line-height: 1.45;
+    font-size: $type-80;
+    line-height: $line-height-body;
   }
 }
 
@@ -2810,7 +2810,7 @@
   border-radius: 10px;
   background: $gradient-brand;
   color: $white;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -2832,7 +2832,7 @@
   border-radius: 8px;
   background: transparent;
   color: $electric-blue;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 600;
   cursor: pointer;
   flex-shrink: 0;
@@ -2855,7 +2855,7 @@
   border-radius: 6px;
   background: transparent;
   color: $bearish;
-  font-size: 0.78rem;
+  font-size: $type-78;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2883,7 +2883,7 @@
   gap: 8px;
   padding: 10px 16px;
   align-items: center;
-  font-size: 0.84rem;
+  font-size: $type-84;
 
   @include respond-below(md) {
     grid-template-columns: 1fr 1fr;
@@ -2894,7 +2894,7 @@
   background: rgba(6, 10, 20, 0.6);
   color: $muted-text;
   font-weight: 700;
-  font-size: 0.76rem;
+  font-size: $type-76;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -2907,7 +2907,7 @@
 .stApiKey {
   font-family: monospace;
   color: $label-text;
-  font-size: 0.82rem;
+  font-size: $type-82;
 }
 
 .stNotice {
@@ -2920,14 +2920,14 @@
   strong {
     display: block;
     color: $warning;
-    font-size: 0.86rem;
+    font-size: $type-86;
     margin-bottom: 4px;
   }
 
   p {
     color: #c8d6fb;
-    font-size: 0.82rem;
-    line-height: 1.5;
+    font-size: $type-82;
+    line-height: $line-height-body;
   }
 }
 
@@ -2980,7 +2980,7 @@
   background: rgba(56, 189, 248, 0.12);
   border: 1px solid rgba(56, 189, 248, 0.28);
   color: #8fe9ff;
-  font-size: 0.72rem;
+  font-size: $type-72;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2988,15 +2988,15 @@
 
 .aiFeatureTitle {
   color: $heading;
-  font-size: 1.08rem;
+  font-size: $type-108;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: $tracking-heading-small;
 }
 
 .aiFeatureDesc {
   margin-top: 8px;
   color: #aab9dd;
-  font-size: 0.92rem;
+  font-size: $type-92;
   line-height: 1.6;
 }
 
@@ -3008,7 +3008,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
   color: #dbe6ff;
-  font-size: 0.76rem;
+  font-size: $type-76;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3048,12 +3048,12 @@
 
 .aiStudioMeta {
   color: $label-text;
-  font-size: 0.8rem;
+  font-size: $type-80;
 }
 
 .aiStudioSubheading {
   color: $heading;
-  font-size: 0.95rem;
+  font-size: $type-95;
   font-weight: 700;
 }
 
@@ -3095,7 +3095,7 @@
   width: fit-content;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: $type-xs;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;

@@ -42,7 +42,7 @@
   gap: 10px;
   color: $heading;
   font-family: $font-family-display;
-  font-size: 1rem;
+  font-size: $type-100;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -62,7 +62,7 @@
   gap: 6px;
   color: #c9d4ff;
   font-family: Inter, sans-serif;
-  font-size: 1.15rem;
+  font-size: $type-115;
   font-weight: 500;
 
   a {
@@ -72,7 +72,7 @@
     padding: 8px 16px;
     border-radius: 999px;
     color: inherit;
-    letter-spacing: 0;
+    letter-spacing: $tracking-heading-small;
     transition:
       color 220ms ease,
       background 220ms ease;
@@ -124,7 +124,7 @@
   padding: 0 18px;
   border-radius: 999px;
   border: 1px solid transparent;
-  font-size: 0.95rem;
+  font-size: $type-95;
   font-weight: 700;
   transition:
     transform 180ms ease,
@@ -160,7 +160,7 @@
 .navbar .secondaryAction {
   min-height: 42px;
   padding: 0 14px;
-  font-size: 0.9rem;
+  font-size: $type-90;
 }
 
 .content {
@@ -202,9 +202,9 @@
     margin-bottom: 12px;
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-size: $type-fluid-200-280;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: $tracking-heading-large;
   }
 }
 
@@ -218,7 +218,7 @@
   border-radius: 999px;
   color: #e8efff;
   background: rgba(255, 255, 255, 0.03);
-  font-size: 1.3rem;
+  font-size: $type-130;
   line-height: 1;
   cursor: pointer;
 }
@@ -226,7 +226,7 @@
 .loginModalEyebrow {
   margin-bottom: 12px;
   color: $electric-blue;
-  font-size: 0.84rem;
+  font-size: $type-84;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -235,12 +235,12 @@
 .loginModalText {
   margin-bottom: 22px;
   color: #dbe5ff;
-  line-height: 1.5;
+  line-height: $line-height-body;
 }
 
 .loginError {
   color: #fca5a5;
-  font-size: 0.9rem;
+  font-size: $type-90;
   font-weight: 600;
 }
 
@@ -250,7 +250,7 @@
 
   label {
     color: #dbe5ff;
-    font-size: 0.9rem;
+    font-size: $type-90;
     font-weight: 600;
   }
 
@@ -307,9 +307,9 @@
     margin-bottom: 24px;
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(3.2rem, 9vw, 5.8rem);
+    font-size: $type-fluid-320-580;
     line-height: 0.96;
-    letter-spacing: -0.05em;
+    letter-spacing: $tracking-heading-large;
 
     span {
       display: block;
@@ -324,8 +324,8 @@
 .heroText {
   max-width: 26ch;
   margin-bottom: 28px;
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  line-height: 1.45;
+  font-size: $type-fluid-105-120;
+  line-height: $line-height-body;
   color: #edf2ff;
 }
 
@@ -345,7 +345,7 @@
 
   p {
     color: $electric-blue;
-    font-size: 0.9rem;
+    font-size: $type-90;
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -354,9 +354,9 @@
   h2 {
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+    font-size: $type-fluid-180-320;
     line-height: 1.05;
-    letter-spacing: -0.04em;
+    letter-spacing: $tracking-heading-large;
   }
 }
 
@@ -407,7 +407,7 @@
 
 .tradeMarketTag {
   color: $electric-blue;
-  font-size: 0.84rem;
+  font-size: $type-84;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -425,14 +425,14 @@
     margin-top: 6px;
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-size: $type-fluid-150-220;
     line-height: 1.05;
   }
 }
 
 .tradeTeamCode {
   color: #c9d4ff;
-  font-size: 0.9rem;
+  font-size: $type-90;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -448,14 +448,14 @@
 
   span {
     color: #dbe5ff;
-    font-size: 0.95rem;
+    font-size: $type-95;
     font-weight: 600;
   }
 
   strong {
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-size: $type-fluid-300-450;
     line-height: 1;
   }
 }
@@ -480,12 +480,12 @@
     display: block;
     margin-bottom: 8px;
     color: #f8fbff;
-    font-size: 1.1rem;
+    font-size: $type-110;
   }
 
   span {
     color: $muted-text;
-    font-size: 0.88rem;
+    font-size: $type-88;
   }
 }
 
@@ -511,18 +511,18 @@
 
   span {
     color: $muted-text;
-    font-size: 0.88rem;
+    font-size: $type-88;
   }
 
   strong {
     color: $heading;
-    font-size: 1.2rem;
+    font-size: $type-120;
     font-weight: 700;
   }
 
   p {
     color: #eef4ff;
-    font-size: 0.85rem;
+    font-size: $type-85;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -541,7 +541,7 @@
   h3 {
     color: $heading;
     font-family: $font-family-display;
-    font-size: 1.35rem;
+    font-size: $type-135;
   }
 }
 
@@ -562,7 +562,7 @@
     display: block;
     margin-bottom: 6px;
     color: $muted-text;
-    font-size: 0.82rem;
+    font-size: $type-82;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -570,7 +570,7 @@
   strong {
     color: $heading;
     font-family: $font-family-display;
-    font-size: 1.4rem;
+    font-size: $type-140;
     line-height: 1;
   }
 }
@@ -595,7 +595,7 @@
     border-radius: 10px;
     color: #c9d4ff;
     background: rgba(17, 24, 39, 0.7);
-    font-size: 0.78rem;
+    font-size: $type-78;
     font-weight: 700;
     letter-spacing: 0.06em;
     cursor: pointer;
@@ -613,7 +613,7 @@
   align-items: center;
   gap: 8px;
   color: $heading;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 700;
 
   &::before {
@@ -640,7 +640,7 @@
   min-height: 240px;
   padding: 6px 0;
   color: $muted-text;
-  font-size: 0.78rem;
+  font-size: $type-78;
   font-weight: 600;
 }
 
@@ -678,7 +678,7 @@
     border-radius: 999px;
     color: $heading;
     background: rgba(56, 189, 248, 0.14);
-    font-size: 0.74rem;
+    font-size: $type-74;
     font-weight: 700;
     line-height: 24px;
   }
@@ -743,7 +743,7 @@
 
 .chartCandleTime {
   color: $muted-text;
-  font-size: 0.78rem;
+  font-size: $type-78;
   font-weight: 600;
 }
 
@@ -761,7 +761,7 @@
 
 .orderBookHead {
   color: #c9d4ff;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -792,7 +792,7 @@
   border-radius: 999px;
   background: rgba(56, 189, 248, 0.1);
   color: #c9d4ff;
-  font-size: 0.88rem;
+  font-size: $type-88;
   font-weight: 700;
   text-align: center;
 }
@@ -826,7 +826,7 @@
 
   span {
     color: #dbe5ff;
-    font-size: 0.92rem;
+    font-size: $type-92;
     font-weight: 600;
   }
 
@@ -853,7 +853,7 @@
 
   p {
     color: #dbe5ff;
-    font-size: 0.92rem;
+    font-size: $type-92;
     font-weight: 600;
   }
 
@@ -864,7 +864,7 @@
 
   label {
     color: $muted-text;
-    font-size: 0.84rem;
+    font-size: $type-84;
   }
 
   input {
@@ -917,7 +917,7 @@
 
   thead th {
     color: #c9d4ff;
-    font-size: 0.85rem;
+    font-size: $type-85;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -938,7 +938,7 @@
 
   tbody td {
     color: $heading;
-    font-size: 1rem;
+    font-size: $type-100;
   }
 
   tbody td:first-child {
@@ -986,10 +986,10 @@
   strong {
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-size: $type-fluid-160-220;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.03em;
+    letter-spacing: $tracking-heading-large;
     background: $gradient-brand;
     background-clip: text;
     -webkit-background-clip: text;
@@ -998,7 +998,7 @@
 
   span {
     color: $muted-text;
-    font-size: 0.82rem;
+    font-size: $type-82;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1099,14 +1099,14 @@
   border-radius: 999px;
   color: $electric-blue;
   background: rgba(56, 189, 248, 0.1);
-  font-size: 0.72rem;
+  font-size: $type-72;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .marketChange {
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -1122,10 +1122,10 @@
 .marketName {
   color: $heading;
   font-family: $font-family-display;
-  font-size: 1.2rem;
+  font-size: $type-120;
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: $tracking-heading-small;
 }
 
 .marketProbWrap {
@@ -1136,9 +1136,9 @@
 .marketProb {
   color: $heading;
   font-family: $font-family-display;
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-size: $type-fluid-240-320;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: $tracking-heading-large;
 }
 
 .marketBar {
@@ -1176,7 +1176,7 @@
   display: block;
   margin-bottom: 4px;
   color: $muted-text;
-  font-size: 0.76rem;
+  font-size: $type-76;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1184,7 +1184,7 @@
 
 .marketMetaValue {
   color: #dbe5ff;
-  font-size: 0.95rem;
+  font-size: $type-95;
   font-weight: 700;
 }
 
@@ -1247,12 +1247,12 @@
     margin-bottom: 12px;
     color: $heading;
     font-family: $font-family-display;
-    font-size: 1.3rem;
+    font-size: $type-130;
   }
 
   p {
     color: $body-text;
-    font-size: 0.95rem;
+    font-size: $type-95;
     line-height: 1.65;
   }
 }
@@ -1284,12 +1284,12 @@
     margin-bottom: 8px;
     color: $heading;
     font-family: $font-family-display;
-    font-size: 1.2rem;
+    font-size: $type-120;
   }
 
   p {
     color: $body-text;
-    font-size: 0.92rem;
+    font-size: $type-92;
     line-height: 1.6;
   }
 }
@@ -1307,7 +1307,7 @@
   color: $electric-blue;
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(99, 102, 241, 0.08));
   font-family: $font-family-display;
-  font-size: 0.85rem;
+  font-size: $type-85;
   font-weight: 800;
   letter-spacing: 0.04em;
   transition:
@@ -1344,7 +1344,7 @@
     margin-bottom: 14px;
     color: $heading;
     font-family: $font-family-display;
-    font-size: 1.35rem;
+    font-size: $type-135;
   }
 
   p {
@@ -1393,9 +1393,9 @@
 .quoteText {
   color: $heading;
   font-family: $font-family-display;
-  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-size: $type-fluid-150-240;
   line-height: 1.15;
-  letter-spacing: -0.03em;
+  letter-spacing: $tracking-heading-large;
 
   span {
     display: block;
@@ -1428,7 +1428,7 @@
   position: absolute;
   color: $heading;
   font-family: $font-family-display;
-  font-size: 0.82rem;
+  font-size: $type-82;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1464,9 +1464,9 @@
     max-width: 18ch;
     color: $heading;
     font-family: $font-family-display;
-    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-size: $type-fluid-200-340;
     line-height: 1.05;
-    letter-spacing: -0.04em;
+    letter-spacing: $tracking-heading-large;
   }
 }
 
@@ -1501,7 +1501,7 @@
   align-items: center;
   gap: 16px;
   color: $body-text;
-  font-size: 0.9rem;
+  font-size: $type-90;
   font-weight: 600;
 
   @include respond-below(md) {
@@ -1533,7 +1533,7 @@
   color: $white;
   background: $gradient-brand;
   font-family: $font-family-display;
-  font-size: 1.1rem;
+  font-size: $type-110;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
