@@ -1,8 +1,9 @@
 import clsx from 'clsx'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import brandLogo from '../../../logo.png'
-import { ROUTES, buildAIStudioFeatureRoute } from '@/constants/routes'
+import { ROUTES, buildAIStudioFeatureRoute, buildSocialFeatureRoute } from '@/constants/routes'
 import { aiStudioFeatures } from '@/data/aiStudio'
+import { socialFeatures } from '@/data/social'
 import { hasPlatformAccess, revokePlatformAccess } from '@/utils/platformAccess'
 import styles from '@/styles/tradingFlow.module.scss'
 
@@ -16,14 +17,25 @@ const navItems = [
   { label: 'Trade', to: ROUTES.TRADE },
   { label: 'Portfolio', to: ROUTES.PORTFOLIO },
   { label: 'AI Studio', to: ROUTES.AI_STUDIO },
+  { label: 'Social', to: ROUTES.SOCIAL },
   { label: 'Settings', to: ROUTES.SETTINGS },
 ]
+
+const dropdownConfigs = {
+  [ROUTES.AI_STUDIO]: {
+    features: aiStudioFeatures,
+    buildRoute: buildAIStudioFeatureRoute,
+  },
+  [ROUTES.SOCIAL]: {
+    features: socialFeatures,
+    buildRoute: buildSocialFeatureRoute,
+  },
+} as const
 
 const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: TradingHeaderProps) => {
   const navigate = useNavigate()
   const location = useLocation()
   const isLoggedIn = hasPlatformAccess()
-  const isAIStudioActive = location.pathname.startsWith(ROUTES.AI_STUDIO)
 
   const handleLogout = () => {
     revokePlatformAccess()
@@ -38,21 +50,24 @@ const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: T
         </Link>
 
         <nav className={styles.topbarNav} aria-label="Primary">
-          {navItems.map((item) =>
-            item.to === ROUTES.AI_STUDIO ? (
+          {navItems.map((item) => {
+            const dropdownConfig = dropdownConfigs[item.to as keyof typeof dropdownConfigs]
+            const isDropdownActive = location.pathname.startsWith(item.to)
+
+            return dropdownConfig ? (
               <div key={item.to} className={styles.navDropdown}>
                 <NavLink
                   to={item.to}
-                  className={clsx(styles.navLink, isAIStudioActive && styles.navLinkActive)}
+                  className={clsx(styles.navLink, isDropdownActive && styles.navLinkActive)}
                 >
                   {item.label}
                 </NavLink>
 
                 <div className={styles.navDropdownMenu}>
-                  {aiStudioFeatures.map((feature) => (
+                  {dropdownConfig.features.map((feature) => (
                     <NavLink
                       key={feature.id}
-                      to={buildAIStudioFeatureRoute(feature.id)}
+                      to={dropdownConfig.buildRoute(feature.id)}
                       className={({ isActive }) =>
                         clsx(styles.navDropdownItem, isActive && styles.navDropdownItemActive)
                       }
@@ -71,8 +86,8 @@ const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: T
               >
                 {item.label}
               </NavLink>
-            ),
-          )}
+            )
+          })}
         </nav>
 
         <div className={styles.topbarActions}>

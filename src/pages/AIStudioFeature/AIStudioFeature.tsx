@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { featureRegistry } from '@/components/AIStudioFeatures'
 import TradingHeader from '@/components/TradingHeader'
 import { ROUTES } from '@/constants/routes'
 import { getAIStudioFeatureById } from '@/data/aiStudio'
@@ -17,6 +18,8 @@ const AIStudioFeature = () => {
   if (!feature) {
     return <NotFound />
   }
+
+  const FeatureContent = featureRegistry[featureId]
 
   return (
     <div className={styles.page}>
@@ -38,21 +41,25 @@ const AIStudioFeature = () => {
         </section>
 
         <section className={styles.sectionBlock}>
-          <article className={styles.panel}>
-            <div className={styles.sectionHeader}>
-              <div className={styles.sectionIntro}>
-                <h2>What this feature provides</h2>
-              </div>
-            </div>
-
-            <div className={styles.stackList}>
-              {feature.highlights.map((highlight) => (
-                <div key={highlight} className={styles.infoCard}>
-                  <p className={styles.bodyCopy}>{highlight}</p>
+          {FeatureContent ? (
+            <FeatureContent />
+          ) : (
+            <article className={styles.panel}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionIntro}>
+                  <h2>What this feature provides</h2>
                 </div>
-              ))}
-            </div>
-          </article>
+              </div>
+
+              <div className={styles.stackList}>
+                {feature.highlights.map((highlight) => (
+                  <div key={highlight} className={styles.infoCard}>
+                    <p className={styles.bodyCopy}>{highlight}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          )}
         </section>
       </div>
     </div>

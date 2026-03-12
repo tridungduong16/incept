@@ -10,6 +10,8 @@ import MarketsLobby from '@/pages/MarketsLobby'
 import NotFound from '@/pages/NotFound'
 import OrderConfirmation from '@/pages/OrderConfirmation'
 import Portfolio from '@/pages/Portfolio'
+import Social from '@/pages/Social'
+import SocialFeature from '@/pages/SocialFeature'
 import Settings from '@/pages/Settings'
 import PlatformGate from '@/routes/PlatformGate'
 
@@ -51,6 +53,14 @@ export const router = createBrowserRouter([
           {
             path: ROUTES.AI_STUDIO_FEATURE,
             element: <AIStudioFeature />,
+          },
+          {
+            path: ROUTES.SOCIAL,
+            element: <Social />,
+          },
+          {
+            path: ROUTES.SOCIAL_FEATURE,
+            element: <SocialFeature />,
           },
           {
             path: ROUTES.SETTINGS,

@@ -30,7 +30,7 @@ export const aiStudioFeatures: AIStudioFeature[] = [
     title: 'News-to-market mapping',
     shortLabel: 'News Mapping',
     description: 'Gan tin tuc lien quan truc tiep vao tung market de nhin ro tac dong thoi gian thuc.',
-    status: 'Coming Soon',
+    status: 'Active',
     highlights: [
       'Link tin nong voi market co lien quan.',
       'Nhac cac headline co kha nang tao bien dong.',
@@ -43,7 +43,7 @@ export const aiStudioFeatures: AIStudioFeature[] = [
     title: 'Auto-generated catalysts',
     shortLabel: 'Catalysts',
     description: 'He thong tu dong liet ke cac yeu to co kha nang day gia cho moi market.',
-    status: 'Coming Soon',
+    status: 'Active',
     highlights: [
       'Tu dong xac dinh su kien co kha nang tac dong gia.',
       'Phan loai catalyst theo muc do uu tien.',
@@ -56,7 +56,7 @@ export const aiStudioFeatures: AIStudioFeature[] = [
     title: 'Mispricing scanner',
     shortLabel: 'Mispricing',
     description: 'Goi y market volume cao nhung spread hoac lech gia bat thuong de san co hoi.',
-    status: 'Coming Soon',
+    status: 'Active',
     highlights: [
       'Phat hien market co spread bat thuong.',
       'So sanh lech gia voi thanh khoan hien tai.',
@@ -69,7 +69,7 @@ export const aiStudioFeatures: AIStudioFeature[] = [
     title: 'Resolution source tracker',
     shortLabel: 'Resolution Source',
     description: 'Hien thi nguon du lieu dung de settle market, tang tinh minh bach va trust.',
-    status: 'Coming Soon',
+    status: 'Active',
     highlights: [
       'Cong khai nguon du lieu settle cho tung market.',
       'Luu vet cap nhat va thay doi resolution source.',
