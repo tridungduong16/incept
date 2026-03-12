@@ -1,7 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { ROUTES, buildTradeRoute } from '@/constants/routes'
+import { buildAIStudioFeatureRoute, buildSocialFeatureRoute } from '@/constants/routes'
+import { aiStudioFeatures } from '@/data/aiStudio'
 import { allMarkets } from '@/data/tradingFlow'
-import AIStudio from '@/pages/AIStudio'
 import AIStudioFeature from '@/pages/AIStudioFeature'
 import EventDetails from '@/pages/EventDetails'
 import MainLayout from '@/layouts/MainLayout'
@@ -10,7 +11,7 @@ import MarketsLobby from '@/pages/MarketsLobby'
 import NotFound from '@/pages/NotFound'
 import OrderConfirmation from '@/pages/OrderConfirmation'
 import Portfolio from '@/pages/Portfolio'
-import Social from '@/pages/Social'
+import { socialFeatures } from '@/data/social'
 import SocialFeature from '@/pages/SocialFeature'
 import Settings from '@/pages/Settings'
 import PlatformGate from '@/routes/PlatformGate'
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
           },
           {
             path: ROUTES.AI_STUDIO,
-            element: <AIStudio />,
+            element: <Navigate to={buildAIStudioFeatureRoute(aiStudioFeatures[0].id)} replace />,
           },
           {
             path: ROUTES.AI_STUDIO_FEATURE,
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
           },
           {
             path: ROUTES.SOCIAL,
-            element: <Social />,
+            element: <Navigate to={buildSocialFeatureRoute(socialFeatures[0].id)} replace />,
           },
           {
             path: ROUTES.SOCIAL_FEATURE,

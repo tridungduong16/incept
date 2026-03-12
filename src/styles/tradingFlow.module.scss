@@ -126,6 +126,13 @@
   }
 }
 
+.navDropdownTrigger {
+  border: none;
+  background: transparent;
+  cursor: default;
+  font: inherit;
+}
+
 .navDropdown {
   position: relative;
   padding-bottom: 10px;

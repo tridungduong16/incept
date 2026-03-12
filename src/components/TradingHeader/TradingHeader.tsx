@@ -58,12 +58,14 @@ const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: T
 
             return dropdownConfig ? (
               <div key={item.to} className={styles.navDropdown}>
-                <NavLink
-                  to={item.to}
-                  className={clsx(styles.navLink, isDropdownActive && styles.navLinkActive)}
+                <button
+                  type="button"
+                  className={clsx(styles.navLink, styles.navDropdownTrigger, isDropdownActive && styles.navLinkActive)}
+                  aria-haspopup="menu"
+                  aria-expanded={isDropdownActive}
                 >
                   {item.label}
-                </NavLink>
+                </button>
 
                 <div className={styles.navDropdownMenu}>
                   {dropdownConfig.features.map((feature) => (
