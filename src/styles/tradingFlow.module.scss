@@ -127,6 +127,15 @@
   top: calc(100% + 8px);
   left: 0;
   z-index: 30;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
   width: min(420px, 82vw);
   display: grid;
   gap: 6px;
@@ -194,6 +203,30 @@
 .buttonColumn {
   align-items: stretch;
   flex-direction: column;
+}
+
+.profileIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #8fa0c7;
+  transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+
+  &:hover {
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.5);
+    background: rgba(56, 189, 248, 0.08);
+  }
+}
+
+.profileIconActive {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.08);
 }
 
 .primaryButton,

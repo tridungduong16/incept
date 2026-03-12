@@ -18,7 +18,6 @@ const navItems = [
   { label: 'Portfolio', to: ROUTES.PORTFOLIO },
   { label: 'AI Studio', to: ROUTES.AI_STUDIO },
   { label: 'Social', to: ROUTES.SOCIAL },
-  { label: 'Settings', to: ROUTES.SETTINGS },
 ]
 
 const dropdownConfigs = {
@@ -92,9 +91,21 @@ const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: T
 
         <div className={styles.topbarActions}>
           {isLoggedIn ? (
-            <button type="button" className={styles.ghostButton} onClick={handleLogout}>
-              Logout
-            </button>
+            <>
+              <NavLink
+                to={ROUTES.SETTINGS}
+                className={({ isActive }) => clsx(styles.profileIcon, isActive && styles.profileIconActive)}
+                aria-label="Settings"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+              </NavLink>
+              <button type="button" className={styles.ghostButton} onClick={handleLogout}>
+                Logout
+              </button>
+            </>
           ) : (
             <Link className={styles.primaryButton} to={ctaTo}>
               {ctaLabel}
