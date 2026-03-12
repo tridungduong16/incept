@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
-import { ROUTES, buildEventRoute } from '@/constants/routes'
+import { ROUTES, buildTradeRoute } from '@/constants/routes'
 import { allMarkets } from '@/data/tradingFlow'
 import AIStudio from '@/pages/AIStudio'
 import AIStudioFeature from '@/pages/AIStudioFeature'
@@ -32,14 +32,14 @@ export const router = createBrowserRouter([
           },
           {
             path: ROUTES.TRADE,
-            element: <Navigate to={buildEventRoute(allMarkets[0].routeId)} replace />,
+            element: <Navigate to={buildTradeRoute(allMarkets[0].routeId)} replace />,
           },
           {
-            path: ROUTES.EVENT,
+            path: ROUTES.TRADE_EVENT,
             element: <EventDetails />,
           },
           {
-            path: ROUTES.CONFIRM,
+            path: ROUTES.TRADE_CONFIRM,
             element: <OrderConfirmation />,
           },
           {

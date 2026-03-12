@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import TradingHeader from '@/components/TradingHeader'
-import { ROUTES, buildEventRoute } from '@/constants/routes'
+import { ROUTES, buildTradeRoute } from '@/constants/routes'
 import { allMarkets } from '@/data/tradingFlow'
 import NotFound from '@/pages/NotFound'
 import styles from '@/styles/tradingFlow.module.scss'
@@ -179,8 +179,8 @@ const OrderConfirmation = () => {
               <Link className={styles.primaryButton} to={ROUTES.PORTFOLIO}>
                 Confirm And Open Position
               </Link>
-              <Link className={styles.secondaryButton} to={buildEventRoute(market.routeId)}>
-                Back To Event
+              <Link className={styles.secondaryButton} to={buildTradeRoute(market.routeId)}>
+                Back To Trade
               </Link>
             </div>
           </article>

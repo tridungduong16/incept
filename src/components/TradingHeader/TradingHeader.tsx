@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import brandLogo from '../../../logo.png'
-import { ROUTES, buildAIStudioFeatureRoute, buildSocialFeatureRoute } from '@/constants/routes'
+import { ROUTES, buildAIStudioFeatureRoute, buildSocialFeatureRoute, buildTradeRoute } from '@/constants/routes'
 import { aiStudioFeatures } from '@/data/aiStudio'
 import { socialFeatures } from '@/data/social'
+import { allMarkets } from '@/data/tradingFlow'
 import { hasPlatformAccess, revokePlatformAccess } from '@/utils/platformAccess'
 import styles from '@/styles/tradingFlow.module.scss'
 
@@ -52,6 +53,8 @@ const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: T
           {navItems.map((item) => {
             const dropdownConfig = dropdownConfigs[item.to as keyof typeof dropdownConfigs]
             const isDropdownActive = location.pathname.startsWith(item.to)
+            const isTradeRoute = item.to === ROUTES.TRADE
+            const tradeRoute = buildTradeRoute(allMarkets[0].routeId)
 
             return dropdownConfig ? (
               <div key={item.to} className={styles.navDropdown}>
@@ -77,6 +80,14 @@ const TradingHeader = ({ ctaLabel = 'Start Trading', ctaTo = ROUTES.MARKETS }: T
                   ))}
                 </div>
               </div>
+            ) : isTradeRoute ? (
+              <NavLink
+                key={item.to}
+                to={tradeRoute}
+                className={clsx(styles.navLink, location.pathname.startsWith(ROUTES.TRADE) && styles.navLinkActive)}
+              >
+                {item.label}
+              </NavLink>
             ) : (
               <NavLink
                 key={item.to}

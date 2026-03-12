@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import TradingHeader from '@/components/TradingHeader'
-import { ROUTES, buildEventRoute } from '@/constants/routes'
+import { ROUTES, buildTradeRoute } from '@/constants/routes'
 import {
   allMarkets,
   lobbyStats,
@@ -211,7 +211,7 @@ const MarketsLobby = () => {
                       <MiniSparkline data={m.sparkline} positive={m.change24h >= 0} />
                     </td>
                     <td className={styles.mktTdCenter}>
-                      <Link className={styles.mktTradeBtn} to={buildEventRoute(m.routeId)}>
+                      <Link className={styles.mktTradeBtn} to={buildTradeRoute(m.routeId)}>
                         Trade
                       </Link>
                     </td>

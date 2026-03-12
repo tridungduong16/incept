@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties }
 import { createPortal } from 'react-dom'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import TradingHeader from '@/components/TradingHeader'
-import { ROUTES, buildConfirmRoute } from '@/constants/routes'
+import { ROUTES, buildConfirmRoute, buildTradeRoute } from '@/constants/routes'
 import { allMarkets, chartTimeframes, type CandlePoint, type MarketItem } from '@/data/tradingFlow'
 import NotFound from '@/pages/NotFound'
 import styles from '@/styles/tradingFlow.module.scss'
@@ -253,7 +253,7 @@ const TokenPairSelector = ({
       setOpen(false)
       setSearch('')
       if (m.routeId !== currentMarket.routeId) {
-        navigate(`/markets/${m.routeId}`)
+        navigate(buildTradeRoute(m.routeId))
       }
     },
     [currentMarket.routeId, navigate],
