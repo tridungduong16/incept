@@ -1,6 +1,20 @@
 .page {
+  position: relative;
   min-height: 100vh;
   color: $body-text;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(56, 189, 248, 0.14), transparent 42%),
+      radial-gradient(ellipse at 85% 0%, rgba(168, 85, 247, 0.12), transparent 38%),
+      radial-gradient(circle at 50% 8%, rgba(99, 102, 241, 0.10), transparent 34%),
+      radial-gradient(ellipse at 50% 100%, rgba(56, 189, 248, 0.06), transparent 40%);
+  }
 }
 
 .shell {
@@ -25,45 +39,34 @@
 }
 
 .topbarInner {
-  width: min(1440px, calc(100% - 32px));
-  min-height: 72px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 68px;
+  padding: 0 clamp(20px, 3vw, 40px);
 
   @include respond-below(lg) {
     flex-direction: column;
     align-items: stretch;
-    padding: 16px 0;
-  }
-
-  @include respond-to(md) {
-    width: min(1440px, calc(100% - 56px));
+    padding: 14px clamp(18px, 3vw, 28px);
+    min-height: auto;
   }
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  flex: 1;
+  gap: 10px;
   color: $heading;
-
-  strong {
-    display: block;
-    font-family: $font-family-display;
-    font-size: $type-105;
-    letter-spacing: 0.14em;
-  }
-
-  span {
-    display: block;
-    color: #9fb0d8;
-    font-size: $type-82;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
+  font-family: $font-family-display;
+  font-size: $type-100;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .brandLogo {
@@ -77,19 +80,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  flex: 0 0 auto;
   flex-wrap: wrap;
+  gap: 6px;
+  color: #c9d4ff;
+  font-family: Inter, sans-serif;
+  font-size: $type-115;
+  font-weight: 500;
 }
 
 .navLink,
 .navLinkActive {
   position: relative;
-  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
   border-radius: 999px;
-  color: #C8D8F5;
-  font-size: $type-95;
-  font-weight: 500;
-  @include interactive-transition((background, color), 220ms, $ease-out);
+  color: inherit;
+  letter-spacing: $tracking-heading-small;
+  transition:
+    color 220ms $ease-out,
+    background 220ms $ease-out;
 
   &::after {
     content: '';
@@ -101,7 +112,7 @@
     background: $gradient-brand;
     border-radius: 999px;
     transform: translateX(-50%);
-    transition: width 220ms $ease-out;
+    transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
@@ -111,7 +122,7 @@
   background: rgba(99, 102, 241, 0.08);
 
   &::after {
-    width: 68%;
+    width: 60%;
   }
 }
 
@@ -138,12 +149,15 @@
   width: min(420px, 82vw);
   display: grid;
   gap: 6px;
-  padding: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.16);
-  border-radius: 14px;
-  background: rgba(8, 12, 28, 0.96);
-  box-shadow: 0 20px 52px rgba(1, 4, 20, 0.5);
-  backdrop-filter: blur(20px) saturate(1.25);
+  padding: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 45%),
+    linear-gradient(180deg, rgba(20, 24, 35, 0.98), rgba(10, 13, 22, 0.96)),
+    #111827;
+  box-shadow: 0 28px 80px rgba(2, 6, 23, 0.5);
+  backdrop-filter: blur(24px) saturate(1.4);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-4px);
@@ -163,8 +177,8 @@
 .navDropdownItemActive {
   display: grid;
   gap: 4px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
   border: 1px solid transparent;
   transition:
     background 140ms ease,
@@ -189,7 +203,23 @@
   line-height: 1.4;
 }
 
-.topbarActions,
+.topbarActions {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .primaryButton,
+  .secondaryButton,
+  .ghostButton {
+    min-height: 42px;
+    padding: 0 14px;
+    font-size: $type-90;
+  }
+}
+
 .buttonRow,
 .buttonColumn,
 .chipRow {
@@ -208,23 +238,29 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
   color: $label-text;
-  transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+  background: rgba(11, 22, 44, 0.88);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 
   &:hover {
     color: #38bdf8;
-    border-color: rgba(56, 189, 248, 0.5);
+    border-color: rgba(56, 189, 248, 0.44);
     background: rgba(56, 189, 248, 0.08);
+    transform: translateY(-1px);
   }
 }
 
 .profileIconActive {
   color: #38bdf8;
-  border-color: rgba(56, 189, 248, 0.5);
+  border-color: rgba(56, 189, 248, 0.44);
   background: rgba(56, 189, 248, 0.08);
 }
 
@@ -240,12 +276,21 @@
   justify-content: center;
   min-height: 46px;
   padding: 0 18px;
-  border-radius: 18px;
+  border-radius: 999px;
   border: 1px solid transparent;
   font-size: $type-95;
   font-weight: 700;
   cursor: pointer;
-  @include hover-button(-1px, 1.015, 0 16px 44px rgba(1, 4, 20, 0.24));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
 }
 
 .primaryButton {
@@ -260,11 +305,23 @@
   }
 }
 
-.secondaryButton,
+.secondaryButton {
+  color: $heading;
+  background: rgba(11, 22, 44, 0.88);
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
 .ghostButton {
   color: $heading;
   background: rgba(11, 22, 44, 0.88);
   border-color: rgba(56, 189, 248, 0.22);
+
+  &:hover {
+    border-color: rgba(56, 189, 248, 0.36);
+    box-shadow:
+      0 12px 36px rgba(56, 189, 248, 0.12),
+      0 0 0 1px rgba(99, 102, 241, 0.18);
+  }
 }
 
 .heroPanel,
