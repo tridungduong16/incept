@@ -138,7 +138,7 @@ const CandlestickChart = ({ data }: { data: CandlePoint[] }) => {
         return (
           <g key={i}>
             <line x1={0} y1={y} x2={plotW} y2={y} stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
-            <text x={plotW + 8} y={y + 4} fill="#6b7c9e" fontSize="10" fontFamily="monospace">
+            <text x={plotW + 8} y={y + 4} fill="#A6B7D0" fontSize="10" fontFamily="monospace">
               {price.toFixed(2)}
             </text>
           </g>
@@ -206,7 +206,7 @@ const CandlestickChart = ({ data }: { data: CandlePoint[] }) => {
           return (
             <text
               key={`t-${i}`} x={x} y={CHART_H - 4}
-              fill="#6b7c9e" fontSize="9" fontFamily="monospace"
+              fill="#A6B7D0" fontSize="9" fontFamily="monospace"
               textAnchor={i === arr.length - 1 ? 'end' : 'middle'}
             >
               {candle.time}
@@ -302,7 +302,7 @@ const TokenPairSelector = ({
       {open && (
         <div className={styles.tpDropdown}>
           <div className={styles.tpSearchWrap}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7c9e" strokeWidth="2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A6B7D0" strokeWidth="2">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>

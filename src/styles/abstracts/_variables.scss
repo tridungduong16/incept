@@ -10,9 +10,10 @@ $purple: #a855f7;
 $gradient-brand: linear-gradient(135deg, $electric-blue 0%, $indigo 52%, $purple 100%);
 
 // Neutrals
-$heading: #e5e7eb;
-$body-text: #9ca3af;
-$muted-text: #6b7280;
+$heading: #E6EDF7;
+$body-text: #9FB0C7;
+$muted-text: #6F8099;
+$label-text: #8EA2C0;
 $border: #1f2937;
 
 // Trading colors
@@ -23,9 +24,9 @@ $white: #ffffff;
 $black: #000000;
 
 // Typography
-$font-family-base: 'Manrope', 'Segoe UI', sans-serif;
-$font-family-display: 'Sora', 'Manrope', sans-serif;
-$font-size-base: 16px;
+$font-family-base: 'Inter', 'Segoe UI', sans-serif;
+$font-family-display: 'Inter', sans-serif;
+$font-size-base: 15px;
 
 // Breakpoints
 $breakpoint-sm: 576px;

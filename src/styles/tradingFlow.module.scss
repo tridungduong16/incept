@@ -4,12 +4,12 @@
 }
 
 .shell {
-  width: min(1240px, calc(100% - 32px));
+  width: min(1440px, calc(100% - 32px));
   margin: 0 auto;
   padding: 24px 0 72px;
 
   @include respond-to(md) {
-    width: min(1240px, calc(100% - 56px));
+    width: min(1440px, calc(100% - 56px));
     padding-top: 32px;
   }
 }
@@ -25,13 +25,13 @@
 }
 
 .topbarInner {
-  width: min(1240px, calc(100% - 32px));
-  min-height: 82px;
+  width: min(1440px, calc(100% - 32px));
+  min-height: 72px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 24px;
 
   @include respond-below(lg) {
     flex-direction: column;
@@ -40,7 +40,7 @@
   }
 
   @include respond-to(md) {
-    width: min(1240px, calc(100% - 56px));
+    width: min(1440px, calc(100% - 56px));
   }
 }
 
@@ -76,17 +76,18 @@
 .topbarNav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 4px;
   flex-wrap: wrap;
 }
 
 .navLink,
 .navLinkActive {
   position: relative;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border-radius: 999px;
-  color: #c9d4ff;
-  font-size: 1rem;
+  color: #C8D8F5;
+  font-size: 0.95rem;
   font-weight: 500;
   transition:
     background 220ms ease,
@@ -185,7 +186,7 @@
 }
 
 .navDropdownItemDesc {
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.76rem;
   line-height: 1.4;
 }
@@ -213,7 +214,7 @@
   height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(56, 189, 248, 0.2);
-  color: #8fa0c7;
+  color: $label-text;
   transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
 
   &:hover {
@@ -456,7 +457,7 @@
   }
 
   p {
-    color: #8fa0c7;
+    color: $label-text;
     font-size: 0.9rem;
   }
 }
@@ -601,7 +602,7 @@
   }
 
   small {
-    color: #8fa0c7;
+    color: $label-text;
   }
 }
 
@@ -636,7 +637,7 @@
   min-height: 100%;
 
   span {
-    color: #8fa0c7;
+    color: $label-text;
     font-size: 0.8rem;
   }
 }
@@ -695,34 +696,44 @@
 .orderBookHead,
 .orderBookRow {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  font-size: 0.9rem;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }
 
 .orderBookHead {
   padding-bottom: 10px;
-  color: #8fa0c7;
+  color: $label-text;
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
 .orderBookRow {
   padding: 10px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.8125rem;
 }
 
 .orderBookSell {
   color: #ffb3b3;
+  font-weight: 600;
 }
 
 .orderBookBuy {
   color: #9ff2bf;
+  font-weight: 600;
 }
 
 .orderBookMid {
   margin: 12px 0;
   padding: 10px 12px;
   border-radius: 16px;
-  color: #e9efff;
+  color: $heading;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-feature-settings: "tnum";
   text-align: center;
   background: rgba(56, 189, 248, 0.1);
+  text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
 }
 
 .formGrid {
@@ -794,7 +805,7 @@
 }
 
 .tableHead {
-  color: #8fa0c7;
+  color: $label-text;
   background: rgba(6, 10, 20, 0.9);
 }
 
@@ -910,7 +921,7 @@
   padding: 16px 18px;
   border: none;
   background: transparent;
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
@@ -948,7 +959,7 @@
   background: rgba(255, 255, 255, 0.06);
   font-size: 0.72rem;
   font-weight: 700;
-  color: #8fa0c7;
+  color: $label-text;
 }
 
 .mktSearch {
@@ -977,7 +988,7 @@
   outline: none;
 
   &::placeholder {
-    color: #6b7c9e;
+    color: $muted-text;
   }
 }
 
@@ -997,9 +1008,9 @@
 .mktThRight,
 .mktThCenter {
   padding: 12px 16px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #6b7c9e;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: $label-text;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -1042,8 +1053,9 @@
 .mktTdRight,
 .mktTdCenter {
   padding: 14px 16px;
-  font-size: 0.92rem;
-  color: #c8d6fb;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: $body-text;
   vertical-align: middle;
 }
 
@@ -1068,13 +1080,14 @@
 
 .mktPairName {
   color: $heading;
-  font-weight: 700;
-  font-size: 0.94rem;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
 }
 
 .mktPairTitle {
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.8rem;
   max-width: 220px;
   overflow: hidden;
@@ -1084,8 +1097,11 @@
 
 .mktPrice {
   color: $heading;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
 }
 
 .sparklineSvg {
@@ -1119,7 +1135,7 @@
 .mktEmpty {
   padding: 48px 24px;
   text-align: center;
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.95rem;
 }
 
@@ -1158,7 +1174,7 @@
 
 .eventCompactSub {
   margin-top: 4px;
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.82rem;
 }
 
@@ -1183,15 +1199,18 @@
 
   strong {
     color: $heading;
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 0.875rem;
+    font-weight: 600;
     line-height: 1;
     font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
   }
 
   small {
-    color: #8fa0c7;
-    font-size: 0.76rem;
+    color: $label-text;
+    font-size: 0.75rem;
+    font-weight: 400;
   }
 }
 
@@ -1255,7 +1274,7 @@
 }
 
 .tvPairTitle {
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.76rem;
 }
 
@@ -1302,7 +1321,7 @@
 
 .tpChevron,
 .tpChevronOpen {
-  color: #6b7c9e;
+  color: $muted-text;
   transition: transform 200ms ease;
   flex-shrink: 0;
 }
@@ -1381,7 +1400,7 @@
   outline: none;
 
   &::placeholder {
-    color: #6b7c9e;
+    color: $muted-text;
   }
 }
 
@@ -1393,7 +1412,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 
   span {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1456,7 +1475,7 @@
 }
 
 .tpRowPairTitle {
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.72rem;
   white-space: nowrap;
   overflow: hidden;
@@ -1474,7 +1493,7 @@
 .tpEmpty {
   padding: 32px 16px;
   text-align: center;
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.88rem;
 }
 
@@ -1499,15 +1518,18 @@
   }
 
   span {
-    color: #6b7c9e;
-    font-size: 0.7rem;
+    color: $label-text;
+    font-size: 0.75rem;
+    font-weight: 400;
   }
 
   strong {
     color: $heading;
-    font-size: 0.88rem;
+    font-size: 0.875rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
   }
 }
 
@@ -1603,7 +1625,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1642,7 +1664,7 @@
 }
 
 .tvTimeLabel {
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.78rem;
   margin-right: 4px;
 }
@@ -1653,7 +1675,7 @@
   border: none;
   border-radius: 6px;
   background: transparent;
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
@@ -1678,7 +1700,7 @@
   gap: 12px;
   margin-left: auto;
   font-size: 0.78rem;
-  color: #6b7c9e;
+  color: $muted-text;
 
   strong {
     color: $heading;
@@ -1730,7 +1752,7 @@
   padding: 10px 18px;
   border: none;
   background: transparent;
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -1792,7 +1814,7 @@
   }
 
   p {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.8rem;
     line-height: 1.4;
   }
@@ -1824,7 +1846,7 @@
   padding: 0 4px 6px;
 
   span {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.72rem;
     font-weight: 600;
 
@@ -1904,7 +1926,7 @@
   }
 
   span {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.78rem;
   }
 }
@@ -1939,7 +1961,7 @@
 
 .tvSellTab {
   background: transparent;
-  color: #6b7c9e;
+  color: $muted-text;
   border-bottom: 2px solid transparent;
 
   &:hover {
@@ -1960,7 +1982,7 @@
   gap: 4px;
 
   span {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.78rem;
     font-weight: 600;
   }
@@ -2001,7 +2023,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 4px;
   background: transparent;
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
@@ -2023,7 +2045,7 @@
 }
 
 .tvTradeHint {
-  color: #6b7c9e;
+  color: $muted-text;
   font-size: 0.74rem;
   line-height: 1.4;
 }
@@ -2042,7 +2064,7 @@
 }
 
 .tvLadderLabel {
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.76rem;
   font-weight: 700;
   text-align: center;
@@ -2062,7 +2084,7 @@
   font-size: 0.82rem;
 
   span {
-    color: #6b7c9e;
+    color: $muted-text;
   }
 
   strong {
@@ -2100,7 +2122,7 @@
   justify-content: center;
   height: 36px;
   border-radius: 8px;
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.82rem;
   font-weight: 600;
   transition: color 120ms ease;
@@ -2176,7 +2198,7 @@
   }
 
   p {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.8rem;
     line-height: 1.45;
   }
@@ -2202,7 +2224,7 @@
   padding: 10px 14px;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #6b7c9e;
+  color: $muted-text;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -2318,7 +2340,7 @@
 }
 
 .pfCancelBtn {
-  color: #8fa0c7;
+  color: $label-text;
 
   &:hover {
     background: rgba(255, 255, 255, 0.04);
@@ -2351,7 +2373,7 @@
   font-size: 0.84rem;
 
   span {
-    color: #6b7c9e;
+    color: $muted-text;
   }
 
   strong {
@@ -2407,7 +2429,7 @@
 }
 
 .pfAllocLabel {
-  color: #8fa0c7;
+  color: $label-text;
   flex: 1;
 }
 
@@ -2445,7 +2467,7 @@
   }
 
   small {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.74rem;
   }
 }
@@ -2519,7 +2541,7 @@
   border: none;
   border-radius: 8px;
   background: transparent;
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
@@ -2582,7 +2604,7 @@
 
   p {
     margin-top: 4px;
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.86rem;
     line-height: 1.5;
   }
@@ -2604,7 +2626,7 @@
   gap: 6px;
 
   span {
-    color: #8fa0c7;
+    color: $label-text;
     font-size: 0.8rem;
     font-weight: 600;
   }
@@ -2704,7 +2726,7 @@
   }
 
   p {
-    color: #6b7c9e;
+    color: $muted-text;
     font-size: 0.8rem;
     line-height: 1.45;
   }
@@ -2850,7 +2872,7 @@
 
 .stApiHead {
   background: rgba(6, 10, 20, 0.6);
-  color: #6b7c9e;
+  color: $muted-text;
   font-weight: 700;
   font-size: 0.76rem;
   text-transform: uppercase;
@@ -2864,7 +2886,7 @@
 
 .stApiKey {
   font-family: monospace;
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.82rem;
 }
 
@@ -3005,7 +3027,7 @@
 }
 
 .aiStudioMeta {
-  color: #8fa0c7;
+  color: $label-text;
   font-size: 0.8rem;
 }
 

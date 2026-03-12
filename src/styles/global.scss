@@ -15,8 +15,11 @@ html {
 
 body {
   font-family: $font-family-base;
+  font-size: 14px;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'tnum' 1, 'ss01' 1; // tabular numbers cho trading
   background:
     radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 28%),
     radial-gradient(circle at top right, rgba(168, 85, 247, 0.18), transparent 24%),
@@ -42,4 +45,15 @@ select {
 
 #root {
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500; // Inter Medium cho headers
+  letter-spacing: -0.01em;
+}
+
+// Inter SemiBold cho numbers (áp dụng qua class)
+.num {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }

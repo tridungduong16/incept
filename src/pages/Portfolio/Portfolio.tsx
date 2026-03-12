@@ -42,7 +42,7 @@ const EquityChart = ({ data }: { data: { time: string; value: number }[] }) => {
         return (
           <g key={i}>
             <line x1={8} y1={y} x2={plotW + 8} y2={y} stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
-            <text x={plotW + 16} y={y + 3} fill="#6b7c9e" fontSize="9" fontFamily="monospace">
+            <text x={plotW + 16} y={y + 3} fill="#A6B7D0" fontSize="9" fontFamily="monospace">
               ${val.toFixed(0)}
             </text>
           </g>
@@ -58,7 +58,7 @@ const EquityChart = ({ data }: { data: { time: string; value: number }[] }) => {
           const idx = data.indexOf(d)
           const x = idx * step + 8
           return (
-            <text key={d.time} x={x} y={CHART_H - 2} fill="#6b7c9e" fontSize="9" fontFamily="monospace" textAnchor="middle">
+            <text key={d.time} x={x} y={CHART_H - 2} fill="#A6B7D0" fontSize="9" fontFamily="monospace" textAnchor="middle">
               {d.time}
             </text>
           )
