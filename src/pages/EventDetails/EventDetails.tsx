@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import TradingHeader from '@/components/TradingHeader'
 import { ROUTES, buildConfirmRoute } from '@/constants/routes'
@@ -230,7 +231,9 @@ const TokenPairSelector = ({
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const [dropdownStyle, setDropdownStyle] = useState<CSSProperties>({})
   const triggerClassName = variant === 'chart' ? styles.tpTriggerCompact : styles.tpTrigger
   const pairClassName = variant === 'chart' ? styles.tpPairCompact : styles.tvPairName
 
@@ -256,8 +259,48 @@ const TokenPairSelector = ({
     [currentMarket.routeId, navigate],
   )
 
+  const updateDropdownPosition = useCallback(() => {
+    if (!containerRef.current || typeof window === 'undefined') return
+
+    const rect = containerRef.current.getBoundingClientRect()
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+    const viewportPadding = 16
+    const gap = 8
+    const width = Math.min(420, viewportWidth - viewportPadding * 2)
+    const left = Math.min(
+      Math.max(rect.left, viewportPadding),
+      viewportWidth - width - viewportPadding,
+    )
+    const spaceBelow = viewportHeight - rect.bottom - viewportPadding
+    const spaceAbove = rect.top - viewportPadding
+    const openAbove = spaceBelow < 280 && spaceAbove > spaceBelow
+    const maxHeight = Math.max(220, Math.min(480, (openAbove ? spaceAbove : spaceBelow) - gap))
+
+    setDropdownStyle(
+      openAbove
+        ? {
+            position: 'fixed',
+            left,
+            bottom: viewportHeight - rect.top + gap,
+            width,
+            maxHeight,
+            zIndex: 1400,
+          }
+        : {
+            position: 'fixed',
+            left,
+            top: rect.bottom + gap,
+            width,
+            maxHeight,
+            zIndex: 1400,
+          },
+    )
+  }, [])
+
   useEffect(() => {
     if (!open) return
+    updateDropdownPosition()
     inputRef.current?.focus()
 
     const onKey = (e: KeyboardEvent) => {
@@ -267,18 +310,83 @@ const TokenPairSelector = ({
       }
     }
     const onClick = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const target = e.target as Node
+      const clickedTrigger = containerRef.current?.contains(target)
+      const clickedDropdown = dropdownRef.current?.contains(target)
+
+      if (!clickedTrigger && !clickedDropdown) {
         setOpen(false)
         setSearch('')
       }
     }
+    const onViewportChange = () => {
+      updateDropdownPosition()
+    }
+
     document.addEventListener('keydown', onKey)
     document.addEventListener('mousedown', onClick)
+    window.addEventListener('resize', onViewportChange)
+    window.addEventListener('scroll', onViewportChange, true)
+
     return () => {
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('mousedown', onClick)
+      window.removeEventListener('resize', onViewportChange)
+      window.removeEventListener('scroll', onViewportChange, true)
     }
-  }, [open])
+  }, [open, updateDropdownPosition])
+
+  const dropdownContent = (
+    <div ref={dropdownRef} className={`${styles.tpDropdown} ${styles.tpDropdownFloating}`} style={dropdownStyle}>
+      <div className={styles.tpSearchWrap}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A6B7D0" strokeWidth="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          ref={inputRef}
+          className={styles.tpSearchInput}
+          type="text"
+          placeholder="Search token or market..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      <div className={styles.tpListHeader}>
+        <span>Pair</span>
+        <span>Price</span>
+        <span>24h Change</span>
+      </div>
+
+      <div className={styles.tpList}>
+        {filtered.length === 0 && (
+          <div className={styles.tpEmpty}>No markets found</div>
+        )}
+        {filtered.map((m) => {
+          const isActive = m.routeId === currentMarket.routeId
+          const pos = m.change24h >= 0
+          return (
+            <button
+              key={m.routeId}
+              type="button"
+              className={isActive ? styles.tpRowActive : styles.tpRow}
+              onClick={() => handleSelect(m)}
+            >
+              <div className={styles.tpRowPair}>
+                <span className={styles.tpRowPairName}>{m.pair}</span>
+                <span className={styles.tpRowPairTitle}>{m.title}</span>
+              </div>
+              <span className={styles.tpRowPrice}>{m.lastPrice.toFixed(2)}</span>
+              <span className={pos ? styles.deltaUp : styles.deltaDown}>
+                {pos ? '+' : ''}{m.change24h.toFixed(1)}%
+              </span>
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
 
   return (
     <div className={styles.tpSelector} ref={containerRef}>
@@ -299,57 +407,7 @@ const TokenPairSelector = ({
         </svg>
       </button>
 
-      {open && (
-        <div className={styles.tpDropdown}>
-          <div className={styles.tpSearchWrap}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A6B7D0" strokeWidth="2">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-            <input
-              ref={inputRef}
-              className={styles.tpSearchInput}
-              type="text"
-              placeholder="Search token or market..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-
-          <div className={styles.tpListHeader}>
-            <span>Pair</span>
-            <span>Price</span>
-            <span>24h Change</span>
-          </div>
-
-          <div className={styles.tpList}>
-            {filtered.length === 0 && (
-              <div className={styles.tpEmpty}>No markets found</div>
-            )}
-            {filtered.map((m) => {
-              const isActive = m.routeId === currentMarket.routeId
-              const pos = m.change24h >= 0
-              return (
-                <button
-                  key={m.routeId}
-                  type="button"
-                  className={isActive ? styles.tpRowActive : styles.tpRow}
-                  onClick={() => handleSelect(m)}
-                >
-                  <div className={styles.tpRowPair}>
-                    <span className={styles.tpRowPairName}>{m.pair}</span>
-                    <span className={styles.tpRowPairTitle}>{m.title}</span>
-                  </div>
-                  <span className={styles.tpRowPrice}>{m.lastPrice.toFixed(2)}</span>
-                  <span className={pos ? styles.deltaUp : styles.deltaDown}>
-                    {pos ? '+' : ''}{m.change24h.toFixed(1)}%
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      )}
+      {open && typeof document !== 'undefined' && createPortal(dropdownContent, document.body)}
     </div>
   )
 }

@@ -1362,6 +1362,18 @@
   }
 }
 
+.tpDropdownFloating {
+  position: fixed;
+  top: auto;
+  left: auto;
+  z-index: 1400;
+
+  @include respond-below(md) {
+    left: auto;
+    width: auto;
+  }
+}
+
 @keyframes tpSlideIn {
   from {
     opacity: 0;
@@ -1431,6 +1443,7 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
   padding: 4px 0;
+  overscroll-behavior: contain;
 }
 
 .tpRow,
@@ -1647,13 +1660,16 @@
 
 // Chart panel
 .tvChartPanel {
+  position: relative;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   background: rgba(10, 16, 30, 0.95);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .tvTimeframeRow {
+  position: relative;
+  z-index: 3;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -1715,8 +1731,12 @@
 }
 
 .tvChartWrap {
+  position: relative;
+  z-index: 1;
   padding: 8px;
   min-height: 420px;
+  overflow: hidden;
+  border-radius: 0 0 12px 12px;
 
   @include respond-below(md) {
     min-height: 300px;
