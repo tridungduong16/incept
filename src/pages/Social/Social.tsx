@@ -15,8 +15,8 @@ const Social = () => {
             <p className={styles.eyebrow}>SOCIAL / COMPETITIVE</p>
             <h1 className={styles.title}>Compete, share, and learn from top traders</h1>
             <p className={styles.lead}>
-              Khong gian xa hoi cho trading: theo doi top trader, doc thesis cong khai, copy
-              watchlist, va tham gia tranh luan bull vs bear theo tung market.
+              A social layer for trading where you can follow top traders, read public theses, copy
+              watchlists, and join bull-vs-bear debates for each market.
             </p>
           </div>
         </section>

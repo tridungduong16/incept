@@ -1,5 +1,12 @@
-// Brand backgrounds
-$bg-primary: #020617;
+// Surface elevation scale
+$surface-0: #020617;
+$surface-1: #0a1020;
+$surface-2: #0e1424;
+$surface-3: #121a30;
+$surface-4: #1a2340;
+
+// Legacy background aliases
+$bg-primary: $surface-0;
 $bg-secondary: #081229;
 $surface: #0b162c;
 
@@ -10,23 +17,49 @@ $purple: #a855f7;
 $gradient-brand: linear-gradient(135deg, $electric-blue 0%, $indigo 52%, $purple 100%);
 
 // Neutrals
-$heading: #E6EDF7;
-$body-text: #9FB0C7;
-$muted-text: #6F8099;
-$label-text: #8EA2C0;
+$heading: #e6edf7;
+$body-text: #9fb0c7;
+$muted-text: #6f8099;
+$label-text: #8ea2c0;
 $border: #1f2937;
+$white: #ffffff;
+$black: #000000;
+
+// Border scale
+$border-subtle: rgba(255, 255, 255, 0.04);
+$border-default: rgba(255, 255, 255, 0.08);
+$border-strong: rgba(255, 255, 255, 0.14);
+$border-brand: rgba(56, 189, 248, 0.24);
+
+// Interactive state overlays
+$hover-overlay: rgba(56, 189, 248, 0.06);
+$active-overlay: rgba(56, 189, 248, 0.12);
+$focus-ring: rgba(56, 189, 248, 0.4);
 
 // Trading colors
 $bullish: #22c55e;
 $bearish: #ef4444;
 $warning: #f59e0b;
-$white: #ffffff;
-$black: #000000;
 
 // Typography
 $font-family-base: 'Inter', 'Segoe UI', sans-serif;
 $font-family-display: 'Inter', sans-serif;
 $font-size-base: 15px;
+
+$type-xs: 0.75rem;
+$type-sm: 0.8125rem;
+$type-base: 0.875rem;
+$type-md: 0.9375rem;
+$type-lg: 1.0625rem;
+$type-xl: 1.25rem;
+$type-2xl: 1.5rem;
+$type-3xl: 2rem;
+$type-display: clamp(2.6rem, 6vw, 4.2rem);
+
+$weight-normal: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
 
 // Breakpoints
 $breakpoint-sm: 576px;
@@ -34,9 +67,41 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
-// Spacing
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
+// Spacing scale
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+
+// Legacy spacing aliases
+$spacing-xs: $space-1;
+$spacing-sm: $space-2;
+$spacing-md: $space-4;
+$spacing-lg: $space-6;
+$spacing-xl: $space-8;
+
+// Radius scale
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+$radius-xl: 20px;
+$radius-2xl: 28px;
+$radius-full: 999px;
+
+// Elevation scale
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+$shadow-md: 0 8px 24px rgba(1, 4, 20, 0.2);
+$shadow-lg: 0 16px 48px rgba(1, 4, 20, 0.3);
+$shadow-xl: 0 24px 64px rgba(1, 4, 20, 0.4);
+
+// Motion tokens
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$duration-fast: 120ms;
+$duration-normal: 200ms;
+$duration-slow: 320ms;

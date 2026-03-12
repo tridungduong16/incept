@@ -27,3 +27,73 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin focus-ring($color: $focus-ring, $width: 3px, $offset: 2px) {
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 $width $color;
+    outline: none;
+  }
+
+  @if $offset != null {
+    &:focus-visible {
+      outline-offset: $offset;
+    }
+  }
+}
+
+@mixin interactive-transition(
+  $properties: (background, border-color, color, box-shadow, transform, opacity),
+  $duration: $duration-normal,
+  $timing: $ease-out
+) {
+  transition: $properties $duration $timing;
+}
+
+@mixin surface-card(
+  $surface-color: $surface-2,
+  $radius: $radius-xl,
+  $border-color: $border-default,
+  $shadow: $shadow-lg
+) {
+  border: 1px solid $border-color;
+  border-radius: $radius;
+  background: $surface-color;
+  box-shadow: $shadow;
+}
+
+@mixin elevated-surface(
+  $base: $surface-2,
+  $top-glow: rgba(56, 189, 248, 0.08),
+  $bottom-glow: rgba(99, 102, 241, 0.06)
+) {
+  background:
+    radial-gradient(circle at top right, $top-glow, transparent 36%),
+    radial-gradient(circle at bottom left, $bottom-glow, transparent 32%),
+    linear-gradient(180deg, $base, $surface-1);
+}
+
+@mixin text-style(
+  $size,
+  $weight: $weight-normal,
+  $line-height: 1.5,
+  $letter-spacing: normal
+) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+@mixin motion-reduce {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
