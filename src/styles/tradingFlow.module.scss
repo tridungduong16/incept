@@ -887,12 +887,13 @@
 
 .mktPanel {
   margin-top: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(14, 20, 34, 0.96), rgba(8, 12, 24, 0.92)),
-    rgba(9, 13, 26, 0.96);
-  box-shadow: 0 22px 60px rgba(1, 4, 20, 0.28);
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 36%),
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
   overflow: hidden;
   @include hover-card();
 }
@@ -900,9 +901,8 @@
 .mktTabs {
   display: flex;
   align-items: center;
-  gap: 0;
-  padding: 0 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 10px;
+  padding: 18px 24px 0;
   overflow-x: auto;
   scrollbar-width: none;
 
@@ -913,38 +913,41 @@
 
 .mktTab,
 .mktTabActive {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 16px 18px;
-  border: none;
-  background: transparent;
-  color: $label-text;
-  font-size: $type-92;
-  font-weight: 600;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: rgba(11, 22, 44, 0.72);
+  color: #c9d4ff;
+  font-size: $type-90;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 160ms ease;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 
   &:hover {
-    color: $heading;
+    color: $white;
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(56, 189, 248, 0.16);
+    transform: translateY(-1px);
   }
 }
 
 .mktTabActive {
-  color: $electric-blue;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 18px;
-    right: 18px;
-    height: 2px;
-    background: $electric-blue;
-    border-radius: 2px 2px 0 0;
-  }
+  color: $white;
+  border-color: rgba(56, 189, 248, 0.24);
+  background: rgba(56, 189, 248, 0.14);
+  box-shadow:
+    0 12px 28px rgba(56, 189, 248, 0.14),
+    0 0 0 1px rgba(99, 102, 241, 0.16);
 }
 
 .mktTabCount {
@@ -955,10 +958,10 @@
   height: 20px;
   padding: 0 6px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  font-size: $type-72;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: $type-74;
   font-weight: 700;
-  color: $label-text;
+  color: currentColor;
 }
 
 .mktSearch {
@@ -967,14 +970,14 @@
   gap: 10px;
   margin: 16px 24px;
   padding: 0 16px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  background: rgba(6, 10, 20, 0.8);
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  background: rgba(17, 24, 39, 0.94);
   transition: border-color 160ms ease;
 
   &:focus-within {
-    border-color: rgba(56, 189, 248, 0.32);
+    border-color: rgba(56, 189, 248, 0.26);
   }
 }
 
@@ -983,7 +986,7 @@
   border: none;
   background: transparent;
   color: $white;
-  font-size: $type-92;
+  font-size: $type-95;
   outline: none;
 
   &::placeholder {
@@ -1065,11 +1068,11 @@
 .mktThRight,
 .mktThCenter {
   padding: 12px 16px;
-  font-size: $type-xs;
-  font-weight: 400;
-  color: $label-text;
+  font-size: $type-82;
+  font-weight: 700;
+  color: #c9d4ff;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   cursor: pointer;
   user-select: none;
@@ -1133,15 +1136,15 @@
 
 .mktPairName {
   color: $heading;
+  font-family: $font-family-display;
   font-weight: 600;
-  font-size: $type-113;
-  letter-spacing: 0.01em;
-  text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
+  font-size: $type-120;
+  letter-spacing: $tracking-heading-small;
 }
 
 .mktPairTitle {
-  color: $muted-text;
-  font-size: $type-80;
+  color: #9fb0d8;
+  font-size: $type-82;
   max-width: 220px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1150,9 +1153,9 @@
 
 .mktPrice {
   color: $heading;
-  font-size: $type-125;
+  font-family: $font-family-display;
+  font-size: $type-135;
   @include numeric-display($weight-semibold);
-  text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
 }
 
 .sparklineSvg {
@@ -1164,19 +1167,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
+  min-height: 38px;
   padding: 0 16px;
-  border-radius: 8px;
-  border: none;
-  font-size: $type-82;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  font-size: $type-84;
   font-weight: 700;
-  color: $electric-blue;
-  background: rgba(56, 189, 248, 0.1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $heading;
+  background: rgba(11, 22, 44, 0.88);
   cursor: pointer;
   @include hover-button(-1px, 1.015, 0 14px 32px rgba(1, 4, 20, 0.22));
 
   &:hover {
-    background: rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.34);
+    background: rgba(56, 189, 248, 0.14);
     color: $white;
   }
 }
@@ -1288,11 +1294,15 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 10px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  background: rgba(10, 16, 30, 0.95);
-  margin-bottom: 8px;
+  padding: 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
+  margin-bottom: 18px;
   overflow-x: auto;
 
   @include respond-below(md) {
@@ -1317,14 +1327,18 @@
 
 .tvPairName {
   color: $heading;
-  font-size: $type-110;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  font-family: $font-family-display;
+  font-size: $type-fluid-150-220;
+  font-weight: 700;
+  letter-spacing: $tracking-heading-large;
 }
 
 .tvPairTitle {
-  color: $muted-text;
-  font-size: $type-76;
+  color: $electric-blue;
+  font-size: $type-78;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 // Token Pair Selector
@@ -1570,7 +1584,7 @@
 .tvTickerStat {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 4px;
   padding: 0 18px;
   border-right: 1px solid rgba(255, 255, 255, 0.04);
   white-space: nowrap;
@@ -1580,18 +1594,20 @@
   }
 
   span {
-    color: $label-text;
-    font-size: $type-xs;
-    font-weight: 400;
+    color: #9fb0d8;
+    font-size: $type-76;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   strong {
     color: $heading;
-    font-size: $type-base;
-    font-weight: 600;
+    font-family: $font-family-display;
+    font-size: $type-110;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
-    text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
   }
 }
 
@@ -1710,9 +1726,12 @@
 // Chart panel
 .tvChartPanel {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  background: rgba(10, 16, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
   overflow: visible;
   @include hover-card();
 }
@@ -1723,41 +1742,49 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 8px;
   row-gap: 8px;
-  padding: 8px 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .tvTimeLabel {
-  color: $muted-text;
+  color: $electric-blue;
   font-size: $type-78;
-  margin-right: 4px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-right: 6px;
+  text-transform: uppercase;
 }
 
 .tvTimeframeBtn,
 .tvTimeframeBtnActive {
-  padding: 4px 10px;
-  border: none;
-  border-radius: 6px;
-  background: transparent;
-  color: $label-text;
-  font-size: $type-80;
-  font-weight: 600;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  background: rgba(17, 24, 39, 0.72);
+  color: #c9d4ff;
+  font-size: $type-78;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   cursor: pointer;
   transition:
     background 120ms ease,
-    color 120ms ease;
+    color 120ms ease,
+    border-color 120ms ease;
 
   &:hover {
     color: $heading;
     background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(56, 189, 248, 0.18);
   }
 }
 
 .tvTimeframeBtnActive {
-  color: $electric-blue;
-  background: rgba(56, 189, 248, 0.1);
+  color: $white;
+  border-color: rgba(56, 189, 248, 0.28);
+  background: rgba(56, 189, 248, 0.16);
 }
 
 .tvChartMeta {
@@ -1765,11 +1792,12 @@
   align-items: center;
   gap: 12px;
   margin-left: auto;
-  font-size: $type-78;
-  color: $muted-text;
+  font-size: $type-80;
+  color: #9fb0d8;
 
   strong {
     color: $heading;
+    font-family: $font-family-display;
     font-weight: 600;
   }
 
@@ -1783,10 +1811,10 @@
 .tvChartWrap {
   position: relative;
   z-index: 1;
-  padding: 8px;
+  padding: 10px 10px 12px;
   min-height: 420px;
   overflow: hidden;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 28px 28px;
 
   @include respond-below(md) {
     min-height: 300px;
@@ -1831,47 +1859,54 @@
 
 // Bottom panel (timeline/trades)
 .tvBottomPanel {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  background: rgba(10, 16, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
   @include hover-card();
 }
 
 .tvBottomTabs {
   display: flex;
-  gap: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 10px;
+  padding: 18px 18px 0;
+  border-bottom: none;
+  overflow-x: auto;
 }
 
 .tvBottomTab,
 .tvBottomTabActive {
-  padding: 10px 18px;
-  border: none;
-  background: transparent;
-  color: $muted-text;
-  font-size: $type-85;
-  font-weight: 600;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: rgba(11, 22, 44, 0.72);
+  color: #c9d4ff;
+  font-size: $type-84;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  position: relative;
+  white-space: nowrap;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
 
   &:hover {
-    color: $heading;
+    color: $white;
+    background: rgba(99, 102, 241, 0.08);
   }
 }
 
 .tvBottomTabActive {
-  color: $electric-blue;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 18px;
-    right: 18px;
-    height: 2px;
-    background: $electric-blue;
-    border-radius: 2px 2px 0 0;
-  }
+  color: $white;
+  border-color: rgba(56, 189, 248, 0.24);
+  background: rgba(56, 189, 248, 0.14);
+  box-shadow:
+    0 12px 28px rgba(56, 189, 248, 0.14),
+    0 0 0 1px rgba(99, 102, 241, 0.16);
 }
 
 .tvTimelineList {
@@ -1918,21 +1953,26 @@
 
 // Order book panel
 .tvObPanel {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  background: rgba(10, 16, 30, 0.95);
-  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
+  padding: 18px;
   @include hover-card();
 }
 
 .tvObHeader {
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 14px;
 
   strong {
     color: $heading;
-    font-size: $type-90;
+    font-family: $font-family-display;
+    font-size: $type-120;
+    letter-spacing: $tracking-heading-small;
   }
 }
 
@@ -2030,9 +2070,12 @@
 
 // Trade panel
 .tvTradePanel {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  background: rgba(10, 16, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
   overflow: hidden;
 }
 
@@ -2335,11 +2378,11 @@
 .pfThRight,
 .pfThCenter {
   padding: 10px 14px;
-  font-size: $type-76;
+  font-size: $type-82;
   font-weight: 700;
-  color: $muted-text;
+  color: #c9d4ff;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   white-space: nowrap;
 }
@@ -2389,8 +2432,9 @@
 
 .pfContract {
   color: $heading;
+  font-family: $font-family-display;
   font-weight: 700;
-  font-size: $type-86;
+  font-size: $type-90;
 }
 
 .pfSideLong {
@@ -2426,12 +2470,13 @@
 
 .pfCloseBtn,
 .pfCancelBtn {
-  padding: 4px 12px;
+  min-height: 36px;
+  padding: 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  background: transparent;
-  font-size: $type-78;
-  font-weight: 600;
+  border-radius: 999px;
+  background: rgba(11, 22, 44, 0.72);
+  font-size: $type-80;
+  font-weight: 700;
   cursor: pointer;
   @include hover-button(-1px, 1.01, 0 10px 24px rgba(1, 4, 20, 0.16));
 }
@@ -2458,10 +2503,13 @@
 .pfSummaryPanel,
 .pfAllocPanel,
 .pfTopPerformers {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  background: rgba(10, 16, 30, 0.95);
-  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)),
+    #111827;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
+  padding: 18px;
   @include hover-card();
 }
 
@@ -2476,15 +2524,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 0;
-  font-size: $type-84;
+  padding: 7px 0;
+  font-size: $type-88;
 
   span {
-    color: $muted-text;
+    color: #9fb0d8;
   }
 
   strong {
     color: $heading;
+    font-family: $font-family-display;
     @include numeric-display($weight-semibold);
   }
 }
@@ -2498,15 +2547,15 @@
 // Allocation
 .pfAllocBar {
   display: flex;
-  height: 8px;
-  border-radius: 4px;
+  height: 10px;
+  border-radius: 999px;
   overflow: hidden;
-  margin: 12px 0;
+  margin: 14px 0 16px;
   gap: 2px;
 }
 
 .pfAllocSegment {
-  border-radius: 4px;
+  border-radius: 999px;
   transition: opacity 120ms ease;
 
   &:hover {
@@ -2556,15 +2605,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.02);
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(17, 24, 39, 0.72);
   @include hover-row(rgba(56, 189, 248, 0.04));
 
   strong {
     display: block;
     color: $heading;
-    font-size: $type-84;
+    font-family: $font-family-display;
+    font-size: $type-88;
   }
 
   small {

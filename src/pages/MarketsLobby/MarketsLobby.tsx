@@ -55,6 +55,14 @@ const MarketsLobby = () => {
   const [search, setSearch] = useState('')
   const [sortKey, setSortKey] = useState<SortKey>('volume24h')
   const [sortDir, setSortDir] = useState<SortDir>('desc')
+  const liveMarketCount = useMemo(
+    () => allMarkets.filter((market) => market.status === 'Live').length,
+    [],
+  )
+  const preMarketCount = useMemo(
+    () => allMarkets.filter((market) => market.status === 'Pre-market').length,
+    [],
+  )
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -122,6 +130,41 @@ const MarketsLobby = () => {
       <TradingHeader ctaLabel="View Portfolio" ctaTo={ROUTES.PORTFOLIO} />
 
       <div className={styles.shell}>
+        <section className={styles.heroPanel}>
+          <div className={styles.copyBlock}>
+            <p className={styles.eyebrow}>LIVE MARKETS</p>
+            <h1 className={styles.title}>Trade live probabilities with the same premium system as the landing page.</h1>
+            <p className={styles.lead}>
+              Scan contracts across macro, crypto, sports, and policy, then move from discovery to
+              execution inside a cleaner trading surface that now matches the landing page tone,
+              typography, and card treatment.
+            </p>
+          </div>
+
+          <div className={styles.heroStats}>
+            <article className={styles.statCard}>
+              <span>Total Markets</span>
+              <strong>{allMarkets.length}</strong>
+              <p>Tradable event contracts across every category.</p>
+            </article>
+            <article className={styles.statCard}>
+              <span>Live Contracts</span>
+              <strong>{liveMarketCount}</strong>
+              <p>Markets currently resolving in real time.</p>
+            </article>
+            <article className={styles.statCard}>
+              <span>Pre-Market</span>
+              <strong>{preMarketCount}</strong>
+              <p>Contracts building positioning ahead of open trading.</p>
+            </article>
+            <article className={styles.statCard}>
+              <span>Showing</span>
+              <strong>{filteredMarkets.length}</strong>
+              <p>{activeCategory === 'All' ? 'All categories in view.' : `${activeCategory} contracts in view.`}</p>
+            </article>
+          </div>
+        </section>
+
         {/* Stats ticker */}
         <section className={styles.statsGrid}>
           {lobbyStats.map((stat) => (

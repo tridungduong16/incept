@@ -103,12 +103,48 @@ const Portfolio = () => {
 
   const totalPnl = openPositions.reduce((sum, p) => sum + parseFloat(p.pnl.replace(/[+$,]/g, '')), 0)
   const totalMargin = openPositions.reduce((sum, p) => sum + parseFloat(p.margin.replace(/[$,]/g, '')), 0)
+  const availableBalance = 12480 - totalMargin
 
   return (
     <div className={styles.page}>
       <TradingHeader />
 
       <div className={styles.tvShell}>
+        <section className={styles.heroPanel}>
+          <div className={styles.copyBlock}>
+            <p className={styles.eyebrow}>PORTFOLIO</p>
+            <h1 className={styles.title}>Track performance, risk, and capital deployment in one premium workspace.</h1>
+            <p className={styles.lead}>
+              The portfolio surface now follows the landing page direction more closely, with stronger
+              display typography, richer dark surfaces, and clearer hierarchy for equity, positions,
+              and account health.
+            </p>
+          </div>
+
+          <div className={styles.heroStats}>
+            <article className={styles.statCard}>
+              <span>Total Balance</span>
+              <strong className="num">$12,480</strong>
+              <p>Current account equity across active event positions.</p>
+            </article>
+            <article className={styles.statCard}>
+              <span>Unrealized PnL</span>
+              <strong className={`${styles.deltaUp} num`}>+${totalPnl.toFixed(2)}</strong>
+              <p>Live mark-to-market change from open positions.</p>
+            </article>
+            <article className={styles.statCard}>
+              <span>Available</span>
+              <strong className="num">${availableBalance.toFixed(2)}</strong>
+              <p>Capital left for new probability trades.</p>
+            </article>
+            <article className={styles.statCard}>
+              <span>Open Positions</span>
+              <strong className="num">{openPositions.length}</strong>
+              <p>Contracts currently contributing to portfolio risk.</p>
+            </article>
+          </div>
+        </section>
+
         {/* Account overview ticker */}
         <section className={styles.tvTickerBar}>
           <div className={styles.tvPairInfo}>
@@ -130,7 +166,7 @@ const Portfolio = () => {
             </div>
             <div className={styles.tvTickerStat}>
               <span>Available</span>
-                <strong className="num">${(12480 - totalMargin).toFixed(2)}</strong>
+                <strong className="num">${availableBalance.toFixed(2)}</strong>
             </div>
             <div className={styles.tvTickerStat}>
               <span>Open Positions</span>
