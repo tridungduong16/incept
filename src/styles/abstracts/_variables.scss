@@ -1,20 +1,20 @@
 // Surface elevation scale
 $surface-0: #020617;
-$surface-1: #0a1020;
-$surface-2: #0e1424;
+$surface-1: #0b1224;
+$surface-2: #10182a;
 $surface-3: #121a30;
 $surface-4: #1a2340;
 
 // Legacy background aliases
 $bg-primary: $surface-0;
-$bg-secondary: #081229;
-$surface: #0b162c;
+$bg-secondary: #0a1630;
+$surface: #0d1a34;
 
 // Brand colors
-$electric-blue: #38bdf8;
+$electric-blue: #46caff;
 $indigo: #6366f1;
 $purple: #a855f7;
-$gradient-brand: linear-gradient(135deg, $electric-blue 0%, $indigo 52%, $purple 100%);
+$gradient-brand: linear-gradient(135deg, $electric-blue 0%, $indigo 50%, $purple 100%);
 
 // Neutrals
 $heading: #e6edf7;

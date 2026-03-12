@@ -25,6 +25,19 @@ export const socialFeatures: SocialFeature[] = [
     ],
   },
   {
+    id: 'copy-trading',
+    icon: 'MIRROR',
+    title: 'Copy trading',
+    shortLabel: 'Copy Trading',
+    description: 'Mirror top traders with allocation controls, live position previews, and pause/resume guardrails.',
+    status: 'Active',
+    highlights: [
+      'Choose a trader and size your mirror allocation.',
+      'Preview copied positions before you activate the strategy.',
+      'Pause or update your copy settings without losing context.',
+    ],
+  },
+  {
     id: 'public-theses',
     icon: 'THESIS',
     title: 'Public theses',
@@ -42,12 +55,12 @@ export const socialFeatures: SocialFeature[] = [
     icon: 'COPY',
     title: 'Copy watchlist',
     shortLabel: 'Watchlist',
-    description: 'Follow another trader’s watchlist to discover opportunities faster.',
-    status: 'Coming Soon',
+    description: 'Sync high-signal markets from trusted traders into your own watchlist with overlap controls.',
+    status: 'Active',
     highlights: [
-      'Copy watchlists from traders you trust.',
-      'Get updates when new markets are added.',
-      'Flag overlapping markets to keep tracking efficient.',
+      'Copy individual markets or entire watchlists from traders you trust.',
+      'See overlap before you sync more names into your own list.',
+      'Keep alerts on for copied markets that still need monitoring.',
     ],
   },
   {
@@ -56,7 +69,7 @@ export const socialFeatures: SocialFeature[] = [
     title: 'Community consensus',
     shortLabel: 'Consensus',
     description: 'Aggregate the community’s current bias for each market.',
-    status: 'Coming Soon',
+    status: 'Active',
     highlights: [
       'Measure bullish and bearish lean across the community.',
       'Aggregate sentiment by market and event.',
@@ -69,7 +82,7 @@ export const socialFeatures: SocialFeature[] = [
     title: 'Debate room',
     shortLabel: 'Debate',
     description: 'A dedicated bull-vs-bear discussion space for each event.',
-    status: 'Coming Soon',
+    status: 'Active',
     highlights: [
       'Open a focused debate room for each event market.',
       'Separate bull and bear arguments so they are easy to follow.',

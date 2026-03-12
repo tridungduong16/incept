@@ -22,10 +22,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'tnum' 1, 'ss01' 1;
   background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 24%),
+    radial-gradient(circle at top left, rgba(70, 202, 255, 0.22), transparent 28%),
     radial-gradient(circle at top right, rgba(168, 85, 247, 0.16), transparent 22%),
-    radial-gradient(circle at 50% 12%, rgba(99, 102, 241, 0.12), transparent 30%),
-    linear-gradient(180deg, $surface-0 0%, $bg-secondary 52%, $surface-1 100%);
+    radial-gradient(circle at 50% 12%, rgba(99, 102, 241, 0.14), transparent 32%),
+    linear-gradient(180deg, $surface-0 0%, $bg-secondary 50%, $surface-1 100%);
   color: $body-text;
   color-scheme: dark;
   text-rendering: optimizeLegibility;

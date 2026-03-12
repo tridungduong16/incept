@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { socialFeatureRegistry } from '@/components/SocialFeatures'
 import TradingHeader from '@/components/TradingHeader'
 import { ROUTES } from '@/constants/routes'
 import { getSocialFeatureById } from '@/data/social'
@@ -18,41 +19,33 @@ const SocialFeature = () => {
     return <NotFound />
   }
 
+  const FeatureContent = socialFeatureRegistry[featureId]
+
   return (
     <div className={styles.page}>
       <TradingHeader />
 
       <div className={styles.shell}>
-        <section className={styles.heroPanel}>
-          <div className={styles.copyBlock}>
-            <p className={styles.eyebrow}>SOCIAL FEATURE</p>
-            <h1 className={styles.title}>{feature.title}</h1>
-            <p className={styles.lead}>{feature.description}</p>
-          </div>
-          <div className={styles.buttonRow}>
-            <Link to={ROUTES.SOCIAL} className={styles.secondaryButton}>
-              Back to Social
-            </Link>
-            <span className={styles.aiFeatureBadge}>{feature.status}</span>
-          </div>
-        </section>
-
         <section className={styles.sectionBlock}>
-          <article className={styles.panel}>
-            <div className={styles.sectionHeader}>
-              <div className={styles.sectionIntro}>
-                <h2>What this feature provides</h2>
-              </div>
-            </div>
-
-            <div className={styles.stackList}>
-              {feature.highlights.map((highlight) => (
-                <div key={highlight} className={styles.infoCard}>
-                  <p className={styles.bodyCopy}>{highlight}</p>
+          {FeatureContent ? (
+            <FeatureContent />
+          ) : (
+            <article className={styles.panel}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionIntro}>
+                  <h2>What this feature provides</h2>
                 </div>
-              ))}
-            </div>
-          </article>
+              </div>
+
+              <div className={styles.stackList}>
+                {feature.highlights.map((highlight) => (
+                  <div key={highlight} className={styles.infoCard}>
+                    <p className={styles.bodyCopy}>{highlight}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          )}
         </section>
       </div>
     </div>
