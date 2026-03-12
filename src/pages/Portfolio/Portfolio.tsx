@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import LoadingSkeleton from '@/components/LoadingSkeleton'
 import TradingHeader from '@/components/TradingHeader'
+import useInitialLoading from '@/hooks/useInitialLoading'
 import {
   assetAllocation,
   openOrders,
@@ -96,6 +98,7 @@ const AllocationBar = ({ items }: { items: { label: string; value: number; color
 type BottomTab = 'positions' | 'orders' | 'history'
 
 const Portfolio = () => {
+  const isLoading = useInitialLoading()
   const [bottomTab, setBottomTab] = useState<BottomTab>('positions')
 
   const totalPnl = openPositions.reduce((sum, p) => sum + parseFloat(p.pnl.replace(/[+$,]/g, '')), 0)
@@ -115,27 +118,27 @@ const Portfolio = () => {
           <div className={styles.tvTickerStats}>
             <div className={styles.tvTickerStat}>
               <span>Total Balance</span>
-              <strong>$12,480.00</strong>
+                <strong className="num">$12,480.00</strong>
             </div>
             <div className={styles.tvTickerStat}>
               <span>Unrealized PnL</span>
-              <strong className={styles.deltaUp}>+${totalPnl.toFixed(2)}</strong>
+                <strong className={`${styles.deltaUp} num`}>+${totalPnl.toFixed(2)}</strong>
             </div>
             <div className={styles.tvTickerStat}>
               <span>Margin Used</span>
-              <strong>${totalMargin.toFixed(2)}</strong>
+                <strong className="num">${totalMargin.toFixed(2)}</strong>
             </div>
             <div className={styles.tvTickerStat}>
               <span>Available</span>
-              <strong>${(12480 - totalMargin).toFixed(2)}</strong>
+                <strong className="num">${(12480 - totalMargin).toFixed(2)}</strong>
             </div>
             <div className={styles.tvTickerStat}>
               <span>Open Positions</span>
-              <strong>{openPositions.length}</strong>
+                <strong className="num">{openPositions.length}</strong>
             </div>
             <div className={styles.tvTickerStat}>
               <span>Win Rate</span>
-              <strong className={styles.deltaUp}>68%</strong>
+                <strong className={`${styles.deltaUp} num`}>68%</strong>
             </div>
           </div>
         </section>
@@ -157,13 +160,21 @@ const Portfolio = () => {
                   </button>
                 ))}
                 <div className={styles.tvChartMeta}>
-                  <span>Start <strong>$10,000</strong></span>
-                  <span>Current <strong className={styles.deltaUp}>$12,480</strong></span>
-                  <span>Return <strong className={styles.deltaUp}>+24.8%</strong></span>
+                  <span>Start <strong className="num">$10,000</strong></span>
+                  <span>Current <strong className={`${styles.deltaUp} num`}>$12,480</strong></span>
+                  <span>Return <strong className={`${styles.deltaUp} num`}>+24.8%</strong></span>
                 </div>
               </div>
               <div className={styles.tvChartWrap}>
-                <EquityChart data={portfolioEquityCurve} />
+                {isLoading ? (
+                  <div className={styles.tvChartSkeleton}>
+                    {Array.from({ length: 6 }, (_, index) => (
+                      <LoadingSkeleton key={index} className={styles.tvChartSkeletonBar} />
+                    ))}
+                  </div>
+                ) : (
+                  <EquityChart data={portfolioEquityCurve} />
+                )}
               </div>
             </div>
 
@@ -195,6 +206,17 @@ const Portfolio = () => {
 
               {bottomTab === 'positions' && (
                 <div className={styles.pfTableWrap}>
+                  {isLoading ? (
+                    <div className={styles.pfTableSkeleton}>
+                      {Array.from({ length: 5 }, (_, rowIndex) => (
+                        <div key={rowIndex} className={styles.pfTableSkeletonRow}>
+                          {Array.from({ length: 9 }, (_, cellIndex) => (
+                            <LoadingSkeleton key={cellIndex} className={styles.pfTableSkeletonCell} />
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
                   <table className={styles.pfTable}>
                     <thead>
                       <tr>
@@ -222,12 +244,12 @@ const Portfolio = () => {
                                 {pos.side}
                               </span>
                             </td>
-                            <td className={styles.pfTdRight}>{pos.size}</td>
-                            <td className={styles.pfTdRight}>{pos.avgEntry}</td>
-                            <td className={styles.pfTdRight}>{pos.mark}</td>
-                            <td className={styles.pfTdRight}>{pos.liqPrice}</td>
-                            <td className={styles.pfTdRight}>{pos.margin}</td>
-                            <td className={styles.pfTdRight}>
+                            <td className={`${styles.pfTdRight} num`}>{pos.size}</td>
+                            <td className={`${styles.pfTdRight} num`}>{pos.avgEntry}</td>
+                            <td className={`${styles.pfTdRight} num`}>{pos.mark}</td>
+                            <td className={`${styles.pfTdRight} num`}>{pos.liqPrice}</td>
+                            <td className={`${styles.pfTdRight} num`}>{pos.margin}</td>
+                            <td className={`${styles.pfTdRight} num`}>
                               <div className={styles.pfPnlCell}>
                                 <span className={isPnlPositive ? styles.deltaUp : styles.deltaDown}>{pos.pnl}</span>
                                 <small className={isPnlPositive ? styles.deltaUp : styles.deltaDown}>{pos.pnlPct}</small>
@@ -241,11 +263,23 @@ const Portfolio = () => {
                       })}
                     </tbody>
                   </table>
+                  )}
                 </div>
               )}
 
               {bottomTab === 'orders' && (
                 <div className={styles.pfTableWrap}>
+                  {isLoading ? (
+                    <div className={styles.pfTableSkeleton}>
+                      {Array.from({ length: 5 }, (_, rowIndex) => (
+                        <div key={rowIndex} className={styles.pfTableSkeletonRow}>
+                          {Array.from({ length: 8 }, (_, cellIndex) => (
+                            <LoadingSkeleton key={cellIndex} className={styles.pfTableSkeletonCell} />
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
                   <table className={styles.pfTable}>
                     <thead>
                       <tr>
@@ -271,9 +305,9 @@ const Portfolio = () => {
                             </span>
                           </td>
                           <td className={styles.pfTd}>{order.type}</td>
-                          <td className={styles.pfTdRight}>{order.limit}</td>
-                          <td className={styles.pfTdRight}>{order.size}</td>
-                          <td className={styles.pfTdRight}>{order.filled}</td>
+                          <td className={`${styles.pfTdRight} num`}>{order.limit}</td>
+                          <td className={`${styles.pfTdRight} num`}>{order.size}</td>
+                          <td className={`${styles.pfTdRight} num`}>{order.filled}</td>
                           <td className={styles.pfTd}>{order.expires}</td>
                           <td className={styles.pfTdCenter}>
                             <button type="button" className={styles.pfCancelBtn}>Cancel</button>
@@ -282,11 +316,23 @@ const Portfolio = () => {
                       ))}
                     </tbody>
                   </table>
+                  )}
                 </div>
               )}
 
               {bottomTab === 'history' && (
                 <div className={styles.pfTableWrap}>
+                  {isLoading ? (
+                    <div className={styles.pfTableSkeleton}>
+                      {Array.from({ length: 5 }, (_, rowIndex) => (
+                        <div key={rowIndex} className={styles.pfTableSkeletonRow}>
+                          {Array.from({ length: 7 }, (_, cellIndex) => (
+                            <LoadingSkeleton key={cellIndex} className={styles.pfTableSkeletonCell} />
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
                   <table className={styles.pfTable}>
                     <thead>
                       <tr>
@@ -311,14 +357,15 @@ const Portfolio = () => {
                               {trade.side}
                             </span>
                           </td>
-                          <td className={styles.pfTdRight}>{trade.price}</td>
-                          <td className={styles.pfTdRight}>{trade.size}</td>
-                          <td className={styles.pfTdRight}>{trade.fee}</td>
-                          <td className={styles.pfTdRight}>{trade.total}</td>
+                          <td className={`${styles.pfTdRight} num`}>{trade.price}</td>
+                          <td className={`${styles.pfTdRight} num`}>{trade.size}</td>
+                          <td className={`${styles.pfTdRight} num`}>{trade.fee}</td>
+                          <td className={`${styles.pfTdRight} num`}>{trade.total}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
+                  )}
                 </div>
               )}
             </div>
@@ -333,41 +380,41 @@ const Portfolio = () => {
               <div className={styles.pfSummaryList}>
                 <div className={styles.pfSummaryRow}>
                   <span>Total Balance</span>
-                  <strong>$12,480.00</strong>
+                  <strong className="num">$12,480.00</strong>
                 </div>
                 <div className={styles.pfSummaryRow}>
                   <span>Unrealized PnL</span>
-                  <strong className={styles.deltaUp}>+${totalPnl.toFixed(2)}</strong>
+                  <strong className={`${styles.deltaUp} num`}>+${totalPnl.toFixed(2)}</strong>
                 </div>
                 <div className={styles.pfSummaryRow}>
                   <span>Today&apos;s PnL</span>
-                  <strong className={styles.deltaUp}>+$1,240.00</strong>
+                  <strong className={`${styles.deltaUp} num`}>+$1,240.00</strong>
                 </div>
                 <div className={styles.pfSummaryDivider} />
                 <div className={styles.pfSummaryRow}>
                   <span>Margin Used</span>
-                  <strong>${totalMargin.toFixed(2)}</strong>
+                  <strong className="num">${totalMargin.toFixed(2)}</strong>
                 </div>
                 <div className={styles.pfSummaryRow}>
                   <span>Available Balance</span>
-                  <strong>${(12480 - totalMargin).toFixed(2)}</strong>
+                  <strong className="num">${(12480 - totalMargin).toFixed(2)}</strong>
                 </div>
                 <div className={styles.pfSummaryRow}>
                   <span>Margin Ratio</span>
-                  <strong>{((totalMargin / 12480) * 100).toFixed(1)}%</strong>
+                  <strong className="num">{((totalMargin / 12480) * 100).toFixed(1)}%</strong>
                 </div>
                 <div className={styles.pfSummaryDivider} />
                 <div className={styles.pfSummaryRow}>
                   <span>Total Trades</span>
-                  <strong>142</strong>
+                  <strong className="num">142</strong>
                 </div>
                 <div className={styles.pfSummaryRow}>
                   <span>Win Rate</span>
-                  <strong className={styles.deltaUp}>68%</strong>
+                  <strong className={`${styles.deltaUp} num`}>68%</strong>
                 </div>
                 <div className={styles.pfSummaryRow}>
                   <span>Avg. Return</span>
-                  <strong className={styles.deltaUp}>+12.4%</strong>
+                  <strong className={`${styles.deltaUp} num`}>+12.4%</strong>
                 </div>
               </div>
             </div>
@@ -382,7 +429,7 @@ const Portfolio = () => {
                   <div key={item.label} className={styles.pfAllocItem}>
                     <span className={styles.pfAllocDot} style={{ background: item.color }} />
                     <span className={styles.pfAllocLabel}>{item.label}</span>
-                    <strong className={styles.pfAllocValue}>{item.value}%</strong>
+                    <strong className={`${styles.pfAllocValue} num`}>{item.value}%</strong>
                   </div>
                 ))}
               </div>
@@ -403,8 +450,8 @@ const Portfolio = () => {
                         <small>{pos.side} · {pos.size} shares</small>
                       </div>
                       <div className={styles.pfPerformerPnl}>
-                        <span className={styles.deltaUp}>{pos.pnl}</span>
-                        <small className={styles.deltaUp}>{pos.pnlPct}</small>
+                        <span className={`${styles.deltaUp} num`}>{pos.pnl}</span>
+                        <small className={`${styles.deltaUp} num`}>{pos.pnlPct}</small>
                       </div>
                     </div>
                   ))}

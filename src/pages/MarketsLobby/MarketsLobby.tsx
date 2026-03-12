@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import LoadingSkeleton from '@/components/LoadingSkeleton'
 import TradingHeader from '@/components/TradingHeader'
 import { ROUTES, buildTradeRoute } from '@/constants/routes'
+import useInitialLoading from '@/hooks/useInitialLoading'
 import {
   allMarkets,
   lobbyStats,
@@ -48,6 +50,7 @@ const parseVolume = (vol: string) => {
 }
 
 const MarketsLobby = () => {
+  const isLoading = useInitialLoading()
   const [activeCategory, setActiveCategory] = useState<MarketCategory>('All')
   const [search, setSearch] = useState('')
   const [sortKey, setSortKey] = useState<SortKey>('volume24h')
@@ -164,61 +167,87 @@ const MarketsLobby = () => {
 
           {/* Table */}
           <div className={styles.mktTableWrap}>
-            <table className={styles.mktTable}>
-              <thead>
-                <tr>
-                  <th className={styles.mktTh} onClick={() => handleSort('pair')}>
-                    Market{sortIndicator('pair')}
-                  </th>
-                  <th className={styles.mktThRight} onClick={() => handleSort('lastPrice')}>
-                    Last Price{sortIndicator('lastPrice')}
-                  </th>
-                  <th className={styles.mktThRight} onClick={() => handleSort('change24h')}>
-                    24h Change{sortIndicator('change24h')}
-                  </th>
-                  <th className={styles.mktThRight}>24h High</th>
-                  <th className={styles.mktThRight}>24h Low</th>
-                  <th className={styles.mktThRight} onClick={() => handleSort('volume24h')}>
-                    24h Volume{sortIndicator('volume24h')}
-                  </th>
-                  <th className={styles.mktThRight}>Open Interest</th>
-                  <th className={styles.mktThCenter}>Last 7 Prices</th>
-                  <th className={styles.mktThCenter}>Trade</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredMarkets.map((m) => (
-                  <tr key={m.pair} className={styles.mktRow}>
-                    <td className={styles.mktTd}>
-                      <div className={styles.mktPairCell}>
-                        <span className={styles.mktPairName}>{m.pair}</span>
-                        <span className={styles.mktPairTitle}>{m.title}</span>
-                      </div>
-                    </td>
-                    <td className={styles.mktTdRight}>
-                      <span className={styles.mktPrice}>{formatPrice(m.lastPrice)}</span>
-                    </td>
-                    <td className={styles.mktTdRight}>
-                      <span className={m.change24h >= 0 ? styles.deltaUp : styles.deltaDown}>
-                        {formatChange(m.change24h)}
-                      </span>
-                    </td>
-                    <td className={styles.mktTdRight}>{formatPrice(m.high24h)}</td>
-                    <td className={styles.mktTdRight}>{formatPrice(m.low24h)}</td>
-                    <td className={styles.mktTdRight}>{m.volume24h}</td>
-                    <td className={styles.mktTdRight}>{m.openInterest}</td>
-                    <td className={styles.mktTdCenter}>
-                      <MiniSparkline data={m.sparkline} positive={m.change24h >= 0} />
-                    </td>
-                    <td className={styles.mktTdCenter}>
-                      <Link className={styles.mktTradeBtn} to={buildTradeRoute(m.routeId)}>
-                        Trade
-                      </Link>
-                    </td>
-                  </tr>
+            {isLoading ? (
+              <div className={styles.mktTableSkeleton}>
+                <div className={styles.mktTableSkeletonHead}>
+                  {Array.from({ length: 9 }, (_, index) => (
+                    <LoadingSkeleton key={index} className={styles.mktTableSkeletonHeadCell} />
+                  ))}
+                </div>
+                {Array.from({ length: 6 }, (_, rowIndex) => (
+                  <div key={rowIndex} className={styles.mktTableSkeletonRow}>
+                    <div className={styles.mktTableSkeletonMarket}>
+                      <LoadingSkeleton className={styles.mktTableSkeletonName} />
+                      <LoadingSkeleton className={styles.mktTableSkeletonMeta} />
+                    </div>
+                    {Array.from({ length: 6 }, (_, cellIndex) => (
+                      <LoadingSkeleton
+                        key={cellIndex}
+                        className={styles.mktTableSkeletonCell}
+                      />
+                    ))}
+                    <LoadingSkeleton className={styles.mktTableSkeletonSparkline} />
+                    <LoadingSkeleton className={styles.mktTableSkeletonAction} />
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            ) : (
+              <table className={styles.mktTable}>
+                <thead>
+                  <tr>
+                    <th className={styles.mktTh} onClick={() => handleSort('pair')}>
+                      Market{sortIndicator('pair')}
+                    </th>
+                    <th className={styles.mktThRight} onClick={() => handleSort('lastPrice')}>
+                      Last Price{sortIndicator('lastPrice')}
+                    </th>
+                    <th className={styles.mktThRight} onClick={() => handleSort('change24h')}>
+                      24h Change{sortIndicator('change24h')}
+                    </th>
+                    <th className={styles.mktThRight}>24h High</th>
+                    <th className={styles.mktThRight}>24h Low</th>
+                    <th className={styles.mktThRight} onClick={() => handleSort('volume24h')}>
+                      24h Volume{sortIndicator('volume24h')}
+                    </th>
+                    <th className={styles.mktThRight}>Open Interest</th>
+                    <th className={styles.mktThCenter}>Last 7 Prices</th>
+                    <th className={styles.mktThCenter}>Trade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredMarkets.map((m) => (
+                    <tr key={m.pair} className={styles.mktRow}>
+                      <td className={styles.mktTd}>
+                        <div className={styles.mktPairCell}>
+                          <span className={styles.mktPairName}>{m.pair}</span>
+                          <span className={styles.mktPairTitle}>{m.title}</span>
+                        </div>
+                      </td>
+                      <td className={`${styles.mktTdRight} num`}>
+                        <span className={styles.mktPrice}>{formatPrice(m.lastPrice)}</span>
+                      </td>
+                      <td className={`${styles.mktTdRight} num`}>
+                        <span className={m.change24h >= 0 ? styles.deltaUp : styles.deltaDown}>
+                          {formatChange(m.change24h)}
+                        </span>
+                      </td>
+                      <td className={`${styles.mktTdRight} num`}>{formatPrice(m.high24h)}</td>
+                      <td className={`${styles.mktTdRight} num`}>{formatPrice(m.low24h)}</td>
+                      <td className={`${styles.mktTdRight} num`}>{m.volume24h}</td>
+                      <td className={`${styles.mktTdRight} num`}>{m.openInterest}</td>
+                      <td className={styles.mktTdCenter}>
+                        <MiniSparkline data={m.sparkline} positive={m.change24h >= 0} />
+                      </td>
+                      <td className={styles.mktTdCenter}>
+                        <Link className={styles.mktTradeBtn} to={buildTradeRoute(m.routeId)}>
+                          Trade
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
 
           {filteredMarkets.length === 0 && (

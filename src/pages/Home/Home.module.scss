@@ -73,9 +73,7 @@
     border-radius: 999px;
     color: inherit;
     letter-spacing: $tracking-heading-small;
-    transition:
-      color 220ms ease,
-      background 220ms ease;
+    @include interactive-transition((color, background), 220ms, $ease-out);
 
     &::after {
       content: '';
@@ -87,7 +85,7 @@
       background: $gradient-brand;
       border-radius: 999px;
       transform: translateX(-50%);
-      transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition: width 220ms $ease-out;
     }
 
     &:hover {
@@ -95,7 +93,7 @@
       background: rgba(99, 102, 241, 0.08);
 
       &::after {
-        width: 60%;
+        width: 68%;
       }
     }
   }
@@ -126,16 +124,8 @@
   border: 1px solid transparent;
   font-size: $type-95;
   font-weight: 700;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    color 180ms ease;
   cursor: pointer;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
+  @include hover-button(-1px, 1.015, 0 16px 44px rgba(1, 4, 20, 0.28));
 }
 
 .primaryAction {
@@ -372,6 +362,7 @@
   border-radius: 28px;
   background: linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)), #111827;
   box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
+  @include hover-card();
 }
 
 .tradePreview {
@@ -392,6 +383,7 @@
   border-radius: 28px;
   background: linear-gradient(180deg, rgba(20, 24, 35, 0.94), rgba(10, 13, 22, 0.9)), #111827;
   box-shadow: 0 20px 50px rgba(2, 6, 23, 0.22);
+  @include hover-card();
 }
 
 .tradeMarketCard {
@@ -474,6 +466,7 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     background: rgba(15, 23, 42, 0.78);
+    @include hover-card(-2px, rgba(56, 189, 248, 0.14), 0 0 0 1px rgba(56, 189, 248, 0.12), 0 18px 40px rgba(1, 4, 20, 0.24));
   }
 
   strong {
@@ -481,6 +474,7 @@
     margin-bottom: 8px;
     color: #f8fbff;
     font-size: $type-110;
+    font-weight: $weight-semibold;
   }
 
   span {
@@ -517,7 +511,7 @@
   strong {
     color: $heading;
     font-size: $type-120;
-    font-weight: 700;
+    font-weight: $weight-semibold;
   }
 
   p {
@@ -572,6 +566,7 @@
     font-family: $font-family-display;
     font-size: $type-140;
     line-height: 1;
+    font-weight: $weight-semibold;
   }
 }
 
@@ -633,6 +628,54 @@
   align-items: stretch;
 }
 
+.chartSkeleton {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  min-height: 240px;
+}
+
+.chartSkeletonScale {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 36px;
+  padding: 6px 0;
+}
+
+.chartSkeletonTick {
+  width: 100%;
+  min-height: 12px;
+}
+
+.chartSkeletonCanvas {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+  min-height: 240px;
+  padding: 18px 16px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  background: rgba(17, 24, 39, 0.94);
+
+  @include respond-below(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.chartSkeletonBar {
+  min-height: 48px;
+  border-radius: 16px 16px 8px 8px;
+
+  &:nth-child(1) { height: 44%; }
+  &:nth-child(2) { height: 62%; }
+  &:nth-child(3) { height: 72%; }
+  &:nth-child(4) { height: 58%; }
+  &:nth-child(5) { height: 80%; }
+  &:nth-child(6) { height: 54%; }
+}
+
 .chartScale {
   display: flex;
   flex-direction: column;
@@ -679,7 +722,7 @@
     color: $heading;
     background: rgba(56, 189, 248, 0.14);
     font-size: $type-74;
-    font-weight: 700;
+    font-weight: $weight-semibold;
     line-height: 24px;
   }
 }
@@ -771,19 +814,20 @@
   padding: 12px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   color: #f8fbff;
+  @include hover-row(rgba(56, 189, 248, 0.03));
 }
 
 .orderBookSell {
   span:first-child {
     color: #ff8c8c;
-    font-weight: 700;
+    font-weight: $weight-semibold;
   }
 }
 
 .orderBookBuy {
   span:first-child {
     color: #5ee6a2;
-    font-weight: 700;
+    font-weight: $weight-semibold;
   }
 }
 
@@ -793,8 +837,29 @@
   background: rgba(56, 189, 248, 0.1);
   color: #c9d4ff;
   font-size: $type-88;
-  font-weight: 700;
+  font-weight: $weight-semibold;
   text-align: center;
+}
+
+.orderBookSkeleton {
+  display: grid;
+  gap: 10px;
+}
+
+.orderBookSkeletonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.orderBookSkeletonCell {
+  min-height: 18px;
+}
+
+.orderBookSkeletonMid {
+  min-height: 40px;
+  border-radius: 999px;
 }
 
 .tradeTabs {
@@ -925,14 +990,10 @@
   }
 
   tbody tr {
-    transition: background 180ms ease;
+    @include hover-row(rgba(56, 189, 248, 0.04));
 
     &:not(:last-child) td {
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.02);
     }
   }
 
@@ -1054,11 +1115,8 @@
   gap: 16px;
   padding: 24px;
   overflow: hidden;
-  transition:
-    transform 240ms ease,
-    border-color 240ms ease,
-    box-shadow 240ms ease;
   cursor: pointer;
+  @include interactive-transition((transform, border-color, box-shadow), 240ms, $ease-out);
 
   &::before {
     content: '';
@@ -1072,7 +1130,7 @@
   }
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: rgba(56, 189, 248, 0.2);
     box-shadow:
       0 24px 64px rgba(2, 6, 23, 0.4),
@@ -1185,7 +1243,7 @@
 .marketMetaValue {
   color: #dbe5ff;
   font-size: $type-95;
-  font-weight: 700;
+  font-weight: $weight-semibold;
 }
 
 .infoCardIcon {
@@ -1208,10 +1266,7 @@
   position: relative;
   padding: 30px;
   overflow: hidden;
-  transition:
-    transform 280ms ease,
-    border-color 280ms ease,
-    box-shadow 280ms ease;
+  @include interactive-transition((transform, border-color, box-shadow), 280ms, $ease-out);
 
   &::before {
     content: '';
@@ -1227,7 +1282,7 @@
   }
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-2px);
     border-color: rgba(56, 189, 248, 0.15);
     box-shadow:
       0 28px 72px rgba(2, 6, 23, 0.5),
@@ -1262,13 +1317,10 @@
   align-items: flex-start;
   gap: 18px;
   padding: 26px;
-  transition:
-    transform 280ms ease,
-    border-color 280ms ease,
-    box-shadow 280ms ease;
+  @include interactive-transition((transform, border-color, box-shadow), 280ms, $ease-out);
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: rgba(99, 102, 241, 0.18);
     box-shadow:
       0 24px 64px rgba(2, 6, 23, 0.4),
@@ -1541,12 +1593,9 @@
     0 16px 48px rgba(56, 189, 248, 0.22),
     0 0 0 1px rgba(99, 102, 241, 0.3);
   cursor: pointer;
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease;
+  @include hover-button(-1px, 1.015, 0 20px 56px rgba(56, 189, 248, 0.32));
 
   &:hover {
-    transform: translateY(-2px) scale(1.02);
     box-shadow:
       0 20px 56px rgba(56, 189, 248, 0.32),
       0 0 0 1px rgba(99, 102, 241, 0.5);

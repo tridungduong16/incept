@@ -89,9 +89,7 @@
   color: #C8D8F5;
   font-size: $type-95;
   font-weight: 500;
-  transition:
-    background 220ms ease,
-    color 220ms ease;
+  @include interactive-transition((background, color), 220ms, $ease-out);
 
   &::after {
     content: '';
@@ -103,7 +101,7 @@
     background: $gradient-brand;
     border-radius: 999px;
     transform: translateX(-50%);
-    transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: width 220ms $ease-out;
   }
 }
 
@@ -113,7 +111,7 @@
   background: rgba(99, 102, 241, 0.08);
 
   &::after {
-    width: 60%;
+    width: 68%;
   }
 }
 
@@ -247,15 +245,7 @@
   font-size: $type-95;
   font-weight: 700;
   cursor: pointer;
-  transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease,
-    color 160ms ease;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
+  @include hover-button(-1px, 1.015, 0 16px 44px rgba(1, 4, 20, 0.24));
 }
 
 .primaryButton {
@@ -439,6 +429,14 @@
 .watchlistRow {
   padding: 18px;
   border-radius: 24px;
+}
+
+.statCard,
+.highlightCard,
+.marketCard,
+.infoCard,
+.positionCard {
+  @include hover-card();
 }
 
 .statCard,
@@ -896,6 +894,7 @@
     rgba(9, 13, 26, 0.96);
   box-shadow: 0 22px 60px rgba(1, 4, 20, 0.28);
   overflow: hidden;
+  @include hover-card();
 }
 
 .mktTabs {
@@ -998,6 +997,64 @@
   scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
 }
 
+.mktTableSkeleton {
+  display: grid;
+}
+
+.mktTableSkeletonHead,
+.mktTableSkeletonRow {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) repeat(6, minmax(90px, 1fr)) minmax(120px, 0.9fr) minmax(96px, 0.75fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 920px;
+  padding: 14px 16px;
+}
+
+.mktTableSkeletonHead {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mktTableSkeletonRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mktTableSkeletonHeadCell,
+.mktTableSkeletonCell,
+.mktTableSkeletonSparkline,
+.mktTableSkeletonAction,
+.mktTableSkeletonName,
+.mktTableSkeletonMeta {
+  min-height: 16px;
+}
+
+.mktTableSkeletonMarket {
+  display: grid;
+  gap: 8px;
+}
+
+.mktTableSkeletonName {
+  width: 60%;
+  min-height: 20px;
+}
+
+.mktTableSkeletonMeta {
+  width: 82%;
+}
+
+.mktTableSkeletonSparkline {
+  min-height: 28px;
+}
+
+.mktTableSkeletonAction {
+  min-height: 32px;
+  border-radius: 8px;
+}
+
 .mktTable {
   width: 100%;
   border-collapse: collapse;
@@ -1038,11 +1095,7 @@
 
 .mktRow {
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-  transition: background 120ms ease;
-
-  &:hover {
-    background: rgba(56, 189, 248, 0.04);
-  }
+  @include hover-row(rgba(56, 189, 248, 0.04));
 
   &:last-child {
     border-bottom: none;
@@ -1065,7 +1118,7 @@
 
 .mktTdRight {
   text-align: right;
-  font-variant-numeric: tabular-nums;
+  @include numeric-display($weight-semibold);
 }
 
 .mktTdCenter {
@@ -1098,9 +1151,7 @@
 .mktPrice {
   color: $heading;
   font-size: $type-125;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
+  @include numeric-display($weight-semibold);
   text-shadow: 0 0 6px rgba(90, 140, 255, 0.2);
 }
 
@@ -1122,9 +1173,7 @@
   color: $electric-blue;
   background: rgba(56, 189, 248, 0.1);
   cursor: pointer;
-  transition:
-    background 160ms ease,
-    color 160ms ease;
+  @include hover-button(-1px, 1.015, 0 14px 32px rgba(1, 4, 20, 0.22));
 
   &:hover {
     background: rgba(56, 189, 248, 0.2);
@@ -1665,6 +1714,7 @@
   border-radius: 12px;
   background: rgba(10, 16, 30, 0.95);
   overflow: visible;
+  @include hover-card();
 }
 
 .tvTimeframeRow {
@@ -1743,6 +1793,31 @@
   }
 }
 
+.tvChartSkeleton {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 14px;
+  min-height: 400px;
+  padding: 20px 12px 16px;
+
+  @include respond-below(md) {
+    min-height: 280px;
+  }
+}
+
+.tvChartSkeletonBar {
+  min-height: 64px;
+  border-radius: 14px 14px 8px 8px;
+
+  &:nth-child(1) { height: 42%; }
+  &:nth-child(2) { height: 58%; }
+  &:nth-child(3) { height: 74%; }
+  &:nth-child(4) { height: 63%; }
+  &:nth-child(5) { height: 86%; }
+  &:nth-child(6) { height: 68%; }
+}
+
 .tvChartSvg {
   display: block;
   width: 100%;
@@ -1759,6 +1834,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   background: rgba(10, 16, 30, 0.95);
+  @include hover-card();
 }
 
 .tvBottomTabs {
@@ -1846,6 +1922,7 @@
   border-radius: 12px;
   background: rgba(10, 16, 30, 0.95);
   padding: 12px;
+  @include hover-card();
 }
 
 .tvObHeader {
@@ -1884,7 +1961,7 @@
   padding: 3px 4px;
   border-radius: 4px;
   font-size: $type-82;
-  font-variant-numeric: tabular-nums;
+  @include numeric-display($weight-semibold);
   position: relative;
 
   span {
@@ -1942,7 +2019,7 @@
 
   strong {
     font-size: $type-100;
-    font-variant-numeric: tabular-nums;
+    @include numeric-display($weight-semibold);
   }
 
   span {
@@ -2232,6 +2309,22 @@
   scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
 }
 
+.pfTableSkeleton {
+  display: grid;
+  gap: 6px;
+}
+
+.pfTableSkeletonRow {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 12px;
+  padding: 10px 14px;
+}
+
+.pfTableSkeletonCell {
+  min-height: 18px;
+}
+
 .pfTable {
   width: 100%;
   border-collapse: collapse;
@@ -2265,11 +2358,7 @@
 
 .pfRow {
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-  transition: background 100ms ease;
-
-  &:hover {
-    background: rgba(56, 189, 248, 0.03);
-  }
+  @include hover-row(rgba(56, 189, 248, 0.04));
 
   &:last-child {
     border-bottom: none;
@@ -2291,7 +2380,7 @@
 
 .pfTdRight {
   text-align: right;
-  font-variant-numeric: tabular-nums;
+  @include numeric-display($weight-semibold);
 }
 
 .pfTdCenter {
@@ -2344,10 +2433,7 @@
   font-size: $type-78;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background 120ms ease,
-    color 120ms ease,
-    border-color 120ms ease;
+  @include hover-button(-1px, 1.01, 0 10px 24px rgba(1, 4, 20, 0.16));
 }
 
 .pfCloseBtn {
@@ -2376,6 +2462,7 @@
   border-radius: 12px;
   background: rgba(10, 16, 30, 0.95);
   padding: 12px;
+  @include hover-card();
 }
 
 .pfSummaryList {
@@ -2398,8 +2485,7 @@
 
   strong {
     color: $heading;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
+    @include numeric-display($weight-semibold);
   }
 }
 
@@ -2455,8 +2541,7 @@
 
 .pfAllocValue {
   color: $heading;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
+  @include numeric-display($weight-semibold);
 }
 
 // Top performers
@@ -2474,11 +2559,7 @@
   padding: 8px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.02);
-  transition: background 120ms ease;
-
-  &:hover {
-    background: rgba(56, 189, 248, 0.04);
-  }
+  @include hover-row(rgba(56, 189, 248, 0.04));
 
   strong {
     display: block;
@@ -2497,12 +2578,13 @@
 
   span {
     display: block;
-    font-weight: 600;
+    @include numeric-display($weight-semibold);
     font-size: $type-88;
   }
 
   small {
     font-size: $type-74;
+    @include numeric-display($weight-semibold);
   }
 }
 

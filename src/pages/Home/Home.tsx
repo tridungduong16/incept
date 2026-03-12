@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom'
 
 import heroBackground from '../../../background.png'
 import brandLogo from '../../../logo.png'
+import LoadingSkeleton from '@/components/LoadingSkeleton'
 import { ROUTES } from '@/constants/routes'
+import useInitialLoading from '@/hooks/useInitialLoading'
 import {
   DEMO_PASSWORD,
   DEMO_USERNAME,
@@ -81,6 +83,7 @@ const heroStyle = {
 } as CSSProperties
 
 const Home = () => {
+  const isLoading = useInitialLoading()
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const [username, setUsername] = useState(DEMO_USERNAME)
   const [password, setPassword] = useState(DEMO_PASSWORD)
@@ -179,7 +182,7 @@ const Home = () => {
                 <div className={styles.marketCardTop}>
                   <span className={styles.marketCategory}>{m.category}</span>
                   <span
-                    className={`${styles.marketChange} ${m.trend === 'up' ? styles.marketUp : styles.marketDown}`}
+                    className={`${styles.marketChange} ${m.trend === 'up' ? styles.marketUp : styles.marketDown} num`}
                   >
                     {m.trend === 'up' ? '▲' : '▼'} {m.change > 0 ? '+' : ''}
                     {m.change}%
@@ -189,7 +192,7 @@ const Home = () => {
                 <h3 className={styles.marketName}>{m.name}</h3>
 
                 <div className={styles.marketProbWrap}>
-                  <strong className={styles.marketProb}>{m.probability}%</strong>
+                  <strong className={`${styles.marketProb} num`}>{m.probability}%</strong>
                   <div className={styles.marketBar}>
                     <div
                       className={`${styles.marketBarFill} ${m.probability >= 50 ? styles.marketBarBull : styles.marketBarBear}`}
@@ -201,11 +204,13 @@ const Home = () => {
                 <div className={styles.marketMeta}>
                   <div>
                     <span className={styles.marketMetaLabel}>Volume</span>
-                    <span className={styles.marketMetaValue}>{m.volume}</span>
+                    <span className={`${styles.marketMetaValue} num`}>{m.volume}</span>
                   </div>
                   <div>
                     <span className={styles.marketMetaLabel}>Traders</span>
-                    <span className={styles.marketMetaValue}>{m.traders.toLocaleString()}</span>
+                    <span className={`${styles.marketMetaValue} num`}>
+                      {m.traders.toLocaleString()}
+                    </span>
                   </div>
                 </div>
               </article>
@@ -234,24 +239,24 @@ const Home = () => {
 
               <div className={styles.tradeProbabilityBlock}>
                 <span>Barcelona Win Probability</span>
-                <strong>0.4700</strong>
+                <strong className="num">0.4700</strong>
               </div>
 
               <div className={styles.tradeMetrics}>
                 <article>
-                  <strong>$2.3M</strong>
+                  <strong className="num">$2.3M</strong>
                   <span>Volume</span>
                 </article>
                 <article>
-                  <strong>$4.8M</strong>
+                  <strong className="num">$4.8M</strong>
                   <span>Open Interest</span>
                 </article>
                 <article>
-                  <strong>3,421</strong>
+                  <strong className="num">3,421</strong>
                   <span>Active Traders</span>
                 </article>
                 <article>
-                  <strong>182</strong>
+                  <strong className="num">182</strong>
                   <span>Trades/min</span>
                 </article>
               </div>
@@ -259,12 +264,12 @@ const Home = () => {
               <div className={styles.tradeSentiment}>
                 <div>
                   <span>Buy Pressure</span>
-                  <strong>68%</strong>
+                  <strong className="num">68%</strong>
                 </div>
                 <p>Market Activity</p>
                 <div>
                   <span>Sell Pressure</span>
-                  <strong>32%</strong>
+                  <strong className="num">32%</strong>
                 </div>
               </div>
             </div>
@@ -276,15 +281,15 @@ const Home = () => {
               <div className={styles.tradeChartMeta}>
                 <article>
                   <span>Current</span>
-                  <strong>0.47</strong>
+                  <strong className="num">0.47</strong>
                 </article>
                 <article>
                   <span>High</span>
-                  <strong>0.50</strong>
+                  <strong className="num">0.50</strong>
                 </article>
                 <article>
                   <span>Low</span>
-                  <strong>0.45</strong>
+                  <strong className="num">0.45</strong>
                 </article>
               </div>
               <div className={styles.tradeChartToolbar}>
@@ -298,36 +303,56 @@ const Home = () => {
                 <span className={styles.tradeChartLive}>Live</span>
               </div>
               <div className={styles.tradeChart}>
-                <div className={styles.chartScale}>
-                  <span>0.52</span>
-                  <span>0.50</span>
-                  <span>0.48</span>
-                  <span>0.46</span>
-                  <span>0.44</span>
-                </div>
-                <div className={styles.chartCanvas}>
-                  <div className={styles.chartGrid} />
-                  <div className={styles.chartPriceLine}>
-                    <span>0.47</span>
+                {isLoading ? (
+                  <div className={styles.chartSkeleton}>
+                    <div className={styles.chartSkeletonScale}>
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <LoadingSkeleton key={index} className={styles.chartSkeletonTick} />
+                      ))}
+                    </div>
+                    <div className={styles.chartSkeletonCanvas}>
+                      {Array.from({ length: 6 }, (_, index) => (
+                        <LoadingSkeleton
+                          key={index}
+                          className={styles.chartSkeletonBar}
+                        />
+                      ))}
+                    </div>
                   </div>
-                  <div className={styles.chartCandles}>
-                    {chartCandles.map((candle) => (
-                      <div key={candle.time} className={styles.chartCandleColumn}>
-                        <div className={styles.chartCandleArea}>
-                          <span
-                            className={`${styles.chartCandleWick} ${candle.bullish ? styles.chartCandleBull : styles.chartCandleBear}`}
-                            style={{ top: candle.wickTop, height: candle.wickHeight }}
-                          />
-                          <span
-                            className={`${styles.chartCandleBody} ${candle.bullish ? styles.chartCandleBull : styles.chartCandleBear}`}
-                            style={{ top: candle.bodyTop, height: candle.bodyHeight }}
-                          />
-                        </div>
-                        <span className={styles.chartCandleTime}>{candle.time}</span>
+                ) : (
+                  <>
+                    <div className={`${styles.chartScale} num`}>
+                      <span>0.52</span>
+                      <span>0.50</span>
+                      <span>0.48</span>
+                      <span>0.46</span>
+                      <span>0.44</span>
+                    </div>
+                    <div className={styles.chartCanvas}>
+                      <div className={styles.chartGrid} />
+                      <div className={styles.chartPriceLine}>
+                        <span className="num">0.47</span>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                      <div className={styles.chartCandles}>
+                        {chartCandles.map((candle) => (
+                          <div key={candle.time} className={styles.chartCandleColumn}>
+                            <div className={styles.chartCandleArea}>
+                              <span
+                                className={`${styles.chartCandleWick} ${candle.bullish ? styles.chartCandleBull : styles.chartCandleBear}`}
+                                style={{ top: candle.wickTop, height: candle.wickHeight }}
+                              />
+                              <span
+                                className={`${styles.chartCandleBody} ${candle.bullish ? styles.chartCandleBull : styles.chartCandleBear}`}
+                                style={{ top: candle.bodyTop, height: candle.bodyHeight }}
+                              />
+                            </div>
+                            <span className={`${styles.chartCandleTime} num`}>{candle.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -336,23 +361,47 @@ const Home = () => {
                 <h3>Order Book</h3>
               </div>
               <div className={styles.orderBookTable}>
-                <div className={styles.orderBookHead}>
-                  <span>Price</span>
-                  <span>Size</span>
-                </div>
-                {orderBook.slice(0, 3).map((row) => (
-                  <div key={row.price} className={`${styles.orderBookRow} ${styles.orderBookSell}`}>
-                    <span>{row.price}</span>
-                    <span>{row.size}</span>
+                {isLoading ? (
+                  <div className={styles.orderBookSkeleton}>
+                    <div className={styles.orderBookHead}>
+                      <span>Price</span>
+                      <span>Size</span>
+                    </div>
+                    {Array.from({ length: 3 }, (_, index) => (
+                      <div key={`sell-skeleton-${index}`} className={styles.orderBookSkeletonRow}>
+                        <LoadingSkeleton className={styles.orderBookSkeletonCell} />
+                        <LoadingSkeleton className={styles.orderBookSkeletonCell} />
+                      </div>
+                    ))}
+                    <LoadingSkeleton className={styles.orderBookSkeletonMid} />
+                    {Array.from({ length: 3 }, (_, index) => (
+                      <div key={`buy-skeleton-${index}`} className={styles.orderBookSkeletonRow}>
+                        <LoadingSkeleton className={styles.orderBookSkeletonCell} />
+                        <LoadingSkeleton className={styles.orderBookSkeletonCell} />
+                      </div>
+                    ))}
                   </div>
-                ))}
-                <div className={styles.orderBookMid}>---- MID 0.47 ----</div>
-                {orderBook.slice(3).map((row) => (
-                  <div key={row.price} className={`${styles.orderBookRow} ${styles.orderBookBuy}`}>
-                    <span>{row.price}</span>
-                    <span>{row.size}</span>
-                  </div>
-                ))}
+                ) : (
+                  <>
+                    <div className={styles.orderBookHead}>
+                      <span>Price</span>
+                      <span>Size</span>
+                    </div>
+                    {orderBook.slice(0, 3).map((row) => (
+                      <div key={row.price} className={`${styles.orderBookRow} ${styles.orderBookSell} num`}>
+                        <span>{row.price}</span>
+                        <span>{row.size}</span>
+                      </div>
+                    ))}
+                    <div className={`${styles.orderBookMid} num`}>---- MID 0.47 ----</div>
+                    {orderBook.slice(3).map((row) => (
+                      <div key={row.price} className={`${styles.orderBookRow} ${styles.orderBookBuy} num`}>
+                        <span>{row.price}</span>
+                        <span>{row.size}</span>
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
 
@@ -423,11 +472,11 @@ const Home = () => {
                 <tbody>
                   {leaderboard.map((entry) => (
                     <tr key={entry.rank}>
-                      <td>{entry.rank}</td>
+                      <td><span className="num">{entry.rank}</span></td>
                       <td>{entry.trader}</td>
-                      <td>{entry.markets}</td>
-                      <td>{entry.pnl}</td>
-                      <td>{entry.winRate}</td>
+                      <td><span className="num">{entry.markets}</span></td>
+                      <td><span className="num">{entry.pnl}</span></td>
+                      <td><span className="num">{entry.winRate}</span></td>
                     </tr>
                   ))}
                 </tbody>
